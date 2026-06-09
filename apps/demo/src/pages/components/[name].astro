@@ -38,11 +38,11 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
       )}
     </div>
     <div class="grid min-h-[320px] place-items-center p-6">
-      <div id="demo-react" class="w-full max-w-xl">
+      <div id="demo-react" class="flex w-full max-w-xl items-center justify-center">
         <ReactDemo name={component.name} client:load />
       </div>
       {component.solid && (
-        <div id="demo-solid" class="w-full max-w-xl" style="display: none;">
+        <div id="demo-solid" class="flex w-full max-w-xl items-center justify-center" style="display: none;">
           {component.name === "card" ? (
             <div class="rounded-lg border bg-card py-6 text-card-foreground shadow-xs">
               <div class="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6">
