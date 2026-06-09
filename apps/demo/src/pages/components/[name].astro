@@ -1,8 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import { components } from "../../lib/components"
-import ReactDemo from "../../components/react-demo"
-import SolidDemo from "../../components/solid-demo"
 
 export function getStaticPaths() {
   return components.map((component) => ({
@@ -35,11 +33,47 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
         </div>
       </div>
       <div class="grid min-h-[320px] place-items-center p-6">
-        <div id="demo-react">
-          <ReactDemo name={component.name} client:only="react" />
+        <div id="demo-react" class="w-full max-w-xl">
+          {component.name === "card" ? (
+            <div class="rounded border border-border bg-card text-card-foreground shadow-sm">
+              <div class="border-b border-border p-4">
+                <h3 class="font-medium">esxi-prod-07</h3>
+                <p class="text-sm text-muted-foreground">Cluster node summary</p>
+              </div>
+              <div class="grid gap-2 p-4 text-sm">
+                <div class="flex justify-between"><span class="text-muted-foreground">Power</span><span>Online</span></div>
+                <div class="flex justify-between"><span class="text-muted-foreground">CPU Ready</span><span>2.4%</span></div>
+              </div>
+            </div>
+          ) : (
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Launch console</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">Sync inventory</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium">Power cycle</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium text-white">Force reset</button>
+            </div>
+          )}
         </div>
-        <div id="demo-solid" style="display: none;">
-          <SolidDemo name={component.name} client:only="solid-js" />
+        <div id="demo-solid" class="w-full max-w-xl" style="display: none;">
+          {component.name === "card" ? (
+            <div class="rounded border border-border bg-card text-card-foreground shadow-sm">
+              <div class="border-b border-border p-4">
+                <h3 class="font-medium">ilo-rack-14</h3>
+                <p class="text-sm text-muted-foreground">Out-of-band management</p>
+              </div>
+              <div class="grid gap-2 p-4 text-sm">
+                <div class="flex justify-between"><span class="text-muted-foreground">Health</span><span>Nominal</span></div>
+                <div class="flex justify-between"><span class="text-muted-foreground">Firmware</span><span>Current</span></div>
+              </div>
+            </div>
+          ) : (
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Launch console</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">Sync inventory</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium">Power cycle</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium text-white">Force reset</button>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -1,0 +1,56 @@
+import { components } from "../lib/components"
+import { Button } from "@/registry/react/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/registry/react/ui/card"
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "")
+
+export function HomeContent() {
+  return (
+    <main className="mx-auto flex min-h-svh max-w-5xl flex-col gap-8 px-6 py-10">
+      <header className="flex flex-col gap-4">
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+            console-ui registry
+          </p>
+          <h1 className="mt-2 text-4xl font-semibold tracking-tight">
+            shadcn components for infrastructure consoles
+          </h1>
+        </div>
+        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+          React components start from upstream shadcn/ui. Solid components are
+          implemented to match the React API and visual behavior.
+        </p>
+        <div className="flex gap-3">
+          <Button asChild>
+            <a href={`${base}/components`}>Browse components</a>
+          </Button>
+          <Button variant="outline" asChild>
+            <a href="https://github.com/MuNeNICK/console-ui">Repository</a>
+          </Button>
+        </div>
+      </header>
+
+      <section className="grid gap-3 md:grid-cols-2">
+        {components.map((component) => (
+          <Card key={component.name}>
+            <CardHeader>
+              <CardTitle>{component.title}</CardTitle>
+              <CardDescription>{component.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="secondary" size="sm" asChild>
+                <a href={`${base}/components/${component.name}`}>Open</a>
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+    </main>
+  )
+}
