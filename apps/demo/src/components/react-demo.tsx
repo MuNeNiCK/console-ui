@@ -317,7 +317,7 @@ export default function ReactDemo({ name }: { name: string }) {
         <CarouselContent>
           {[1, 2, 3].map((item) => (
             <CarouselItem key={item}>
-              <div className="flex aspect-[4/3] items-center justify-center rounded-lg border bg-muted text-sm text-muted-foreground">
+              <div className="flex aspect-[4/3] items-center justify-center rounded-lg border bg-secondary text-sm text-muted-foreground">
                 Panel {item}
               </div>
             </CarouselItem>
@@ -844,10 +844,10 @@ export default function ReactDemo({ name }: { name: string }) {
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
-      <Button>Button</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="destructive">Destructive</Button>
+      <Button>Apply changes</Button>
+      <Button variant="secondary">Add resource</Button>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="destructive">Delete</Button>
     </div>
   )
 }
