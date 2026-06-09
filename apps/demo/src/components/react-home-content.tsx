@@ -22,11 +22,14 @@ export function HomeContent() {
           implementations.
         </p>
         <div className="flex gap-3">
-          <Button asChild>
-            <a href={`${base}/components`}>Browse components</a>
+          <Button render={<a href={`${base}/components`} />}>
+            Browse components
           </Button>
-          <Button variant="outline" asChild>
-            <a href="https://github.com/MuNeNICK/console-ui">Repository</a>
+          <Button
+            variant="outline"
+            render={<a href="https://github.com/MuNeNICK/console-ui" />}
+          >
+            Repository
           </Button>
         </div>
       </header>
@@ -39,8 +42,12 @@ export function HomeContent() {
               <CardDescription>{component.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button variant="secondary" size="sm" asChild>
-                <a href={`${base}/components/${component.name}`}>Open</a>
+              <Button
+                variant="secondary"
+                size="sm"
+                render={<a href={`${base}/components/${component.name}`} />}
+              >
+                Open
               </Button>
             </CardContent>
           </Card>

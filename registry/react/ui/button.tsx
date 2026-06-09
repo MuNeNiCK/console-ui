@@ -1,6 +1,5 @@
-import * as React from "react"
+import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
-import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
@@ -14,11 +13,10 @@ const buttonVariants = cva(
         destructive:
           "border-destructive bg-destructive text-destructive-foreground hover:border-destructive/90 hover:bg-destructive/90 active:bg-destructive/80 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
         outline:
-          "border-border bg-card text-foreground hover:border-primary hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "border-primary bg-card text-primary hover:bg-primary/10",
+          "border-border bg-card text-foreground hover:border-primary hover:bg-accent hover:text-accent-foreground aria-expanded:border-primary aria-expanded:bg-accent aria-expanded:text-accent-foreground",
+        secondary: "border-primary bg-card text-primary hover:bg-primary/10",
         ghost:
-          "border-transparent bg-transparent hover:bg-accent hover:text-accent-foreground",
+          "border-transparent bg-transparent hover:bg-accent hover:text-accent-foreground aria-expanded:bg-accent aria-expanded:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -43,19 +41,11 @@ function Button({
   className,
   variant = "default",
   size = "default",
-  asChild = false,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot.Root : "button"
-
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
   return (
-    <Comp
+    <ButtonPrimitive
       data-slot="button"
-      data-variant={variant}
-      data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />

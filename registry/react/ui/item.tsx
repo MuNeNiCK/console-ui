@@ -1,6 +1,7 @@
 import * as React from "react"
+import { mergeProps } from "@base-ui/react/merge-props"
+import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
-import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 import { Separator } from "@/registry/react/ui/separator"
@@ -35,14 +36,14 @@ const itemVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-transparent",
-        outline: "border-border bg-card",
-        muted: "border-border bg-card",
+        default: "border-transparent",
+        outline: "border-border",
+        muted: "border-transparent bg-muted/50",
       },
       size: {
-        default: "gap-4 p-4",
-        sm: "gap-2.5 px-4 py-3",
-        xs: "gap-2 px-3 py-2",
+        default: "gap-2.5 px-3 py-2",
+        sm: "gap-2 px-2.5 py-1.5 text-xs",
+        xs: "gap-2 px-2 py-1 text-xs in-data-[slot=dropdown-menu-content]:p-0",
       },
     },
     defaultVariants: {
@@ -56,21 +57,24 @@ function Item({
   className,
   variant = "default",
   size = "default",
-  asChild = false,
+  render,
   ...props
-}: React.ComponentProps<"div"> &
-  VariantProps<typeof itemVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot.Root : "div"
-
-  return (
-    <Comp
-      data-slot="item"
-      data-variant={variant}
-      data-size={size}
-      className={cn(itemVariants({ variant, size, className }))}
-      {...props}
-    />
-  )
+}: useRender.ComponentProps<"div"> & VariantProps<typeof itemVariants>) {
+  return useRender({
+    defaultTagName: "div",
+    props: mergeProps<"div">(
+      {
+        className: cn(itemVariants({ variant, size, className })),
+      },
+      props
+    ),
+    render,
+    state: {
+      slot: "item",
+      variant,
+      size,
+    },
+  })
 }
 
 const itemMediaVariants = cva(
@@ -79,9 +83,9 @@ const itemMediaVariants = cva(
     variants: {
       variant: {
         default: "bg-transparent",
-        icon: "size-8 rounded-md border border-primary/20 bg-primary/10 text-primary [&_svg:not([class*='size-'])]:size-4",
+        icon: "[&_svg:not([class*='size-'])]:size-4",
         image:
-          "size-10 overflow-hidden rounded-md [&_img]:size-full [&_img]:object-cover",
+          "size-10 overflow-hidden rounded-sm group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover",
       },
     },
     defaultVariants: {

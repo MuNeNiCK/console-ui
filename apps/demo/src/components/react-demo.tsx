@@ -319,8 +319,8 @@ export default function ReactDemo({ name }: { name: string }) {
   if (name === "alert-dialog") {
     return (
       <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button variant="outline">Open alert</Button>
+        <AlertDialogTrigger render={<Button variant="outline" />}>
+          Open alert
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -518,8 +518,8 @@ export default function ReactDemo({ name }: { name: string }) {
             <p className="text-sm font-medium">node-01</p>
             <p className="text-sm text-muted-foreground">Running workload</p>
           </div>
-          <CollapsibleTrigger asChild>
-            <Button variant="outline" size="sm">Toggle</Button>
+          <CollapsibleTrigger render={<Button variant="outline" size="sm" />}>
+            Toggle
           </CollapsibleTrigger>
         </div>
         <CollapsibleContent className="mt-4 border-t pt-4 text-sm text-muted-foreground">
@@ -548,8 +548,8 @@ export default function ReactDemo({ name }: { name: string }) {
   if (name === "dialog") {
     return (
       <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">Open dialog</Button>
+        <DialogTrigger render={<Button variant="outline" />}>
+          Open dialog
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -652,9 +652,9 @@ export default function ReactDemo({ name }: { name: string }) {
 
   if (name === "dropdown-menu") {
     return (
-      <DropdownMenu defaultOpen>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">Actions</Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger render={<Button variant="outline" />}>
+          Actions
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           <DropdownMenuLabel>Resource</DropdownMenuLabel>
@@ -669,9 +669,9 @@ export default function ReactDemo({ name }: { name: string }) {
 
   if (name === "hover-card") {
     return (
-      <HoverCard defaultOpen>
-        <HoverCardTrigger asChild>
-          <Button variant="link">node-01</Button>
+      <HoverCard>
+        <HoverCardTrigger render={<Button variant="link" />}>
+          node-01
         </HoverCardTrigger>
         <HoverCardContent>
           <div className="space-y-1">
@@ -866,9 +866,9 @@ export default function ReactDemo({ name }: { name: string }) {
 
   if (name === "popover") {
     return (
-      <Popover defaultOpen>
-        <PopoverTrigger asChild>
-          <Button variant="outline">Details</Button>
+      <Popover>
+        <PopoverTrigger render={<Button variant="outline" />}>
+          Details
         </PopoverTrigger>
         <PopoverContent>
           <PopoverHeader>
@@ -997,8 +997,8 @@ export default function ReactDemo({ name }: { name: string }) {
   if (name === "sheet") {
     return (
       <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline">Open sheet</Button>
+        <SheetTrigger render={<Button variant="outline" />}>
+          Open sheet
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
@@ -1113,9 +1113,9 @@ export default function ReactDemo({ name }: { name: string }) {
   if (name === "tooltip") {
     return (
       <TooltipProvider>
-        <Tooltip defaultOpen>
-          <TooltipTrigger asChild>
-            <Button variant="outline">Hover target</Button>
+        <Tooltip>
+          <TooltipTrigger render={<Button variant="outline" />}>
+            Hover target
           </TooltipTrigger>
           <TooltipContent>Open remote console</TooltipContent>
         </Tooltip>

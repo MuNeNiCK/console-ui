@@ -1,11 +1,19 @@
 import * as React from "react"
-import { ChevronRight, MoreHorizontal } from "lucide-react"
-import { Slot } from "radix-ui"
+import { mergeProps } from "@base-ui/react/merge-props"
+import { useRender } from "@base-ui/react/use-render"
 
 import { cn } from "@/lib/utils"
+import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react"
 
-function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
-  return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />
+function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
+  return (
+    <nav
+      aria-label="breadcrumb"
+      data-slot="breadcrumb"
+      className={cn(className)}
+      {...props}
+    />
+  )
 }
 
 function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
@@ -32,24 +40,26 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 function BreadcrumbLink({
-  asChild,
   className,
+  render,
   ...props
-}: React.ComponentProps<"a"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot.Root : "a"
-
-  return (
-    <Comp
-      data-slot="breadcrumb-link"
-      className={cn(
-        "rounded-md px-1 transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none",
-        className
-      )}
-      {...props}
-    />
-  )
+}: useRender.ComponentProps<"a">) {
+  return useRender({
+    defaultTagName: "a",
+    props: mergeProps<"a">(
+      {
+        className: cn(
+          "rounded-md px-1 transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none",
+          className
+        ),
+      },
+      props
+    ),
+    render,
+    state: {
+      slot: "breadcrumb-link",
+    },
+  })
 }
 
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
@@ -78,7 +88,7 @@ function BreadcrumbSeparator({
       className={cn("text-muted-foreground/70 [&>svg]:size-3.5", className)}
       {...props}
     >
-      {children ?? <ChevronRight />}
+      {children ?? <ChevronRightIcon />}
     </li>
   )
 }
@@ -95,7 +105,7 @@ function BreadcrumbEllipsis({
       className={cn("flex size-8 items-center justify-center rounded-md hover:bg-accent", className)}
       {...props}
     >
-      <MoreHorizontal className="size-4" />
+      <MoreHorizontalIcon className="size-4" />
       <span className="sr-only">More</span>
     </span>
   )

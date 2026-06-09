@@ -1,8 +1,7 @@
 "use client"
 
 import * as React from "react"
-import type { Label as LabelPrimitive } from "radix-ui"
-import { Slot } from "radix-ui"
+import { mergeProps } from "@base-ui/react/merge-props"
 import {
   Controller,
   FormProvider,
@@ -79,7 +78,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <FormItemContext.Provider value={{ id }}>
       <div
-      data-slot="form-item"
+        data-slot="form-item"
         className={cn("grid gap-2", className)}
         {...props}
       />
@@ -90,7 +89,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
 function FormLabel({
   className,
   ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+}: React.ComponentProps<typeof Label>) {
   const { error, formItemId } = useFormField()
 
   return (
@@ -104,21 +103,28 @@ function FormLabel({
   )
 }
 
-function FormControl({ ...props }: React.ComponentProps<typeof Slot.Root>) {
+function FormControl({
+  children,
+  ...props
+}: Omit<React.ComponentProps<"div">, "children"> & {
+  children: React.ReactElement<Record<string, unknown>>
+}) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
-  return (
-    <Slot.Root
-      data-slot="form-control"
-      id={formItemId}
-      aria-describedby={
-        !error
+  return React.cloneElement(
+    children,
+    mergeProps(
+      {
+        "data-slot": "form-control",
+        id: formItemId,
+        "aria-describedby": !error
           ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
-      aria-invalid={!!error}
-      {...props}
-    />
+          : `${formDescriptionId} ${formMessageId}`,
+        "aria-invalid": !!error,
+      },
+      props,
+      children.props
+    )
   )
 }
 
