@@ -58,7 +58,6 @@ function PaginationLink({
           variant: isActive ? "secondary" : "ghost",
           size,
         }),
-        isActive && "border-input",
         className
       )}
       {...props}
@@ -108,7 +107,7 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center rounded-md text-muted-foreground", className)}
+      className={cn("flex size-9 items-center justify-center rounded-full text-muted-foreground", className)}
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />

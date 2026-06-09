@@ -17,6 +17,7 @@ import {
   AlertDialogTrigger,
 } from "@/registry/react/ui/alert-dialog"
 import { Alert, AlertDescription, AlertTitle } from "@/registry/react/ui/alert"
+import { AspectRatio } from "@/registry/react/ui/aspect-ratio"
 import {
   Avatar,
   AvatarFallback,
@@ -62,6 +63,18 @@ import {
   CommandList,
 } from "@/registry/react/ui/command"
 import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
+} from "@/registry/react/ui/context-menu"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/registry/react/ui/collapsible"
+import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -93,10 +106,20 @@ import {
   HoverCardTrigger,
 } from "@/registry/react/ui/hover-card"
 import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/registry/react/ui/form"
+import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/registry/react/ui/input-otp"
+import { Label } from "@/registry/react/ui/label"
 import {
   Menubar,
   MenubarContent,
@@ -160,6 +183,8 @@ import {
   SidebarProvider,
 } from "@/registry/react/ui/sidebar"
 import { Skeleton } from "@/registry/react/ui/skeleton"
+import { ThemeProvider } from "@/registry/react/components/theme-provider"
+import { Toaster } from "@/registry/react/ui/sonner"
 import {
   Select,
   SelectContent,
@@ -193,6 +218,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
+import { toast } from "sonner"
+import { useForm } from "react-hook-form"
 
 export default function ReactDemo({ name }: { name: string }) {
   if (name === "accordion") {
@@ -222,6 +249,16 @@ export default function ReactDemo({ name }: { name: string }) {
           Host updates are planned for tonight at 23:00.
         </AlertDescription>
       </Alert>
+    )
+  }
+
+  if (name === "aspect-ratio") {
+    return (
+      <AspectRatio ratio={16 / 9} className="w-full max-w-sm overflow-hidden rounded-lg border bg-secondary">
+        <div className="flex size-full items-center justify-center text-sm text-muted-foreground">
+          Console preview
+        </div>
+      </AspectRatio>
     )
   }
 
@@ -385,6 +422,41 @@ export default function ReactDemo({ name }: { name: string }) {
     )
   }
 
+  if (name === "collapsible") {
+    return (
+      <Collapsible defaultOpen className="w-full max-w-sm rounded-lg border bg-card p-4">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-medium">node-01</p>
+            <p className="text-sm text-muted-foreground">Running workload</p>
+          </div>
+          <CollapsibleTrigger asChild>
+            <Button variant="outline" size="sm">Toggle</Button>
+          </CollapsibleTrigger>
+        </div>
+        <CollapsibleContent className="mt-4 border-t pt-4 text-sm text-muted-foreground">
+          18% CPU, 42 GB memory used, 3 active tasks.
+        </CollapsibleContent>
+      </Collapsible>
+    )
+  }
+
+  if (name === "context-menu") {
+    return (
+      <ContextMenu>
+        <ContextMenuTrigger className="flex h-32 w-full max-w-sm items-center justify-center rounded-lg border bg-card text-sm">
+          Right click resource
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem>Open console</ContextMenuItem>
+          <ContextMenuItem>Clone</ContextMenuItem>
+          <ContextMenuSeparator />
+          <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
+    )
+  }
+
   if (name === "dialog") {
     return (
       <Dialog>
@@ -405,6 +477,10 @@ export default function ReactDemo({ name }: { name: string }) {
         </DialogContent>
       </Dialog>
     )
+  }
+
+  if (name === "form") {
+    return <FormDemo />
   }
 
   if (name === "drawer") {
@@ -533,6 +609,15 @@ export default function ReactDemo({ name }: { name: string }) {
       <div className="w-full max-w-sm space-y-3">
         <Input placeholder="Name" />
         <Input placeholder="Disabled" disabled />
+      </div>
+    )
+  }
+
+  if (name === "label") {
+    return (
+      <div className="grid w-full max-w-sm gap-2">
+        <Label htmlFor="label-demo">Resource name</Label>
+        <Input id="label-demo" defaultValue="node-01" />
       </div>
     )
   }
@@ -714,6 +799,10 @@ export default function ReactDemo({ name }: { name: string }) {
     )
   }
 
+  if (name === "sonner") {
+    return <SonnerDemo />
+  }
+
   if (name === "sidebar") {
     return (
       <div className="h-56 w-full overflow-hidden rounded-lg border bg-background">
@@ -849,5 +938,53 @@ export default function ReactDemo({ name }: { name: string }) {
       <Button variant="outline">Cancel</Button>
       <Button variant="destructive">Delete</Button>
     </div>
+  )
+}
+
+function FormDemo() {
+  const form = useForm({
+    defaultValues: {
+      name: "node-01",
+    },
+  })
+
+  return (
+    <Form {...form}>
+      <form className="w-full max-w-sm space-y-4">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Resource name</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormDescription>
+                Display name used across inventory views.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="button">Save resource</Button>
+      </form>
+    </Form>
+  )
+}
+
+function SonnerDemo() {
+  return (
+    <ThemeProvider>
+      <div className="flex items-center justify-center">
+        <Button
+          variant="outline"
+          onClick={() => toast.success("Maintenance task scheduled")}
+        >
+          Show notification
+        </Button>
+        <Toaster />
+      </div>
+    </ThemeProvider>
   )
 }

@@ -49,6 +49,12 @@ export const components: ComponentMeta[] = [
     solid: false,
   },
   {
+    name: "aspect-ratio",
+    title: "Aspect Ratio",
+    description: "Displays content within a fixed ratio.",
+    solid: false,
+  },
+  {
     name: "accordion",
     title: "Accordion",
     description: "Displays collapsible content sections.",
@@ -163,6 +169,18 @@ export const components: ComponentMeta[] = [
     solid: false,
   },
   {
+    name: "collapsible",
+    title: "Collapsible",
+    description: "Displays expandable content.",
+    solid: false,
+  },
+  {
+    name: "context-menu",
+    title: "Context Menu",
+    description: "Displays contextual actions.",
+    solid: false,
+  },
+  {
     name: "dialog",
     title: "Dialog",
     description: "Displays modal content.",
@@ -211,9 +229,21 @@ export const components: ComponentMeta[] = [
     solid: false,
   },
   {
+    name: "form",
+    title: "Form",
+    description: "Displays form field composition.",
+    solid: false,
+  },
+  {
     name: "input-otp",
     title: "Input OTP",
     description: "Displays segmented input slots.",
+    solid: false,
+  },
+  {
+    name: "label",
+    title: "Label",
+    description: "Displays a field label.",
     solid: false,
   },
   {
@@ -244,6 +274,12 @@ export const components: ComponentMeta[] = [
     name: "sidebar",
     title: "Sidebar",
     description: "Displays an application sidebar shell.",
+    solid: false,
+  },
+  {
+    name: "sonner",
+    title: "Sonner",
+    description: "Displays toast notifications.",
     solid: false,
   },
 ]

@@ -114,6 +114,16 @@
       ]
     },
     {
+      "name": "theme-provider",
+      "type": "registry:component",
+      "files": [
+        {
+          "path": "registry/react/components/theme-provider.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "dependencies": [
@@ -676,8 +686,11 @@
       "name": "sonner",
       "type": "registry:ui",
       "dependencies": [
-        "sonner",
-        "next-themes"
+        "lucide-react",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "theme-provider"
       ],
       "files": [
         {
