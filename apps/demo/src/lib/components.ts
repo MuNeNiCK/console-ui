@@ -13,6 +13,12 @@ export const components: ComponentMeta[] = [
     solid: true,
   },
   {
+    name: "button-group",
+    title: "Button Group",
+    description: "Displays grouped controls.",
+    solid: false,
+  },
+  {
     name: "card",
     title: "Card",
     description: "Displays a card with header, content, and footer.",
@@ -22,6 +28,12 @@ export const components: ComponentMeta[] = [
     name: "input",
     title: "Input",
     description: "Displays a form input field.",
+    solid: false,
+  },
+  {
+    name: "input-group",
+    title: "Input Group",
+    description: "Displays input controls with addons.",
     solid: false,
   },
   {
@@ -139,6 +151,12 @@ export const components: ComponentMeta[] = [
     solid: false,
   },
   {
+    name: "spinner",
+    title: "Spinner",
+    description: "Displays loading progress.",
+    solid: false,
+  },
+  {
     name: "separator",
     title: "Separator",
     description: "Displays a visual divider.",
@@ -169,6 +187,12 @@ export const components: ComponentMeta[] = [
     solid: false,
   },
   {
+    name: "combobox",
+    title: "Combobox",
+    description: "Displays a searchable select control.",
+    solid: false,
+  },
+  {
     name: "collapsible",
     title: "Collapsible",
     description: "Displays expandable content.",
@@ -184,6 +208,12 @@ export const components: ComponentMeta[] = [
     name: "dialog",
     title: "Dialog",
     description: "Displays modal content.",
+    solid: false,
+  },
+  {
+    name: "direction",
+    title: "Direction",
+    description: "Provides text direction context.",
     solid: false,
   },
   {
@@ -229,6 +259,18 @@ export const components: ComponentMeta[] = [
     solid: false,
   },
   {
+    name: "empty",
+    title: "Empty",
+    description: "Displays an empty state.",
+    solid: false,
+  },
+  {
+    name: "field",
+    title: "Field",
+    description: "Displays field layout primitives.",
+    solid: false,
+  },
+  {
     name: "form",
     title: "Form",
     description: "Displays form field composition.",
@@ -244,6 +286,18 @@ export const components: ComponentMeta[] = [
     name: "label",
     title: "Label",
     description: "Displays a field label.",
+    solid: false,
+  },
+  {
+    name: "item",
+    title: "Item",
+    description: "Displays structured list content.",
+    solid: false,
+  },
+  {
+    name: "kbd",
+    title: "Kbd",
+    description: "Displays keyboard input.",
     solid: false,
   },
   {
@@ -268,6 +322,12 @@ export const components: ComponentMeta[] = [
     name: "navigation-menu",
     title: "Navigation Menu",
     description: "Displays navigation menu content.",
+    solid: false,
+  },
+  {
+    name: "native-select",
+    title: "Native Select",
+    description: "Displays a native select control.",
     solid: false,
   },
   {

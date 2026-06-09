@@ -1,5 +1,10 @@
 import { Button } from "@/registry/react/ui/button"
 import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@/registry/react/ui/button-group"
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -63,6 +68,14 @@ import {
   CommandList,
 } from "@/registry/react/ui/command"
 import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/registry/react/ui/combobox"
+import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
@@ -83,6 +96,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/registry/react/ui/dialog"
+import { DirectionProvider } from "@/registry/react/ui/direction"
 import {
   Drawer,
   DrawerContent,
@@ -100,6 +114,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/registry/react/ui/dropdown-menu"
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/registry/react/ui/empty"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+  FieldTitle,
+} from "@/registry/react/ui/field"
 import {
   HoverCard,
   HoverCardContent,
@@ -119,6 +151,22 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/registry/react/ui/input-otp"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
+} from "@/registry/react/ui/input-group"
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemMedia,
+  ItemTitle,
+} from "@/registry/react/ui/item"
+import { Kbd, KbdGroup } from "@/registry/react/ui/kbd"
 import { Label } from "@/registry/react/ui/label"
 import {
   Menubar,
@@ -136,6 +184,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/registry/react/ui/navigation-menu"
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@/registry/react/ui/native-select"
 import {
   Pagination,
   PaginationContent,
@@ -183,6 +235,7 @@ import {
   SidebarProvider,
 } from "@/registry/react/ui/sidebar"
 import { Skeleton } from "@/registry/react/ui/skeleton"
+import { Spinner } from "@/registry/react/ui/spinner"
 import { ThemeProvider } from "@/registry/react/components/theme-provider"
 import { Toaster } from "@/registry/react/ui/sonner"
 import {
@@ -218,6 +271,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
+import { InboxIcon, SearchIcon, ServerIcon } from "lucide-react"
 import { toast } from "sonner"
 import { useForm } from "react-hook-form"
 
@@ -332,6 +386,17 @@ export default function ReactDemo({ name }: { name: string }) {
     )
   }
 
+  if (name === "button-group") {
+    return (
+      <ButtonGroup>
+        <Button variant="outline">Power on</Button>
+        <Button variant="outline">Restart</Button>
+        <ButtonGroupSeparator />
+        <ButtonGroupText>node-01</ButtonGroupText>
+      </ButtonGroup>
+    )
+  }
+
   if (name === "card") {
     return (
       <Card className="w-[320px]">
@@ -422,6 +487,29 @@ export default function ReactDemo({ name }: { name: string }) {
     )
   }
 
+  if (name === "combobox") {
+    const resources = ["node-01", "node-02", "cluster-a"]
+
+    return (
+      <Combobox items={resources}>
+        <ComboboxInput
+          className="w-[240px]"
+          placeholder="Select a resource"
+        />
+        <ComboboxContent>
+          <ComboboxEmpty>No resources found.</ComboboxEmpty>
+          <ComboboxList>
+            {(resource) => (
+              <ComboboxItem key={resource} value={resource}>
+                {resource}
+              </ComboboxItem>
+            )}
+          </ComboboxList>
+        </ComboboxContent>
+      </Combobox>
+    )
+  }
+
   if (name === "collapsible") {
     return (
       <Collapsible defaultOpen className="w-full max-w-sm rounded-lg border bg-card p-4">
@@ -479,6 +567,17 @@ export default function ReactDemo({ name }: { name: string }) {
     )
   }
 
+  if (name === "direction") {
+    return (
+      <DirectionProvider direction="rtl">
+        <ButtonGroup>
+          <Button variant="outline">Primary</Button>
+          <Button variant="outline">Secondary</Button>
+        </ButtonGroup>
+      </DirectionProvider>
+    )
+  }
+
   if (name === "form") {
     return <FormDemo />
   }
@@ -501,6 +600,53 @@ export default function ReactDemo({ name }: { name: string }) {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
+    )
+  }
+
+  if (name === "empty") {
+    return (
+      <Empty className="min-h-48 w-full max-w-md">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <InboxIcon />
+          </EmptyMedia>
+          <EmptyTitle>No alerts</EmptyTitle>
+          <EmptyDescription>
+            This resource has no active operational alerts.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button variant="outline" size="sm">
+            Refresh
+          </Button>
+        </EmptyContent>
+      </Empty>
+    )
+  }
+
+  if (name === "field") {
+    return (
+      <FieldSet className="w-full max-w-sm">
+        <FieldLegend>Resource policy</FieldLegend>
+        <FieldGroup>
+          <Field>
+            <FieldLabel htmlFor="field-name">Name</FieldLabel>
+            <Input id="field-name" defaultValue="node-01" />
+            <FieldDescription>
+              Display name used by inventory views.
+            </FieldDescription>
+          </Field>
+          <Field orientation="horizontal">
+            <Switch defaultChecked />
+            <FieldContent>
+              <FieldTitle>Auto remediation</FieldTitle>
+              <FieldDescription>
+                Run approved remediation tasks automatically.
+              </FieldDescription>
+            </FieldContent>
+          </Field>
+        </FieldGroup>
+      </FieldSet>
     )
   }
 
@@ -593,6 +739,16 @@ export default function ReactDemo({ name }: { name: string }) {
     )
   }
 
+  if (name === "native-select") {
+    return (
+      <NativeSelect defaultValue="production">
+        <NativeSelectOption value="production">Production</NativeSelectOption>
+        <NativeSelectOption value="staging">Staging</NativeSelectOption>
+        <NativeSelectOption value="maintenance">Maintenance</NativeSelectOption>
+      </NativeSelect>
+    )
+  }
+
   if (name === "checkbox") {
     return (
       <div className="flex items-center gap-3">
@@ -613,12 +769,60 @@ export default function ReactDemo({ name }: { name: string }) {
     )
   }
 
+  if (name === "input-group") {
+    return (
+      <InputGroup className="max-w-sm">
+        <InputGroupAddon>
+          <SearchIcon />
+        </InputGroupAddon>
+        <InputGroupInput placeholder="Search inventory" />
+        <InputGroupAddon align="inline-end">
+          <InputGroupText>
+            <Kbd>/</Kbd>
+          </InputGroupText>
+        </InputGroupAddon>
+      </InputGroup>
+    )
+  }
+
   if (name === "label") {
     return (
       <div className="grid w-full max-w-sm gap-2">
         <Label htmlFor="label-demo">Resource name</Label>
         <Input id="label-demo" defaultValue="node-01" />
       </div>
+    )
+  }
+
+  if (name === "item") {
+    return (
+      <ItemGroup className="w-full max-w-md gap-2">
+        <Item variant="outline">
+          <ItemMedia variant="icon">
+            <ServerIcon />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>node-01</ItemTitle>
+            <ItemDescription>
+              Running, 18% CPU, 42 GB memory used.
+            </ItemDescription>
+          </ItemContent>
+          <ItemActions>
+            <Button variant="outline" size="sm">
+              Open
+            </Button>
+          </ItemActions>
+        </Item>
+      </ItemGroup>
+    )
+  }
+
+  if (name === "kbd") {
+    return (
+      <KbdGroup>
+        <Kbd>Ctrl</Kbd>
+        <Kbd>K</Kbd>
+      </KbdGroup>
     )
   }
 
@@ -726,6 +930,15 @@ export default function ReactDemo({ name }: { name: string }) {
         <Skeleton className="h-4 w-2/3" />
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-4/5" />
+      </div>
+    )
+  }
+
+  if (name === "spinner") {
+    return (
+      <div className="flex items-center gap-3 text-sm">
+        <Spinner />
+        <span>Loading task state</span>
       </div>
     )
   }
