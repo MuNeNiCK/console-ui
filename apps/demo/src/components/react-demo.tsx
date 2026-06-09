@@ -12,18 +12,13 @@ export default function ReactDemo({ name }: { name: string }) {
     return (
       <Card className="w-[320px]">
         <CardHeader>
-          <CardTitle>esxi-prod-07</CardTitle>
-          <CardDescription>Cluster node summary</CardDescription>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Card Description</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Power</span>
-            <span>Online</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">CPU Ready</span>
-            <span>2.4%</span>
-          </div>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Card content goes here.
+          </p>
         </CardContent>
       </Card>
     )
@@ -31,10 +26,10 @@ export default function ReactDemo({ name }: { name: string }) {
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
-      <Button>Launch console</Button>
-      <Button variant="secondary">Sync inventory</Button>
-      <Button variant="outline">Power cycle</Button>
-      <Button variant="destructive">Force reset</Button>
+      <Button>Button</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="destructive">Destructive</Button>
     </div>
   )
 }

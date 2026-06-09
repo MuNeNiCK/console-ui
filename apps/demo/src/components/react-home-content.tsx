@@ -14,17 +14,12 @@ export function HomeContent() {
   return (
     <main className="mx-auto flex min-h-svh max-w-5xl flex-col gap-8 px-6 py-10">
       <header className="flex flex-col gap-4">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-            console-ui registry
-          </p>
-          <h1 className="mt-2 text-4xl font-semibold tracking-tight">
-            shadcn components for infrastructure consoles
-          </h1>
+        <div className="space-y-2">
+          <h1 className="text-4xl font-semibold tracking-tight">Components</h1>
         </div>
         <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-          React components start from upstream shadcn/ui. Solid components are
-          implemented to match the React API and visual behavior.
+          A registry of shadcn components for React and matching Solid
+          implementations.
         </p>
         <div className="flex gap-3">
           <Button asChild>

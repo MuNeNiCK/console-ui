@@ -9,13 +9,13 @@ export const components: ComponentMeta[] = [
   {
     name: "button",
     title: "Button",
-    description: "Dense command button for infrastructure console actions.",
+    description: "Displays a button or a component that looks like a button.",
     solid: true,
   },
   {
     name: "card",
     title: "Card",
-    description: "Low-radius panel surface for resource summaries and status groups.",
+    description: "Displays a card with header, content, and footer.",
     solid: true,
   },
 ]

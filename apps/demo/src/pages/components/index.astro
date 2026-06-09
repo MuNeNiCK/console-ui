@@ -8,15 +8,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "")
 <Layout title="Components">
   <main class="mx-auto flex min-h-svh max-w-5xl flex-col gap-6 px-6 py-10">
     <header class="space-y-2">
-      <p class="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">registry</p>
       <h1 class="text-3xl font-semibold tracking-tight">Components</h1>
+      <p class="text-sm text-muted-foreground">
+        Browse the available registry components.
+      </p>
     </header>
     <div class="grid gap-3 sm:grid-cols-2">
       {components.map((component) => (
-        <a class="rounded border border-border bg-card p-4 text-card-foreground transition-colors hover:border-primary" href={`${base}/components/${component.name}`}>
+        <a class="rounded-lg border bg-card p-6 text-card-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground" href={`${base}/components/${component.name}`}>
           <div class="flex items-center justify-between gap-3">
             <h2 class="font-medium">{component.title}</h2>
-            <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+            <span class="text-sm text-muted-foreground">
               {component.solid ? "React + Solid" : "React"}
             </span>
           </div>

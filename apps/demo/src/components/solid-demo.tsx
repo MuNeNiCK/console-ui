@@ -12,18 +12,11 @@ export default function SolidDemo(props: { name: string }) {
     return (
       <Card class="w-[320px]">
         <CardHeader>
-          <CardTitle>ilo-rack-14</CardTitle>
-          <CardDescription>Out-of-band management</CardDescription>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Card Description</CardDescription>
         </CardHeader>
-        <CardContent class="grid gap-2 text-sm">
-          <div class="flex justify-between">
-            <span class="text-muted-foreground">Health</span>
-            <span>Nominal</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-muted-foreground">Firmware</span>
-            <span>Current</span>
-          </div>
+        <CardContent>
+          <p class="text-sm text-muted-foreground">Card content goes here.</p>
         </CardContent>
       </Card>
     )
@@ -31,10 +24,10 @@ export default function SolidDemo(props: { name: string }) {
 
   return (
     <div class="flex flex-wrap items-center justify-center gap-3">
-      <Button>Launch console</Button>
-      <Button variant="secondary">Sync inventory</Button>
-      <Button variant="outline">Power cycle</Button>
-      <Button variant="destructive">Force reset</Button>
+      <Button>Button</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="destructive">Destructive</Button>
     </div>
   )
 }

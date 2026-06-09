@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro"
 import { components } from "../../lib/components"
+import ReactDemo from "../../components/react-demo"
 
 export function getStaticPaths() {
   return components.map((component) => ({
@@ -19,59 +20,39 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
   <main class="mx-auto flex min-h-svh max-w-5xl flex-col gap-6 px-6 py-10">
     <a href={`${base}/components`} class="text-sm text-muted-foreground hover:text-foreground">Components</a>
     <header class="flex flex-col gap-2">
-      <p class="font-mono text-[11px] uppercase tracking-[0.24em] text-muted-foreground">console primitive</p>
       <h1 class="text-3xl font-semibold tracking-tight">{component.title}</h1>
       <p class="max-w-2xl text-sm text-muted-foreground">{component.description}</p>
     </header>
 
-    <section class="rounded border border-border bg-card">
-      <div class="flex items-center justify-between border-b border-border px-4 py-3">
-        <h2 class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Preview</h2>
+    <section class="rounded-lg border bg-card text-card-foreground shadow-sm">
+      <div class="flex items-center justify-between border-b px-6 py-4">
+        <h2 class="text-lg font-semibold">Preview</h2>
         <div class="flex items-center gap-2" id="framework-toggle">
-          <button data-framework="react" class="rounded border border-primary bg-primary px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-foreground">React</button>
-          <button data-framework="solid" class="rounded border border-border bg-muted px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Solid</button>
+          <button data-framework="react" class="inline-flex h-8 items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground">React</button>
+          <button data-framework="solid" class="inline-flex h-8 items-center justify-center rounded-md border bg-background px-3 text-sm font-medium text-foreground">Solid</button>
         </div>
       </div>
       <div class="grid min-h-[320px] place-items-center p-6">
         <div id="demo-react" class="w-full max-w-xl">
-          {component.name === "card" ? (
-            <div class="rounded border border-border bg-card text-card-foreground shadow-sm">
-              <div class="border-b border-border p-4">
-                <h3 class="font-medium">esxi-prod-07</h3>
-                <p class="text-sm text-muted-foreground">Cluster node summary</p>
-              </div>
-              <div class="grid gap-2 p-4 text-sm">
-                <div class="flex justify-between"><span class="text-muted-foreground">Power</span><span>Online</span></div>
-                <div class="flex justify-between"><span class="text-muted-foreground">CPU Ready</span><span>2.4%</span></div>
-              </div>
-            </div>
-          ) : (
-            <div class="flex flex-wrap items-center justify-center gap-3">
-              <button class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Launch console</button>
-              <button class="inline-flex h-9 items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">Sync inventory</button>
-              <button class="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium">Power cycle</button>
-              <button class="inline-flex h-9 items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium text-white">Force reset</button>
-            </div>
-          )}
+          <ReactDemo name={component.name} />
         </div>
         <div id="demo-solid" class="w-full max-w-xl" style="display: none;">
           {component.name === "card" ? (
-            <div class="rounded border border-border bg-card text-card-foreground shadow-sm">
-              <div class="border-b border-border p-4">
-                <h3 class="font-medium">ilo-rack-14</h3>
-                <p class="text-sm text-muted-foreground">Out-of-band management</p>
+            <div class="rounded-xl border bg-card py-6 text-card-foreground shadow-sm">
+              <div class="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6">
+                <h3 class="leading-none font-semibold">Card Title</h3>
+                <p class="text-sm text-muted-foreground">Card Description</p>
               </div>
-              <div class="grid gap-2 p-4 text-sm">
-                <div class="flex justify-between"><span class="text-muted-foreground">Health</span><span>Nominal</span></div>
-                <div class="flex justify-between"><span class="text-muted-foreground">Firmware</span><span>Current</span></div>
+              <div class="px-6 pt-6">
+                <p class="text-sm text-muted-foreground">Card content goes here.</p>
               </div>
             </div>
           ) : (
             <div class="flex flex-wrap items-center justify-center gap-3">
-              <button class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Launch console</button>
-              <button class="inline-flex h-9 items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">Sync inventory</button>
-              <button class="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium">Power cycle</button>
-              <button class="inline-flex h-9 items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium text-white">Force reset</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Button</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground">Secondary</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium">Outline</button>
+              <button class="inline-flex h-9 items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium text-white">Destructive</button>
             </div>
           )}
         </div>
@@ -79,12 +60,12 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
     </section>
 
     <section class="grid gap-3 md:grid-cols-2">
-      <div class="rounded border border-border bg-card p-4">
-        <h2 class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">React</h2>
+      <div class="rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+        <h2 class="font-semibold">React</h2>
         <pre class="mt-3 overflow-x-auto rounded bg-muted p-3 text-xs"><code>{reactInstall}</code></pre>
       </div>
-      <div class="rounded border border-border bg-card p-4">
-        <h2 class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Solid</h2>
+      <div class="rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+        <h2 class="font-semibold">Solid</h2>
         <pre class="mt-3 overflow-x-auto rounded bg-muted p-3 text-xs"><code>{solidInstall}</code></pre>
       </div>
     </section>
@@ -104,10 +85,10 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
     buttons.forEach((button) => {
       const active = button.dataset.framework === framework
       button.className = [
-        "rounded border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em]",
+        "inline-flex h-8 items-center justify-center rounded-md px-3 text-sm font-medium",
         active
-          ? "border-primary bg-primary text-primary-foreground"
-          : "border-border bg-muted text-muted-foreground",
+          ? "bg-primary text-primary-foreground"
+          : "border bg-background text-foreground",
       ].join(" ")
     })
   }

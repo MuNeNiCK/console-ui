@@ -1,8 +1,10 @@
 import { defineConfig } from "astro/config"
+import react from "@astrojs/react"
+
 export default defineConfig({
   site: "https://munenick.github.io",
   base: "/console-ui",
-  integrations: [],
+  integrations: [react()],
   vite: {
     resolve: {
       alias: {
