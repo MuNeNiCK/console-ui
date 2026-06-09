@@ -1,0 +1,11 @@
+import { splitProps, type JSX } from "solid-js"
+import { cn } from "@/registry/solid/lib/utils"
+function Table(props: JSX.TableHTMLAttributes<HTMLTableElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="table-container" class="relative w-full overflow-x-auto"><table data-slot="table" class={cn("w-full caption-bottom text-sm", l.class)} {...r}/></div> }
+function TableHeader(props: JSX.HTMLAttributes<HTMLTableSectionElement>) { const [l,r]=splitProps(props,["class"]); return <thead data-slot="table-header" class={cn("[&_tr]:border-b [&_tr]:border-border",l.class)} {...r}/> }
+function TableBody(props: JSX.HTMLAttributes<HTMLTableSectionElement>) { const [l,r]=splitProps(props,["class"]); return <tbody data-slot="table-body" class={cn("[&_tr:last-child]:border-0",l.class)} {...r}/> }
+function TableFooter(props: JSX.HTMLAttributes<HTMLTableSectionElement>) { const [l,r]=splitProps(props,["class"]); return <tfoot data-slot="table-footer" class={cn("border-t bg-transparent font-medium [&>tr]:last:border-b-0",l.class)} {...r}/> }
+function TableRow(props: JSX.HTMLAttributes<HTMLTableRowElement>) { const [l,r]=splitProps(props,["class"]); return <tr data-slot="table-row" class={cn("border-b border-border/80 transition-colors hover:bg-accent/50 has-aria-expanded:bg-accent/50 data-[state=selected]:bg-accent",l.class)} {...r}/> }
+function TableHead(props: JSX.ThHTMLAttributes<HTMLTableCellElement>) { const [l,r]=splitProps(props,["class"]); return <th data-slot="table-head" class={cn("h-11 px-3 text-left align-middle text-xs font-semibold whitespace-nowrap text-foreground/80 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",l.class)} {...r}/> }
+function TableCell(props: JSX.TdHTMLAttributes<HTMLTableCellElement>) { const [l,r]=splitProps(props,["class"]); return <td data-slot="table-cell" class={cn("p-3 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",l.class)} {...r}/> }
+function TableCaption(props: JSX.HTMLAttributes<HTMLElement>) { const [l,r]=splitProps(props,["class"]); return <caption data-slot="table-caption" class={cn("mt-4 text-sm text-muted-foreground",l.class)} {...r}/> }
+export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption }

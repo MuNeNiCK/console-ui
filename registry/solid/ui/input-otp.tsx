@@ -1,0 +1,7 @@
+import { For, splitProps, type JSX } from "solid-js"
+import { cn } from "@/registry/solid/lib/utils"
+function InputOTP(props: JSX.HTMLAttributes<HTMLDivElement> & { maxLength?: number }) { const [l,r]=splitProps(props,["class","maxLength","children"]); return <div data-slot="input-otp" class={cn("flex items-center gap-2",l.class)} {...r}>{l.children || <InputOTPGroup>{Array.from({length:l.maxLength||6}).map((_,i)=><InputOTPSlot index={i}/>)}</InputOTPGroup>}</div> }
+function InputOTPGroup(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="input-otp-group" class={cn("flex items-center",l.class)} {...r}/> }
+function InputOTPSlot(props: JSX.HTMLAttributes<HTMLDivElement> & { index: number; char?: string; isActive?: boolean }) { const [l,r]=splitProps(props,["class","index","char","isActive"]); return <div data-slot="input-otp-slot" data-active={l.isActive} class={cn("relative flex h-10 w-10 items-center justify-center border-y border-r border-border text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px] data-[active=true]:ring-ring/35",l.class)} {...r}>{l.char}</div> }
+function InputOTPSeparator(props: JSX.HTMLAttributes<HTMLDivElement>) { return <div data-slot="input-otp-separator" role="separator" {...props}/> }
+export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }

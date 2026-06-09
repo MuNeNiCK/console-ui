@@ -2,6 +2,7 @@
 import ComponentsSidebarLayout from "../../layouts/ComponentsSidebarLayout.astro"
 import { components } from "../../lib/components"
 import ReactDemo from "../../components/react-demo"
+import SolidDemo from "../../components/solid-demo"
 
 export function getStaticPaths() {
   return components.map((component) => ({
@@ -39,28 +40,11 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
     </div>
     <div class="grid min-h-[320px] place-items-center p-6">
       <div id="demo-react" class="flex w-full max-w-xl items-center justify-center">
-        <ReactDemo name={component.name} client:load />
+        <ReactDemo name={component.name} client:only="react" />
       </div>
       {component.solid && (
         <div id="demo-solid" class="flex w-full max-w-xl items-center justify-center" style="display: none;">
-          {component.name === "card" ? (
-            <div class="rounded-lg border bg-card py-6 text-card-foreground shadow-xs">
-              <div class="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6">
-                <h3 class="leading-none font-semibold">Card Title</h3>
-                <p class="text-sm text-muted-foreground">Card Description</p>
-              </div>
-              <div class="px-6 pt-6">
-                <p class="text-sm text-muted-foreground">Card content goes here.</p>
-              </div>
-            </div>
-          ) : (
-            <div class="flex flex-wrap items-center justify-center gap-3">
-              <button class="inline-flex h-10 min-w-20 items-center justify-center rounded-full border-2 border-primary bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-[0_1px_2px_rgb(0_0_0/0.12)]">Apply changes</button>
-              <button class="inline-flex h-10 min-w-20 items-center justify-center rounded-full border-2 border-primary bg-card px-5 py-2 text-sm font-semibold text-primary">Add resource</button>
-              <button class="inline-flex h-10 min-w-20 items-center justify-center rounded-full border-2 border-border bg-card px-5 py-2 text-sm font-semibold text-foreground">Cancel</button>
-              <button class="inline-flex h-10 min-w-20 items-center justify-center rounded-full border-2 border-destructive bg-destructive px-5 py-2 text-sm font-semibold text-destructive-foreground">Delete</button>
-            </div>
-          )}
+          <SolidDemo name={component.name} client:only="solid-js" />
         </div>
       )}
     </div>

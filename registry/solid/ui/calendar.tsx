@@ -1,0 +1,6 @@
+import { For, splitProps, type JSX } from "solid-js"
+import { ChevronLeftIcon, ChevronRightIcon } from "@/registry/solid/lib/icons"
+import { cn } from "@/registry/solid/lib/utils"
+import { Button } from "@/registry/solid/ui/button"
+function Calendar(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); const days=["Su","Mo","Tu","We","Th","Fr","Sa"]; const dates=[31,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,1,2,3,4]; return <div data-slot="calendar" class={cn("rounded-lg border bg-card p-3",l.class)} {...r}><div class="mb-3 flex items-center justify-between"><Button variant="ghost" size="icon-sm"><ChevronLeftIcon/></Button><div class="text-sm font-medium">June 2026</div><Button variant="ghost" size="icon-sm"><ChevronRightIcon/></Button></div><div class="grid grid-cols-7 gap-1 text-center text-xs text-muted-foreground"><For each={days}>{d=><div>{d}</div>}</For></div><div class="mt-1 grid grid-cols-7 gap-1"><For each={dates}>{(d,i)=><button class={cn("h-8 rounded-md text-sm hover:bg-primary/10", (i()===0 || i()>30) && "text-muted-foreground/40", i()===9 && "bg-primary text-primary-foreground")}>{d}</button>}</For></div></div> }
+export { Calendar }

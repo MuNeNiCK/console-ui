@@ -936,14 +936,167 @@
       ]
     },
     {
+      "name": "solid/icons",
+      "type": "registry:lib",
+      "title": "Icons (Solid)",
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/lib/icons.tsx",
+          "type": "registry:lib",
+          "target": "lib/icons.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/accordion",
+      "type": "registry:ui",
+      "title": "Accordion (Solid)",
+      "description": "Console UI accordion for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/alert",
+      "type": "registry:ui",
+      "title": "Alert (Solid)",
+      "description": "Console UI alert for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog (Solid)",
+      "description": "Console UI alert-dialog for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio (Solid)",
+      "description": "Console UI aspect-ratio for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/aspect-ratio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/avatar",
+      "type": "registry:ui",
+      "title": "Avatar (Solid)",
+      "description": "Console UI avatar for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/badge",
+      "type": "registry:ui",
+      "title": "Badge (Solid)",
+      "description": "Console UI badge for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb (Solid)",
+      "description": "Console UI breadcrumb for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/breadcrumb.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/breadcrumb.tsx"
+        }
+      ]
+    },
+    {
       "name": "solid/button",
       "type": "registry:ui",
       "title": "Button (Solid)",
       "description": "Console UI button for Solid.",
       "dependencies": [
-        "class-variance-authority",
-        "clsx",
-        "tailwind-merge"
+        "solid-js",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "solid/utils"
@@ -957,10 +1110,55 @@
       ]
     },
     {
+      "name": "solid/button-group",
+      "type": "registry:ui",
+      "title": "Button Group (Solid)",
+      "description": "Console UI button-group for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/button-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/calendar",
+      "type": "registry:ui",
+      "title": "Calendar (Solid)",
+      "description": "Console UI calendar for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/calendar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/calendar.tsx"
+        }
+      ]
+    },
+    {
       "name": "solid/card",
       "type": "registry:ui",
       "title": "Card (Solid)",
       "description": "Console UI card for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
       "registryDependencies": [
         "solid/utils"
       ],
@@ -969,6 +1167,901 @@
           "path": "registry/solid/ui/card.tsx",
           "type": "registry:ui",
           "target": "components/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/carousel",
+      "type": "registry:ui",
+      "title": "Carousel (Solid)",
+      "description": "Console UI carousel for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/carousel.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/carousel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/chart",
+      "type": "registry:ui",
+      "title": "Chart (Solid)",
+      "description": "Console UI chart for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/chart.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/chart.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox (Solid)",
+      "description": "Console UI checkbox for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible (Solid)",
+      "description": "Console UI collapsible for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/command",
+      "type": "registry:ui",
+      "title": "Command (Solid)",
+      "description": "Console UI command for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/command.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/command.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/combobox",
+      "type": "registry:ui",
+      "title": "Combobox (Solid)",
+      "description": "Console UI combobox for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/command"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu (Solid)",
+      "description": "Console UI context-menu for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/context-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/dialog",
+      "type": "registry:ui",
+      "title": "Dialog (Solid)",
+      "description": "Console UI dialog for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/direction",
+      "type": "registry:ui",
+      "title": "Direction (Solid)",
+      "description": "Console UI direction for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/direction.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/direction.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/drawer",
+      "type": "registry:ui",
+      "title": "Drawer (Solid)",
+      "description": "Console UI drawer for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/empty",
+      "type": "registry:ui",
+      "title": "Empty (Solid)",
+      "description": "Console UI empty for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/empty.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/empty.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/field",
+      "type": "registry:ui",
+      "title": "Field (Solid)",
+      "description": "Console UI field for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/label",
+        "solid/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu (Solid)",
+      "description": "Console UI dropdown-menu for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/form",
+      "type": "registry:ui",
+      "title": "Form (Solid)",
+      "description": "Console UI form for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/label"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card (Solid)",
+      "description": "Console UI hover-card for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/hover-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/input",
+      "type": "registry:ui",
+      "title": "Input (Solid)",
+      "description": "Console UI input for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/input-group",
+      "type": "registry:ui",
+      "title": "Input Group (Solid)",
+      "description": "Console UI input-group for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/button",
+        "solid/input",
+        "solid/textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/input-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp (Solid)",
+      "description": "Console UI input-otp for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/input-otp.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input-otp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/label",
+      "type": "registry:ui",
+      "title": "Label (Solid)",
+      "description": "Console UI label for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/item",
+      "type": "registry:ui",
+      "title": "Item (Solid)",
+      "description": "Console UI item for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/item.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/item.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/kbd",
+      "type": "registry:ui",
+      "title": "Kbd (Solid)",
+      "description": "Console UI kbd for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/kbd.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/kbd.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/menubar",
+      "type": "registry:ui",
+      "title": "Menubar (Solid)",
+      "description": "Console UI menubar for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/menubar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/menubar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu (Solid)",
+      "description": "Console UI navigation-menu for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/navigation-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/native-select",
+      "type": "registry:ui",
+      "title": "Native Select (Solid)",
+      "description": "Console UI native-select for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/native-select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/native-select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/pagination",
+      "type": "registry:ui",
+      "title": "Pagination (Solid)",
+      "description": "Console UI pagination for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/pagination.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/pagination.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/popover",
+      "type": "registry:ui",
+      "title": "Popover (Solid)",
+      "description": "Console UI popover for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/progress",
+      "type": "registry:ui",
+      "title": "Progress (Solid)",
+      "description": "Console UI progress for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/progress.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group (Solid)",
+      "description": "Console UI radio-group for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/resizable",
+      "type": "registry:ui",
+      "title": "Resizable (Solid)",
+      "description": "Console UI resizable for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/resizable.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/resizable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area (Solid)",
+      "description": "Console UI scroll-area for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/scroll-area.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/select",
+      "type": "registry:ui",
+      "title": "Select (Solid)",
+      "description": "Console UI select for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/separator",
+      "type": "registry:ui",
+      "title": "Separator (Solid)",
+      "description": "Console UI separator for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/sheet",
+      "type": "registry:ui",
+      "title": "Sheet (Solid)",
+      "description": "Console UI sheet for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sheet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar (Solid)",
+      "description": "Console UI sidebar for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons",
+        "solid/button"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton (Solid)",
+      "description": "Console UI skeleton for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/skeleton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/slider",
+      "type": "registry:ui",
+      "title": "Slider (Solid)",
+      "description": "Console UI slider for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/spinner",
+      "type": "registry:ui",
+      "title": "Spinner (Solid)",
+      "description": "Console UI spinner for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/icons"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/sonner",
+      "type": "registry:ui",
+      "title": "Sonner (Solid)",
+      "description": "Console UI sonner for Solid.",
+      "dependencies": [
+        "solid-js",
+        "solid-sonner"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/sonner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sonner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/switch",
+      "type": "registry:ui",
+      "title": "Switch (Solid)",
+      "description": "Console UI switch for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/table",
+      "type": "registry:ui",
+      "title": "Table (Solid)",
+      "description": "Console UI table for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/tabs",
+      "type": "registry:ui",
+      "title": "Tabs (Solid)",
+      "description": "Console UI tabs for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/textarea",
+      "type": "registry:ui",
+      "title": "Textarea (Solid)",
+      "description": "Console UI textarea for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/toggle",
+      "type": "registry:ui",
+      "title": "Toggle (Solid)",
+      "description": "Console UI toggle for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group (Solid)",
+      "description": "Console UI toggle-group for Solid.",
+      "dependencies": [
+        "solid-js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/toggle"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip (Solid)",
+      "description": "Console UI tooltip for Solid.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/utils"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
         }
       ]
     }

@@ -1,0 +1,12 @@
+import { splitProps, type JSX } from "solid-js"
+import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "@/registry/solid/lib/icons"
+import { cn } from "@/registry/solid/lib/utils"
+import { buttonVariants } from "@/registry/solid/ui/button"
+function Pagination(props: JSX.HTMLAttributes<HTMLElement>) { const [l,r]=splitProps(props,["class"]); return <nav role="navigation" aria-label="pagination" data-slot="pagination" class={cn("mx-auto flex w-full justify-center",l.class)} {...r}/> }
+function PaginationContent(props: JSX.HTMLAttributes<HTMLUListElement>) { const [l,r]=splitProps(props,["class"]); return <ul data-slot="pagination-content" class={cn("flex flex-row items-center gap-1",l.class)} {...r}/> }
+function PaginationItem(props: JSX.LiHTMLAttributes<HTMLLIElement>) { return <li data-slot="pagination-item" {...props}/> }
+function PaginationLink(props: JSX.AnchorHTMLAttributes<HTMLAnchorElement> & { isActive?: boolean; size?: "default" | "sm" | "lg" | "icon" | "xs" | "icon-xs" | "icon-sm" | "icon-lg" }) { const [l,r]=splitProps(props,["class","isActive","size"]); return <a aria-current={l.isActive ? "page" : undefined} data-slot="pagination-link" data-active={l.isActive} class={cn(buttonVariants({variant:l.isActive?"secondary":"ghost", size:l.size || "icon"}),l.class)} {...r}/> }
+function PaginationPrevious(props: Parameters<typeof PaginationLink>[0]) { const [l,r]=splitProps(props,["class"]); return <PaginationLink aria-label="Go to previous page" size="default" class={cn("gap-1 px-2.5 sm:pl-2.5",l.class)} {...r}><ChevronLeftIcon/><span class="hidden sm:block">Previous</span></PaginationLink> }
+function PaginationNext(props: Parameters<typeof PaginationLink>[0]) { const [l,r]=splitProps(props,["class"]); return <PaginationLink aria-label="Go to next page" size="default" class={cn("gap-1 px-2.5 sm:pr-2.5",l.class)} {...r}><span class="hidden sm:block">Next</span><ChevronRightIcon/></PaginationLink> }
+function PaginationEllipsis(props: JSX.HTMLAttributes<HTMLSpanElement>) { const [l,r]=splitProps(props,["class"]); return <span aria-hidden data-slot="pagination-ellipsis" class={cn("flex size-9 items-center justify-center rounded-full text-muted-foreground",l.class)} {...r}><MoreHorizontalIcon class="size-4"/><span class="sr-only">More pages</span></span> }
+export { Pagination, PaginationContent, PaginationLink, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis }
