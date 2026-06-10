@@ -1,5 +1,5 @@
 import { createContext, createSignal, splitProps, useContext, Show, type JSX } from "solid-js"
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "@/registry/solid/lib/icons"
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 type Ctx={open:()=>boolean;setOpen:(v:boolean)=>void;value:()=>string|undefined;setValue:(v:string)=>void}; const C=createContext<Ctx>()
 function Select(props: JSX.HTMLAttributes<HTMLDivElement> & { defaultValue?: string; value?: string; onValueChange?: (value:string)=>void }) { const [l,r]=splitProps(props,["children","defaultValue","value","onValueChange"]); const [open,setOpen]=createSignal(false); const [value,setValueSignal]=createSignal(l.defaultValue); const ctx={open,setOpen,value:()=>l.value ?? value(),setValue:(v:string)=>{setValueSignal(v);l.onValueChange?.(v);setOpen(false)}}; return <C.Provider value={ctx}><div data-slot="select" class="relative inline-block" {...r}>{l.children}</div></C.Provider> }

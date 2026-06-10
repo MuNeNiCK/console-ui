@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from "solid-js"
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "@/registry/solid/lib/icons"
+import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 function DropdownMenu(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="dropdown-menu" class={cn("relative inline-block",l.class)} {...r}/> }
 function DropdownMenuPortal(props: JSX.HTMLAttributes<HTMLDivElement>) { return <>{props.children}</> }

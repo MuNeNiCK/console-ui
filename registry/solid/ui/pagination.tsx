@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from "solid-js"
-import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "@/registry/solid/lib/icons"
+import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 import { buttonVariants } from "@/registry/solid/ui/button"
 function Pagination(props: JSX.HTMLAttributes<HTMLElement>) { const [l,r]=splitProps(props,["class"]); return <nav role="navigation" aria-label="pagination" data-slot="pagination" class={cn("mx-auto flex w-full justify-center",l.class)} {...r}/> }

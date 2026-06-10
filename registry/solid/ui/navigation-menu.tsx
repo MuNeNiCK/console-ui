@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from "solid-js"
-import { ChevronDownIcon } from "@/registry/solid/lib/icons"
+import { ChevronDownIcon } from "lucide-solid"
 import { cva } from "class-variance-authority"
 import { cn } from "@/registry/solid/lib/utils"
 function NavigationMenu(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <nav data-slot="navigation-menu" class={cn("group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",l.class)} {...r}/> }

@@ -1,5 +1,5 @@
 import { createContext, splitProps, useContext, type JSX } from "solid-js"
-import { ChevronLeftIcon, ChevronRightIcon } from "@/registry/solid/lib/icons"
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 import { Button } from "@/registry/solid/ui/button"
 type CarouselApi = { scrollPrev: () => void; scrollNext: () => void }

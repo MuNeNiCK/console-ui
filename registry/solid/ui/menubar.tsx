@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from "solid-js"
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "@/registry/solid/lib/icons"
+import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 function Menubar(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="menubar" class={cn("flex h-9 items-center gap-1 rounded-md border border-border bg-card p-1",l.class)} {...r}/> }
 function MenubarPortal(props: JSX.HTMLAttributes<HTMLDivElement>) { return <>{props.children}</> }

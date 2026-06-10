@@ -1,5 +1,5 @@
 import { createContext, createSignal, splitProps, useContext, type JSX } from "solid-js"
-import { PanelLeftIcon } from "@/registry/solid/lib/icons"
+import { PanelLeftIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 import { Button } from "@/registry/solid/ui/button"
 const SIDEBAR_WIDTH = "16rem"

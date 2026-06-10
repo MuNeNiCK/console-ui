@@ -260,7 +260,7 @@ import {
   InboxIcon,
   SearchIcon,
   ServerIcon,
-} from "@/registry/solid/lib/icons"
+} from "lucide-solid"
 import { toast } from "solid-sonner"
 
 export default function SolidDemo(props: { name: string }) {

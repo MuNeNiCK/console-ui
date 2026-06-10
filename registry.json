@@ -936,31 +936,16 @@
       ]
     },
     {
-      "name": "solid/icons",
-      "type": "registry:lib",
-      "title": "Icons (Solid)",
-      "registryDependencies": [
-        "solid/utils"
-      ],
-      "files": [
-        {
-          "path": "registry/solid/lib/icons.tsx",
-          "type": "registry:lib",
-          "target": "lib/icons.tsx"
-        }
-      ]
-    },
-    {
       "name": "solid/accordion",
       "type": "registry:ui",
       "title": "Accordion (Solid)",
       "description": "Console UI accordion for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -996,11 +981,11 @@
       "title": "Alert Dialog (Solid)",
       "description": "Console UI alert-dialog for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1075,11 +1060,11 @@
       "title": "Breadcrumb (Solid)",
       "description": "Console UI breadcrumb for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1136,11 +1121,11 @@
       "title": "Calendar (Solid)",
       "description": "Console UI calendar for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1176,11 +1161,11 @@
       "title": "Carousel (Solid)",
       "description": "Console UI carousel for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1216,11 +1201,11 @@
       "title": "Checkbox (Solid)",
       "description": "Console UI checkbox for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1255,11 +1240,11 @@
       "title": "Command (Solid)",
       "description": "Console UI command for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1275,7 +1260,8 @@
       "title": "Combobox (Solid)",
       "description": "Console UI combobox for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
@@ -1295,11 +1281,11 @@
       "title": "Context Menu (Solid)",
       "description": "Console UI context-menu for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1315,11 +1301,11 @@
       "title": "Dialog (Solid)",
       "description": "Console UI dialog for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1355,11 +1341,11 @@
       "title": "Drawer (Solid)",
       "description": "Console UI drawer for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1418,11 +1404,11 @@
       "title": "Dropdown Menu (Solid)",
       "description": "Console UI dropdown-menu for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1597,11 +1583,11 @@
       "title": "Menubar (Solid)",
       "description": "Console UI menubar for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1618,11 +1604,11 @@
       "description": "Console UI navigation-menu for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1638,11 +1624,11 @@
       "title": "Native Select (Solid)",
       "description": "Console UI native-select for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1658,11 +1644,11 @@
       "title": "Pagination (Solid)",
       "description": "Console UI pagination for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1736,11 +1722,11 @@
       "title": "Resizable (Solid)",
       "description": "Console UI resizable for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1775,11 +1761,11 @@
       "title": "Select (Solid)",
       "description": "Console UI select for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {
@@ -1814,11 +1800,11 @@
       "title": "Sheet (Solid)",
       "description": "Console UI sheet for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1835,11 +1821,11 @@
       "title": "Sidebar (Solid)",
       "description": "Console UI sidebar for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "solid/utils",
-        "solid/icons",
         "solid/button"
       ],
       "files": [
@@ -1894,11 +1880,11 @@
       "title": "Spinner (Solid)",
       "description": "Console UI spinner for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/icons"
+        "solid/utils"
       ],
       "files": [
         {

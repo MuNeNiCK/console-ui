@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from "solid-js"
-import { ChevronRightIcon, MoreHorizontalIcon } from "@/registry/solid/lib/icons"
+import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 function Breadcrumb(props: JSX.HTMLAttributes<HTMLElement>) { const [l,r]=splitProps(props,["class"]); return <nav aria-label="breadcrumb" data-slot="breadcrumb" class={cn(l.class)} {...r}/> }
 function BreadcrumbList(props: JSX.OlHTMLAttributes<HTMLOListElement>) { const [l,r]=splitProps(props,["class"]); return <ol data-slot="breadcrumb-list" class={cn("flex flex-wrap items-center gap-1.5 text-sm break-words text-muted-foreground sm:gap-2",l.class)} {...r}/> }

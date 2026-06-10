@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from "solid-js"
-import { GripVerticalIcon } from "@/registry/solid/lib/icons"
+import { GripVerticalIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 function ResizablePanelGroup(props: JSX.HTMLAttributes<HTMLDivElement> & { direction?: "horizontal" | "vertical" }) { const [l,r]=splitProps(props,["class","direction"]); return <div data-slot="resizable-panel-group" data-direction={l.direction||"horizontal"} class={cn("flex h-full w-full data-[direction=vertical]:flex-col",l.class)} {...r}/> }
 function ResizablePanel(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="resizable-panel" class={cn("min-w-0 flex-1",l.class)} {...r}/> }

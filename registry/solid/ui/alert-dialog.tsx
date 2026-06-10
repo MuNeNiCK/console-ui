@@ -1,5 +1,5 @@
 import { createContext, createSignal, splitProps, useContext, Show, type JSX } from "solid-js"
-import { XIcon } from "@/registry/solid/lib/icons"
+import { XIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 import { Button, buttonVariants } from "@/registry/solid/ui/button"
 type Ctx = { open: () => boolean; setOpen: (open: boolean) => void }

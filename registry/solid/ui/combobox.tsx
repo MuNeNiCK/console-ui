@@ -1,6 +1,6 @@
 import { splitProps, type JSX } from "solid-js"
 
-import { CheckIcon, ChevronDownIcon, XIcon } from "@/registry/solid/lib/icons"
+import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 
 function Combobox(props: JSX.HTMLAttributes<HTMLDivElement>) {

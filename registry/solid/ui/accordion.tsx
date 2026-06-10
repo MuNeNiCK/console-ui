@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from "solid-js"
-import { ChevronDownIcon } from "@/registry/solid/lib/icons"
+import { ChevronDownIcon } from "lucide-solid"
 import { cn } from "@/registry/solid/lib/utils"
 function Accordion(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="accordion" class={cn("w-full",l.class)} {...r}/> }
 function AccordionItem(props: JSX.HTMLAttributes<HTMLDetailsElement>) { const [l,r]=splitProps(props,["class"]); return <details data-slot="accordion-item" class={cn("group border-b last:border-b-0",l.class)} {...r}/> }
