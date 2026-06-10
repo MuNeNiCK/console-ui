@@ -1,27 +1,60 @@
 import { defineConfig } from "astro/config"
-import react from "@astrojs/react"
-import solid from "@astrojs/solid-js"
+import react from "@vitejs/plugin-react"
+import solid from "vite-plugin-solid"
 
-export default defineConfig({
-  site: "https://munenick.github.io",
-  base: "/console-ui",
-  integrations: [
+const reactFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-react|react-demo)|registry\/react\/).*\.tsx$/
+const solidFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-solid|solid-demo)|registry\/solid\/).*\.tsx$/
+
+function jsxPlugins() {
+  return [
     react({
-      include: [
-        "**/react-*.tsx",
-        "**/theme-toggle.tsx",
-        "../../registry/react/**/*.tsx",
-      ],
+      include: reactFiles,
     }),
     solid({
-      include: ["**/solid-*.tsx", "../../registry/solid/**/*.tsx"],
+      include: solidFiles,
     }),
-  ],
+  ]
+}
+
+function jsxEsbuildOptions() {
+  return {
+    jsx: "automatic",
+    jsxImportSource: "react",
+  }
+}
+
+export default defineConfig(({ command }) => ({
+  site: "https://munenick.github.io",
+  base: "/console-ui",
   vite: {
+    plugins: jsxPlugins(),
+    environments: {
+      client: {
+        plugins: jsxPlugins(),
+        esbuild: jsxEsbuildOptions(),
+      },
+    },
+    esbuild: jsxEsbuildOptions(),
+    define:
+      command === "dev"
+        ? {
+            "process.env.NODE_ENV": '"development"',
+          }
+        : undefined,
+    optimizeDeps:
+      command === "dev"
+        ? {
+            esbuildOptions: {
+              define: {
+                "process.env.NODE_ENV": '"development"',
+              },
+            },
+          }
+        : undefined,
     resolve: {
       alias: {
         "@/": new URL("../../", import.meta.url).pathname,
       },
     },
   },
-})
+}))

@@ -1,6 +1,5 @@
 ---
 import Layout from "./Layout.astro"
-import { ThemeToggle } from "../components/theme-toggle"
 import { components } from "../lib/components"
 
 interface Props {
@@ -25,12 +24,33 @@ const componentPath = `${base}/components`
           Components
         </a>
       </div>
-      <ThemeToggle client:only="react" />
+      <button
+        id="theme-toggle"
+        type="button"
+        class="relative inline-flex size-10 min-w-0 shrink-0 items-center justify-center gap-2 rounded-full border-2 border-border bg-card text-sm font-semibold whitespace-nowrap text-foreground shadow-[0_1px_2px_rgb(0_0_0/0.08)] transition-[background-color,border-color,color,box-shadow] outline-none hover:border-primary hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/35 disabled:pointer-events-none disabled:opacity-50"
+        aria-label="Toggle theme"
+      >
+        <svg class="size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg class="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.99 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 20.99 12.79z"></path>
+        </svg>
+        <span class="sr-only">Toggle theme</span>
+      </button>
     </header>
 
     <div class="flex">
       <aside class="sticky top-14 hidden h-[calc(100svh-3.5rem)] w-64 shrink-0 border-r bg-sidebar text-sidebar-foreground md:block">
-        <div class="flex h-full min-h-0 flex-col overflow-y-auto px-3 py-4">
+        <div class="flex h-full min-h-0 flex-col overflow-y-auto px-3 py-4" data-sidebar-scroll>
           <div class="px-2 pb-2 text-xs font-medium text-sidebar-foreground/70">
             Components
           </div>
@@ -67,3 +87,40 @@ const componentPath = `${base}/components`
     </div>
   </div>
 </Layout>
+
+<script>
+  const THEME_STORAGE_KEY = "console-ui-theme"
+  const SIDEBAR_SCROLL_STORAGE_KEY = "console-ui-sidebar-scroll"
+
+  function initThemeToggle() {
+    const button = document.getElementById("theme-toggle")
+
+    if (!button) return
+
+    button.onclick = () => {
+      const next = !document.documentElement.classList.contains("dark")
+      document.documentElement.classList.toggle("dark", next)
+      localStorage.setItem(THEME_STORAGE_KEY, next ? "dark" : "light")
+    }
+  }
+
+  function initSidebarScroll() {
+    const sidebar = document.querySelector("[data-sidebar-scroll]")
+
+    if (!(sidebar instanceof HTMLElement)) return
+
+    const savedScroll = Number(localStorage.getItem(SIDEBAR_SCROLL_STORAGE_KEY) ?? 0)
+    sidebar.scrollTop = Number.isFinite(savedScroll) ? savedScroll : 0
+    sidebar.onscroll = () => {
+      localStorage.setItem(SIDEBAR_SCROLL_STORAGE_KEY, String(sidebar.scrollTop))
+    }
+  }
+
+  function initLayoutState() {
+    initThemeToggle()
+    initSidebarScroll()
+  }
+
+  initLayoutState()
+  document.addEventListener("astro:page-load", initLayoutState)
+</script>

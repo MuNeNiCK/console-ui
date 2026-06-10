@@ -1,8 +1,6 @@
 ---
 import ComponentsSidebarLayout from "../../layouts/ComponentsSidebarLayout.astro"
 import { components } from "../../lib/components"
-import ReactDemo from "../../components/react-demo"
-import SolidDemo from "../../components/solid-demo"
 
 export function getStaticPaths() {
   return components.map((component) => ({
@@ -39,12 +37,21 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
       )}
     </div>
     <div class="grid min-h-[320px] place-items-center p-6">
-      <div id="demo-react" class="flex w-full max-w-xl items-center justify-center">
-        <ReactDemo name={component.name} client:only="react" />
+      <div
+        id="demo-react"
+        class="flex w-full max-w-xl items-center justify-center"
+        data-component-preview="react"
+        data-component-name={component.name}
+      >
       </div>
       {component.solid && (
-        <div id="demo-solid" class="flex w-full max-w-xl items-center justify-center" style="display: none;">
-          <SolidDemo name={component.name} client:only="solid-js" />
+        <div
+          id="demo-solid"
+          class="flex w-full max-w-xl items-center justify-center"
+          style="display: none;"
+          data-component-preview="solid"
+          data-component-name={component.name}
+        >
         </div>
       )}
     </div>
@@ -65,12 +72,16 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
 </ComponentsSidebarLayout>
 
 <script>
+  import "../../components/component-preview-react"
+  import "../../components/component-preview-solid"
+
+  const FRAMEWORK_STORAGE_KEY = "console-ui-framework"
   const toggle = document.getElementById("framework-toggle")
   const reactDemo = document.getElementById("demo-react")
   const solidDemo = document.getElementById("demo-solid")
   const buttons = toggle?.querySelectorAll("button") ?? []
 
-  function setFramework(framework) {
+  function setFramework(framework, persist = true) {
     const isReact = framework === "react"
     if (reactDemo) reactDemo.style.display = isReact ? "" : "none"
     if (solidDemo) solidDemo.style.display = isReact ? "none" : ""
@@ -83,7 +94,12 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
           : "border bg-background text-foreground",
       ].join(" ")
     })
+
+    if (persist) localStorage.setItem(FRAMEWORK_STORAGE_KEY, framework)
   }
+
+  const savedFramework = localStorage.getItem(FRAMEWORK_STORAGE_KEY)
+  setFramework(savedFramework === "solid" && solidDemo ? "solid" : "react", false)
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => setFramework(button.dataset.framework || "react"))
