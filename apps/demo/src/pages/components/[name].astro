@@ -76,13 +76,14 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
   import "../../components/component-preview-solid"
 
   const FRAMEWORK_STORAGE_KEY = "console-ui-framework"
-  const toggle = document.getElementById("framework-toggle")
-  const reactDemo = document.getElementById("demo-react")
-  const solidDemo = document.getElementById("demo-solid")
-  const buttons = toggle?.querySelectorAll("button") ?? []
 
   function setFramework(framework, persist = true) {
+    const toggle = document.getElementById("framework-toggle")
+    const reactDemo = document.getElementById("demo-react")
+    const solidDemo = document.getElementById("demo-solid")
+    const buttons = toggle?.querySelectorAll("button") ?? []
     const isReact = framework === "react"
+
     if (reactDemo) reactDemo.style.display = isReact ? "" : "none"
     if (solidDemo) solidDemo.style.display = isReact ? "none" : ""
     buttons.forEach((button) => {
@@ -98,10 +99,19 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${component.name
     if (persist) localStorage.setItem(FRAMEWORK_STORAGE_KEY, framework)
   }
 
-  const savedFramework = localStorage.getItem(FRAMEWORK_STORAGE_KEY)
-  setFramework(savedFramework === "solid" && solidDemo ? "solid" : "react", false)
+  function initFrameworkToggle() {
+    const toggle = document.getElementById("framework-toggle")
+    const solidDemo = document.getElementById("demo-solid")
+    const buttons = toggle?.querySelectorAll("button") ?? []
+    const savedFramework = localStorage.getItem(FRAMEWORK_STORAGE_KEY)
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => setFramework(button.dataset.framework || "react"))
-  })
+    setFramework(savedFramework === "solid" && solidDemo ? "solid" : "react", false)
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setFramework(button.dataset.framework || "react"))
+    })
+  }
+
+  initFrameworkToggle()
+  document.addEventListener("astro:page-load", initFrameworkToggle)
 </script>

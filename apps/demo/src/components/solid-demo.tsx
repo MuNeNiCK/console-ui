@@ -17,7 +17,12 @@ import {
   AlertDialogTrigger,
 } from "@/registry/solid/ui/alert-dialog"
 import { AspectRatio } from "@/registry/solid/ui/aspect-ratio"
-import { Avatar, AvatarCount, AvatarFallback } from "@/registry/solid/ui/avatar"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+} from "@/registry/solid/ui/avatar"
 import { Badge } from "@/registry/solid/ui/badge"
 import {
   Breadcrumb,
@@ -48,7 +53,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/registry/solid/ui/carousel"
-import { ChartContainer } from "@/registry/solid/ui/chart"
 import { Checkbox } from "@/registry/solid/ui/checkbox"
 import {
   Collapsible,
@@ -321,12 +325,12 @@ export default function SolidDemo(props: { name: string }) {
 
     case "avatar":
       return (
-        <div class="flex -space-x-2">
+        <AvatarGroup>
           <Avatar size="lg"><AvatarFallback>VC</AvatarFallback></Avatar>
           <Avatar size="lg"><AvatarFallback>AW</AvatarFallback></Avatar>
           <Avatar size="lg"><AvatarFallback>IL</AvatarFallback></Avatar>
-          <AvatarCount>+4</AvatarCount>
-        </div>
+          <AvatarGroupCount>+4</AvatarGroupCount>
+        </AvatarGroup>
       )
 
     case "badge":
@@ -402,16 +406,16 @@ export default function SolidDemo(props: { name: string }) {
               </div>
             </CarouselItem>
           </CarouselContent>
-          <CarouselPrevious />
+          <CarouselPrevious disabled />
           <CarouselNext />
         </Carousel>
       )
 
     case "chart":
       return (
-        <ChartContainer
-          config={{ cpu: { label: "CPU", color: "var(--chart-1)" } }}
-          class="h-[220px] w-full max-w-md flex-col items-stretch gap-3 p-6"
+        <div
+          data-slot="chart"
+          class="flex h-[220px] w-full max-w-md flex-col items-stretch gap-3 p-6 text-xs"
         >
           <div class="flex min-h-0 flex-1 items-end gap-3">
             <div class="h-[42%] flex-1 rounded-t bg-[var(--chart-1)]" />
@@ -423,7 +427,7 @@ export default function SolidDemo(props: { name: string }) {
             <span>node-02</span>
             <span>node-03</span>
           </div>
-        </ChartContainer>
+        </div>
       )
 
     case "checkbox":
@@ -462,7 +466,7 @@ export default function SolidDemo(props: { name: string }) {
             <CommandEmpty class="hidden">No results found.</CommandEmpty>
             <CommandGroup>
               <div class="px-2 py-1.5 text-xs font-medium text-muted-foreground">Resources</div>
-              <CommandItem>node-01</CommandItem>
+              <CommandItem data-selected="true">node-01</CommandItem>
               <CommandItem>production-cluster</CommandItem>
               <CommandItem>datastore-primary</CommandItem>
             </CommandGroup>
@@ -472,8 +476,8 @@ export default function SolidDemo(props: { name: string }) {
 
     case "combobox":
       return (
-        <Combobox class="w-[240px] rounded-lg border shadow-xs">
-          <ComboboxInput placeholder="Select a resource" />
+        <Combobox>
+          <ComboboxInput class="w-[240px]" placeholder="Select a resource" />
           <ComboboxContent class="hidden">
             <ComboboxEmpty>No resources found.</ComboboxEmpty>
             <ComboboxGroup>
@@ -801,15 +805,21 @@ export default function SolidDemo(props: { name: string }) {
 
     case "resizable":
       return (
-        <ResizablePanelGroup class="h-40 w-full max-w-md rounded-lg border bg-card">
-          <ResizablePanel class="flex h-full items-center justify-center text-sm text-muted-foreground">
-            Inventory
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel class="flex h-full items-center justify-center text-sm text-muted-foreground">
-            Details
-          </ResizablePanel>
-        </ResizablePanelGroup>
+        <div class="h-40 w-full max-w-md">
+          <ResizablePanelGroup direction="horizontal" class="h-full rounded-lg border bg-card">
+            <ResizablePanel class="flex-[45_1_0]">
+              <div class="flex h-full items-center justify-center text-sm text-muted-foreground">
+              Inventory
+              </div>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel class="flex-[55_1_0]">
+              <div class="flex h-full items-center justify-center text-sm text-muted-foreground">
+              Details
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
       )
 
     case "scroll-area":
@@ -875,7 +885,7 @@ export default function SolidDemo(props: { name: string }) {
       return (
         <div class="h-56 w-full overflow-hidden rounded-lg border bg-background">
           <SidebarProvider>
-            <Sidebar>
+            <Sidebar collapsible="none">
               <SidebarContent>
                 <SidebarGroup>
                   <SidebarGroupLabel>Console</SidebarGroupLabel>

@@ -55,11 +55,6 @@ import {
 } from "@/registry/react/ui/carousel"
 import { Checkbox } from "@/registry/react/ui/checkbox"
 import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/registry/react/ui/chart"
-import {
   Command,
   CommandEmpty,
   CommandGroup,
@@ -264,13 +259,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/registry/react/ui/tooltip"
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-} from "recharts"
 import { InboxIcon, SearchIcon, ServerIcon } from "lucide-react"
 import { toast } from "sonner"
 import { useForm } from "react-hook-form"
@@ -438,36 +426,29 @@ export default function ReactDemo({ name }: { name: string }) {
           mode="single"
           defaultMonth={new Date(2026, 5, 9)}
           selected={new Date(2026, 5, 9)}
+          today={new Date(2026, 5, 9)}
         />
       </div>
     )
   }
 
   if (name === "chart") {
-    const data = [
-      { host: "node-01", cpu: 42 },
-      { host: "node-02", cpu: 28 },
-      { host: "node-03", cpu: 64 },
-    ]
-
     return (
-      <ChartContainer
-        config={{ cpu: { label: "CPU", color: "var(--chart-1)" } }}
-        className="h-[220px] w-full max-w-md"
+      <div
+        data-slot="chart"
+        className="flex h-[220px] w-full max-w-md flex-col items-stretch gap-3 p-6 text-xs"
       >
-        <BarChart data={data}>
-          <CartesianGrid vertical={false} />
-          <XAxis dataKey="host" tickLine={false} axisLine={false} />
-          <YAxis hide />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <Bar
-            dataKey="cpu"
-            fill="var(--chart-1)"
-            radius={4}
-            isAnimationActive={false}
-          />
-        </BarChart>
-      </ChartContainer>
+        <div className="flex min-h-0 flex-1 items-end gap-3">
+          <div className="h-[42%] flex-1 rounded-t bg-[var(--chart-1)]" />
+          <div className="h-[28%] flex-1 rounded-t bg-[var(--chart-1)]" />
+          <div className="h-[64%] flex-1 rounded-t bg-[var(--chart-1)]" />
+        </div>
+        <div className="grid grid-cols-3 gap-3 text-center text-xs text-muted-foreground">
+          <span>node-01</span>
+          <span>node-02</span>
+          <span>node-03</span>
+        </div>
+      </div>
     )
   }
 
@@ -570,10 +551,12 @@ export default function ReactDemo({ name }: { name: string }) {
   if (name === "direction") {
     return (
       <DirectionProvider direction="rtl">
-        <ButtonGroup>
-          <Button variant="outline">Primary</Button>
-          <Button variant="outline">Secondary</Button>
-        </ButtonGroup>
+        <div dir="rtl">
+          <ButtonGroup>
+            <Button variant="outline">Primary</Button>
+            <Button variant="outline">Secondary</Button>
+          </ButtonGroup>
+        </div>
       </DirectionProvider>
     )
   }
@@ -975,22 +958,24 @@ export default function ReactDemo({ name }: { name: string }) {
 
   if (name === "resizable") {
     return (
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="h-40 w-full max-w-md rounded-lg border bg-card"
-      >
-        <ResizablePanel defaultSize={45}>
-          <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-            Inventory
-          </div>
-        </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={55}>
-          <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-            Details
-          </div>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+      <div className="h-40 w-full max-w-md">
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="h-full rounded-lg border bg-card"
+        >
+          <ResizablePanel defaultSize={45}>
+            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+              Inventory
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={55}>
+            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+              Details
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </div>
     )
   }
 

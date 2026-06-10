@@ -1,23 +1,14 @@
-import h from "solid-js/h"
 import { render } from "solid-js/web"
 
+import SolidDemo from "./solid-demo"
+
 const roots = new WeakMap<Element, () => void>()
-const solidDemo = import("./solid-demo")
 
-const solidRuntime = { createElement: h, Fragment: h.Fragment }
-
-async function mountSolidPreview(element: Element, name: string) {
+function mountSolidPreview(element: Element, name: string) {
   if (roots.has(element)) return
 
-  const previousRuntime = (globalThis as typeof globalThis & { React?: unknown }).React
-  ;(globalThis as typeof globalThis & { React: typeof solidRuntime }).React =
-    solidRuntime
-
-  const { default: SolidDemo } = await solidDemo
-  const dispose = render(() => solidRuntime.createElement(SolidDemo, { name }), element)
+  const dispose = render(() => <SolidDemo name={name} />, element)
   roots.set(element, dispose)
-
-  ;(globalThis as typeof globalThis & { React?: unknown }).React = previousRuntime
 }
 
 function mountSolidPreviews() {

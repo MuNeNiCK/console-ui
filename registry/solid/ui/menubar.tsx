@@ -3,7 +3,7 @@ import { CheckIcon, ChevronRightIcon, CircleIcon } from "@/registry/solid/lib/ic
 import { cn } from "@/registry/solid/lib/utils"
 function Menubar(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="menubar" class={cn("flex h-9 items-center gap-1 rounded-md border border-border bg-card p-1",l.class)} {...r}/> }
 function MenubarPortal(props: JSX.HTMLAttributes<HTMLDivElement>) { return <>{props.children}</> }
-function MenubarTrigger(props: JSX.ButtonHTMLAttributes<HTMLButtonElement>) { return <button type="button" data-slot="menubar-trigger" {...props}/> }
+function MenubarTrigger(props: JSX.ButtonHTMLAttributes<HTMLButtonElement>) { const [l,r]=splitProps(props,["class"]); return <button type="button" data-slot="menubar-trigger" class={cn("flex h-7 items-center rounded-md px-2.5 text-sm font-medium outline-hidden select-none focus:bg-primary/10 focus:text-foreground aria-expanded:bg-primary/10 aria-expanded:text-foreground",l.class)} {...r}/> }
 function MenubarContent(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="menubar-content" class={cn("z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",l.class)} {...r}/> }
 function MenubarGroup(props: JSX.HTMLAttributes<HTMLDivElement>) { return <div data-slot="menubar-group" {...props}/> }
 function MenubarLabel(props: JSX.HTMLAttributes<HTMLDivElement> & { inset?: boolean }) { const [l,r]=splitProps(props,["class","inset"]); return <div data-slot="menubar-label" data-inset={l.inset} class={cn("px-2.5 py-1.5 text-xs font-semibold text-muted-foreground data-inset:pl-8",l.class)} {...r}/> }

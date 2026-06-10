@@ -1,19 +1,54 @@
 import { defineConfig } from "astro/config"
-import react from "@vitejs/plugin-react"
-import solid from "vite-plugin-solid"
+import babel from "@babel/core"
+import typescriptPreset from "@babel/preset-typescript"
+import solidPreset from "babel-preset-solid"
 
-const reactFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-react|react-demo)|registry\/react\/).*\.tsx$/
-const solidFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-solid|solid-demo)|registry\/solid\/).*\.tsx$/
+const solidFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-solid|solid-demo)|src\/components\/(?:component-preview-solid|solid-demo)|registry\/solid\/).*\.tsx$/
 
 function jsxPlugins() {
-  return [
-    react({
-      include: reactFiles,
-    }),
-    solid({
-      include: solidFiles,
-    }),
-  ]
+  return [solidTransformPlugin()]
+}
+
+function solidTransformPlugin() {
+  return {
+    name: "console-ui:solid-transform",
+    enforce: "pre",
+    async transform(code, id) {
+      const cleanId = id.replace(/\?.*$/, "")
+
+      if (!solidFiles.test(cleanId)) return null
+
+      const result = await babel.transformAsync(code, {
+        filename: cleanId,
+        sourceMaps: true,
+        babelrc: false,
+        configFile: false,
+        presets: [
+          [
+            typescriptPreset,
+            {
+              allExtensions: true,
+              isTSX: true,
+            },
+          ],
+          [
+            solidPreset,
+            {
+              generate: "dom",
+              hydratable: false,
+            },
+          ],
+        ],
+      })
+
+      if (!result?.code) return null
+
+      return {
+        code: result.code,
+        map: result.map,
+      }
+    },
+  }
 }
 
 function jsxEsbuildOptions() {
@@ -23,9 +58,12 @@ function jsxEsbuildOptions() {
   }
 }
 
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   site: "https://munenick.github.io",
   base: "/console-ui",
+  devToolbar: {
+    enabled: false,
+  },
   vite: {
     plugins: jsxPlugins(),
     environments: {
@@ -35,26 +73,10 @@ export default defineConfig(({ command }) => ({
       },
     },
     esbuild: jsxEsbuildOptions(),
-    define:
-      command === "dev"
-        ? {
-            "process.env.NODE_ENV": '"development"',
-          }
-        : undefined,
-    optimizeDeps:
-      command === "dev"
-        ? {
-            esbuildOptions: {
-              define: {
-                "process.env.NODE_ENV": '"development"',
-              },
-            },
-          }
-        : undefined,
     resolve: {
       alias: {
         "@/": new URL("../../", import.meta.url).pathname,
       },
     },
   },
-}))
+})

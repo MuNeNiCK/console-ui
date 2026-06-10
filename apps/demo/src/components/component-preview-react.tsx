@@ -1,4 +1,5 @@
 import * as React from "react"
+import { flushSync } from "react-dom"
 import { createRoot, type Root } from "react-dom/client"
 
 const roots = new WeakMap<Element, Root>()
@@ -14,7 +15,9 @@ async function mountReactPreview(element: Element, name: string) {
   }
 
   const { default: ReactDemo } = await reactDemo
-  root.render(React.createElement(ReactDemo, { name }))
+  flushSync(() => {
+    root.render(React.createElement(ReactDemo, { name }))
+  })
 }
 
 function mountReactPreviews() {
