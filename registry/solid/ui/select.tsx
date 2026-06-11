@@ -1,4 +1,4 @@
-import type { ComponentProps, ValidComponent, VoidProps } from "solid-js"
+import type { ComponentProps, ValidComponent } from "solid-js"
 import { mergeProps, splitProps } from "solid-js"
 import { Select as SelectPrimitive } from "@kobalte/core/select"
 import { CheckIcon, ChevronDownIcon } from "lucide-solid"
@@ -21,7 +21,17 @@ export const Select = <
 >(
   props: SelectProps<Option, OptGroup, T>,
 ) => {
-  const [, rest] = splitProps(props as SelectProps<Option, OptGroup>, [
+  const merged = mergeProps(
+    {
+      itemComponent: (itemProps: {
+        item: { textValue: string; rawValue: Option }
+      }) => (
+        <SelectItem item={itemProps.item}>{itemProps.item.textValue}</SelectItem>
+      ),
+    } as Partial<SelectProps<Option, OptGroup>>,
+    props,
+  )
+  const [, rest] = splitProps(merged as SelectProps<Option, OptGroup>, [
     "class",
     "options",
   ])
@@ -29,8 +39,8 @@ export const Select = <
   return (
     <SelectPrimitive
       data-slot="select"
-      class={cx("space-y-2", props.class)}
-      options={props.options ?? []}
+      class={cx("space-y-2", merged.class)}
+      options={merged.options ?? []}
       {...rest}
     />
   )
@@ -82,32 +92,33 @@ export const SelectTrigger = <T extends ValidComponent = "button">(
   )
 }
 
-export type SelectContentProps<T extends ValidComponent = "div"> = VoidProps<
+export type SelectContentProps<T extends ValidComponent = "div"> =
   ComponentProps<typeof SelectPrimitive.Content<T>>
->
 
 export const SelectContent = <T extends ValidComponent = "div">(
   props: SelectContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SelectContentProps, [
+  const [local, rest] = splitProps(props as SelectContentProps, [
     "class",
     "children",
   ])
 
   return (
-    <SelectPrimitive.Content
-      data-slot="select-content"
-      class={cx(
-        "relative isolate z-50 max-h-(--available-height) w-(--kb-popper-anchor-width) min-w-[8rem] origin-(--kb-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border bg-popover text-popover-foreground shadow-md data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
-        "[[data-popper-positioner][style*='--kb-popper-content-transform-origin:_top']>[data-slot=select-content]]:slide-in-from-top-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_bottom']>[data-slot=select-content]]:slide-in-from-bottom-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_left']>[data-slot=select-content]]:slide-in-from-left-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_right']>[data-slot=select-content]]:slide-in-from-right-2",
-        props.class,
-      )}
-      {...rest}
-    >
-      <SelectPrimitive.Listbox class="p-1 outline-none">
-        {props.children}
-      </SelectPrimitive.Listbox>
-    </SelectPrimitive.Content>
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Content
+        data-slot="select-content"
+        class={cx(
+          "relative isolate z-50 max-h-(--available-height) w-(--kb-popper-anchor-width) min-w-[8rem] origin-(--kb-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border bg-popover text-popover-foreground shadow-md data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
+          "[[data-popper-positioner][style*='--kb-popper-content-transform-origin:_top']>[data-slot=select-content]]:slide-in-from-top-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_bottom']>[data-slot=select-content]]:slide-in-from-bottom-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_left']>[data-slot=select-content]]:slide-in-from-left-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_right']>[data-slot=select-content]]:slide-in-from-right-2",
+          local.class,
+        )}
+        {...rest}
+      >
+        <SelectPrimitive.Listbox class="p-1 outline-none">
+          {local.children}
+        </SelectPrimitive.Listbox>
+      </SelectPrimitive.Content>
+    </SelectPrimitive.Portal>
   )
 }
 

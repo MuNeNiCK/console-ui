@@ -7,7 +7,8 @@
     "dev": "pnpm --filter demo dev",
     "build": "pnpm --filter demo build",
     "preview": "pnpm --filter demo preview",
-    "registry:build": "mkdir -p public/r/solid && shadcn build"
+    "registry:build": "mkdir -p public/r/solid && shadcn build",
+    "test:behavior": "playwright test"
   },
   "dependencies": {
     "@base-ui/react": "1.5.0",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.5",
+    "@playwright/test": "1.60.0",
     "@tailwindcss/postcss": "4.3.0",
     "@types/node": "25.9.2",
     "@types/react": "19.2.17",

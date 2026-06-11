@@ -72,8 +72,6 @@ import {
   ComboboxContent,
   ComboboxEmpty,
   ComboboxInput,
-  ComboboxItem,
-  ComboboxList,
 } from "@/registry/solid/ui/combobox"
 import {
   ContextMenu,
@@ -104,6 +102,7 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -211,7 +210,6 @@ import { ScrollArea } from "@/registry/solid/ui/scroll-area"
 import {
   Select,
   SelectContent,
-  SelectItem,
   SelectTrigger,
 } from "@/registry/solid/ui/select"
 import { Separator } from "@/registry/solid/ui/separator"
@@ -264,18 +262,26 @@ import {
 } from "lucide-solid"
 import { toast } from "solid-sonner"
 
+const resourceOptions = ["node-01", "node-02", "cluster-a"]
+
+const environmentOptions = [
+  { value: "production", label: "Production" },
+  { value: "staging", label: "Staging" },
+  { value: "maintenance", label: "Maintenance" },
+]
+
 export default function SolidDemo(props: { name: string }) {
   switch (props.name) {
     case "accordion":
       return (
-        <Accordion class="w-full max-w-md">
-          <AccordionItem>
+        <Accordion collapsible class="w-full max-w-md">
+          <AccordionItem value="item-1">
             <AccordionTrigger>Resource summary</AccordionTrigger>
             <AccordionContent class="text-muted-foreground">
               CPU, memory, and storage details for the selected resource.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem value="item-2">
             <AccordionTrigger>Recent activity</AccordionTrigger>
             <AccordionContent class="text-muted-foreground">
               Events and tasks related to this resource.
@@ -440,7 +446,7 @@ export default function SolidDemo(props: { name: string }) {
       return (
         <div class="flex items-center gap-3">
           <Checkbox id="demo-checkbox-solid" defaultChecked />
-          <label for="demo-checkbox-solid" class="text-sm">
+          <label for="demo-checkbox-solid-input" class="text-sm">
             Enable monitoring
           </label>
         </div>
@@ -481,15 +487,10 @@ export default function SolidDemo(props: { name: string }) {
 
     case "combobox":
       return (
-        <Combobox options={["node-01", "node-02", "cluster-a"]}>
+        <Combobox options={resourceOptions}>
           <ComboboxInput class="w-[240px]" placeholder="Select a resource" />
           <ComboboxContent>
             <ComboboxEmpty>No resources found.</ComboboxEmpty>
-            <ComboboxList>
-              <ComboboxItem>node-01</ComboboxItem>
-              <ComboboxItem>node-02</ComboboxItem>
-              <ComboboxItem>cluster-a</ComboboxItem>
-            </ComboboxList>
           </ComboboxContent>
         </Combobox>
       )
@@ -500,7 +501,7 @@ export default function SolidDemo(props: { name: string }) {
           <ContextMenuTrigger class="flex h-32 w-full max-w-sm items-center justify-center rounded-lg border bg-card text-sm">
             Right click resource
           </ContextMenuTrigger>
-          <ContextMenuContent class="hidden">
+          <ContextMenuContent>
             <ContextMenuItem>Open console</ContextMenuItem>
             <ContextMenuItem>Clone</ContextMenuItem>
             <ContextMenuSeparator />
@@ -566,10 +567,12 @@ export default function SolidDemo(props: { name: string }) {
           <DropdownMenuTrigger class={buttonVariants({ variant: "outline" })}>
             Actions
           </DropdownMenuTrigger>
-          <DropdownMenuContent class="hidden">
-            <DropdownMenuLabel>Resource</DropdownMenuLabel>
-            <DropdownMenuItem>Open console</DropdownMenuItem>
-            <DropdownMenuItem>Restart</DropdownMenuItem>
+          <DropdownMenuContent>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>Resource</DropdownMenuLabel>
+              <DropdownMenuItem>Open console</DropdownMenuItem>
+              <DropdownMenuItem>Restart</DropdownMenuItem>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
           </DropdownMenuContent>
@@ -745,11 +748,11 @@ export default function SolidDemo(props: { name: string }) {
 
     case "navigation-menu":
       return (
-        <NavigationMenu>
+        <NavigationMenu viewport={false}>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Inventory</NavigationMenuTrigger>
-              <NavigationMenuContent class="hidden">
+              <NavigationMenuContent>
                 <div class="grid w-[260px] gap-1 p-2">
                   <NavigationMenuLink href="#">Hosts</NavigationMenuLink>
                   <NavigationMenuLink href="#">Virtual machines</NavigationMenuLink>
@@ -851,17 +854,15 @@ export default function SolidDemo(props: { name: string }) {
     case "select":
       return (
         <Select
-          defaultValue="production"
-          options={["production", "staging", "maintenance"]}
+          defaultValue={[environmentOptions[0]]}
+          optionTextValue="label"
+          optionValue="value"
+          options={environmentOptions}
         >
           <SelectTrigger class="w-[240px]">
             <span>Production</span>
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="production">Production</SelectItem>
-            <SelectItem value="staging">Staging</SelectItem>
-            <SelectItem value="maintenance">Maintenance</SelectItem>
-          </SelectContent>
+          <SelectContent />
         </Select>
       )
 

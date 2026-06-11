@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { Slider as SliderPrimitive } from "@base-ui/react/slider"
 
 import { cn } from "@/lib/utils"
 
@@ -10,48 +10,47 @@ function Slider({
   value,
   min = 0,
   max = 100,
-  disabled,
   ...props
-}: React.ComponentProps<"div"> & {
-  defaultValue?: number[]
-  value?: number[]
-  min?: number
-  max?: number
-  disabled?: boolean
-}) {
-  const current = Array.isArray(value)
-    ? value[0]
+}: SliderPrimitive.Root.Props) {
+  const values = Array.isArray(value)
+    ? value
     : Array.isArray(defaultValue)
-      ? defaultValue[0]
-      : min
-  const percent = Math.min(100, Math.max(0, ((current - min) / (max - min)) * 100))
+      ? defaultValue
+      : [min]
 
   return (
-    <div
+    <SliderPrimitive.Root
       data-slot="slider"
-      data-disabled={disabled}
       className={cn(
-        "relative flex h-4 w-full touch-none items-center select-none data-disabled:opacity-50",
+        "relative flex h-4 w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-44 data-vertical:w-auto",
         className
       )}
+      defaultValue={defaultValue}
+      value={value}
+      min={min}
+      max={max}
+      thumbAlignment="edge"
       {...props}
     >
-      <div
+      <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-44 data-vertical:w-auto data-vertical:flex-col">
+      <SliderPrimitive.Track
         data-slot="slider-track"
-        className="relative h-1.5 w-full overflow-hidden rounded-full bg-border/70"
+        className="relative grow overflow-hidden rounded-full bg-border/70 data-horizontal:h-1.5 data-horizontal:w-full data-vertical:h-full data-vertical:w-1.5"
       >
-        <div
+        <SliderPrimitive.Indicator
           data-slot="slider-range"
-          className="h-full bg-primary"
-          style={{ width: `${percent}%` }}
+          className="bg-primary data-horizontal:h-full data-vertical:w-full"
         />
-      </div>
-      <span
-        data-slot="slider-thumb"
-        className="absolute top-1/2 block size-4 -translate-y-1/2 rounded-full border-2 border-primary bg-card ring-ring/35 transition-[border-color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden active:ring-4"
-        style={{ left: `calc(${percent}% - 0.5rem)` }}
-      />
-    </div>
+      </SliderPrimitive.Track>
+      {values.map((_, index) => (
+        <SliderPrimitive.Thumb
+          data-slot="slider-thumb"
+          key={index}
+          className="block size-4 rounded-full border-2 border-primary bg-card ring-ring/35 transition-[border-color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden active:ring-4 disabled:pointer-events-none disabled:opacity-50"
+        />
+      ))}
+      </SliderPrimitive.Control>
+    </SliderPrimitive.Root>
   )
 }
 

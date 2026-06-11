@@ -5,9 +5,9 @@ import {
   OctagonXIcon,
   TriangleAlertIcon,
 } from "lucide-solid"
-import { Toaster as Sonner } from "somoto"
+import { Toaster as Sonner, type ToasterProps } from "solid-sonner"
 
-export const Toaster = (props: Parameters<typeof Sonner>[0]) => {
+export const Toaster = (props: ToasterProps) => {
   const theme =
     props.theme ??
     (typeof document !== "undefined" &&

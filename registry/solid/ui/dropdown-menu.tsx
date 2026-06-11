@@ -115,7 +115,10 @@ export type DropdownMenuSubContentProps<T extends ValidComponent = "div"> =
 export const DropdownMenuSubContent = <T extends ValidComponent = "div">(
   props: DropdownMenuSubContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuSubContentProps, ["class"])
+  const [local, rest] = splitProps(props as DropdownMenuSubContentProps, [
+    "class",
+    "children",
+  ])
 
   return (
     <DropdownMenuPrimitive.SubContent
@@ -123,10 +126,12 @@ export const DropdownMenuSubContent = <T extends ValidComponent = "div">(
       class={cx(
         "z-50 min-w-[8rem] origin-(--kb-menu-content-transform-origin) overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg outline-none data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
         "[[data-popper-positioner][style*='--kb-popper-content-transform-origin:_top']>[data-slot=dropdown-menu-sub-content]]:slide-in-from-top-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_bottom']>[data-slot=dropdown-menu-sub-content]]:slide-in-from-bottom-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_left']>[data-slot=dropdown-menu-sub-content]]:slide-in-from-left-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_right']>[data-slot=dropdown-menu-sub-content]]:slide-in-from-right-2",
-        props.class,
+        local.class,
       )}
       {...rest}
-    />
+    >
+      {local.children}
+    </DropdownMenuPrimitive.SubContent>
   )
 }
 
@@ -136,7 +141,10 @@ export type DropdownMenuContentProps<T extends ValidComponent = "div"> =
 export const DropdownMenuContent = <T extends ValidComponent = "div">(
   props: DropdownMenuContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuContentProps, ["class"])
+  const [local, rest] = splitProps(props as DropdownMenuContentProps, [
+    "class",
+    "children",
+  ])
 
   return (
     <DropdownMenuPrimitive.Content
@@ -144,10 +152,12 @@ export const DropdownMenuContent = <T extends ValidComponent = "div">(
       class={cx(
         "z-50 max-h-(--available-height) w-(--kb-popper-anchor-width) min-w-[8rem] origin-(--kb-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-none data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
         "[[data-popper-positioner][style*='--kb-popper-content-transform-origin:_top']>[data-slot=dropdown-menu-content]]:slide-in-from-top-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_bottom']>[data-slot=dropdown-menu-content]]:slide-in-from-bottom-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_left']>[data-slot=dropdown-menu-content]]:slide-in-from-left-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_right']>[data-slot=dropdown-menu-content]]:slide-in-from-right-2",
-        props.class,
+        local.class,
       )}
       {...rest}
-    />
+    >
+      {local.children}
+    </DropdownMenuPrimitive.Content>
   )
 }
 

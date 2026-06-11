@@ -1,5 +1,5 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
+import { mergeProps, splitProps } from "solid-js"
 import { Combobox as ComboboxPrimitive } from "@kobalte/core/combobox"
 import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-solid"
 
@@ -21,7 +21,19 @@ export const Combobox = <
 >(
   props: ComboboxProps<Option, Group, T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxProps<Option, Group>, [
+  const merged = mergeProps(
+    {
+      itemComponent: (itemProps: {
+        item: { textValue: string; rawValue: Option }
+      }) => (
+        <ComboboxItem item={itemProps.item}>
+          {itemProps.item.textValue}
+        </ComboboxItem>
+      ),
+    } as Partial<ComboboxProps<Option, Group>>,
+    props,
+  )
+  const [, rest] = splitProps(merged as ComboboxProps<Option, Group>, [
     "class",
     "options",
   ])
@@ -29,8 +41,8 @@ export const Combobox = <
   return (
     <ComboboxPrimitive
       data-slot="combobox"
-      class={cx(props.class)}
-      options={props.options ?? []}
+      class={cx(merged.class)}
+      options={merged.options ?? []}
       {...rest}
     />
   )

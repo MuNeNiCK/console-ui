@@ -104,6 +104,7 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -640,9 +641,11 @@ export default function ReactDemo({ name }: { name: string }) {
           Actions
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
-          <DropdownMenuLabel>Resource</DropdownMenuLabel>
-          <DropdownMenuItem>Open console</DropdownMenuItem>
-          <DropdownMenuItem>Restart</DropdownMenuItem>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Resource</DropdownMenuLabel>
+            <DropdownMenuItem>Open console</DropdownMenuItem>
+            <DropdownMenuItem>Restart</DropdownMenuItem>
+          </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
         </DropdownMenuContent>

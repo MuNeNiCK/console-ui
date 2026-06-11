@@ -1,73 +1,98 @@
 import {
-  mergeProps,
+  Show,
+  createContext,
   splitProps,
+  useContext,
   type ComponentProps,
+  type JSX,
+  type ParentProps,
   type ValidComponent,
 } from "solid-js"
-import { NavigationMenu as NavigationMenuPrimitive } from "@kobalte/core/navigation-menu"
+import * as NavigationMenuPrimitive from "@kobalte/core/navigation-menu"
 import { ChevronDownIcon } from "lucide-solid"
 
 import { cva, cx } from "@/registry/solid/lib/cva"
 
 export const NavigationMenuPortal = NavigationMenuPrimitive.Portal
 
-export type NavigationMenuProps<T extends ValidComponent = "ul"> =
-  ComponentProps<typeof NavigationMenuPrimitive<T>>
+type NavigationMenuContextValue = {
+  viewport: () => boolean
+}
 
-export const NavigationMenu = <T extends ValidComponent = "ul">(
-  props: NavigationMenuProps<T>,
-) => {
-  const merge = mergeProps({ gutter: 6 } as NavigationMenuProps, props)
-  const [, rest] = splitProps(merge, ["class", "children"])
+const NavigationMenuContext = createContext<NavigationMenuContextValue>({
+  viewport: () => true,
+})
+
+function useNavigationMenuContext() {
+  return useContext(NavigationMenuContext)
+}
+
+export type NavigationMenuProps = ComponentProps<
+  typeof NavigationMenuPrimitive.Root
+> & {
+  class?: string
+  viewport?: boolean
+}
+
+export const NavigationMenu = (props: NavigationMenuProps) => {
+  const [local, rest] = splitProps(props, ["class", "children", "viewport"])
+  const viewport = () => local.viewport ?? true
 
   return (
-    <NavigationMenuPrimitive
-      data-slot="navigation-menu"
-      class={cx(
-        "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center data-[orientation=vertical]:flex-col",
-        props.class,
-      )}
-      {...rest}
-    >
-      {props.children}
-      <NavigationMenuPrimitive.Viewport class="absolute top-full left-0 z-50 h-(--kb-navigation-menu-viewport-height) w-(--kb-navigation-menu-viewport-width) origin-(--kb-menu-content-transform-origin) overflow-x-clip overflow-y-visible rounded-lg border bg-popover text-popover-foreground shadow-md transition-[width,height] duration-300 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95 data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-90 data-[orientation=vertical]:overflow-x-visible data-[orientation=vertical]:overflow-y-clip" />
-    </NavigationMenuPrimitive>
+    <NavigationMenuContext.Provider value={{ viewport }}>
+      <NavigationMenuPrimitive.Root
+        data-slot="navigation-menu"
+        data-viewport={viewport()}
+        class={cx(
+          "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center data-[orientation=vertical]:flex-col",
+          local.class,
+        )}
+        gutter={6}
+        {...rest}
+      >
+        {local.children}
+        <Show when={viewport()}>
+          <NavigationMenuViewport />
+        </Show>
+      </NavigationMenuPrimitive.Root>
+    </NavigationMenuContext.Provider>
   )
 }
 
-export type NavigationMenuListProps = ComponentProps<
-  typeof NavigationMenuPrimitive.Menu
+export type NavigationMenuListProps = ParentProps<
+  { class?: string } & JSX.HTMLAttributes<HTMLUListElement>
 >
 
 export const NavigationMenuList = (props: NavigationMenuListProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const [local, rest] = splitProps(props, ["class", "children"])
 
   return (
-    <NavigationMenuPrimitive.Menu
+    <ul
       data-slot="navigation-menu-list"
       class={cx(
         "group flex flex-1 list-none items-center justify-center gap-1",
-        props.class,
+        local.class,
       )}
       {...rest}
-    />
+    >
+      {local.children}
+    </ul>
   )
 }
 
-export type NavigationMenuItemProps<T extends ValidComponent = "a"> =
-  ComponentProps<typeof NavigationMenuPrimitive.Item<T>>
+export type NavigationMenuItemProps = ParentProps<
+  { class?: string } & ComponentProps<typeof NavigationMenuPrimitive.Menu>
+>
 
-export const NavigationMenuItem = <T extends ValidComponent = "a">(
-  props: NavigationMenuItemProps<T>,
-) => {
-  const [, rest] = splitProps(props as NavigationMenuItemProps, ["class"])
+export const NavigationMenuItem = (props: NavigationMenuItemProps) => {
+  const [local, rest] = splitProps(props, ["class", "children"])
 
   return (
-    <NavigationMenuPrimitive.Item
-      data-slot="navigation-menu-item"
-      class={cx("relative", props.class)}
-      {...rest}
-    />
+    <li data-slot="navigation-menu-item" class={cx("relative", local.class)}>
+      <NavigationMenuPrimitive.Menu {...rest}>
+        {local.children}
+      </NavigationMenuPrimitive.Menu>
+    </li>
   )
 }
 
@@ -110,21 +135,52 @@ export type NavigationMenuContentProps<T extends ValidComponent = "ul"> =
 export const NavigationMenuContent = <T extends ValidComponent = "ul">(
   props: NavigationMenuContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NavigationMenuContentProps, ["class"])
-
-  return (
+  const [local, rest] = splitProps(props as NavigationMenuContentProps, [
+    "class",
+  ])
+  const context = useNavigationMenuContext()
+  const content = (
     <NavigationMenuPrimitive.Content
+      as="div"
       data-slot="navigation-menu-content"
       class={cx(
+        "top-0 left-0 p-2 pr-2.5 outline-none md:absolute md:w-auto",
         "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out duration-300",
         "data-[orientation=horizontal]:data-[motion=from-end]:slide-in-from-right-52 data-[orientation=horizontal]:data-[motion=from-start]:slide-in-from-left-52 data-[orientation=horizontal]:data-[motion=to-end]:slide-out-to-right-52 data-[orientation=horizontal]:data-[motion=to-start]:slide-out-to-left-52",
         "data-[orientation=vertical]:data-[motion=from-end]:slide-in-from-bottom-52 data-[orientation=vertical]:data-[motion=from-start]:slide-in-from-top-52 data-[orientation=vertical]:data-[motion=to-end]:slide-out-to-bottom-52 data-[orientation=vertical]:data-[motion=to-start]:slide-out-to-top-52",
-        "absolute top-0 left-0 p-2 pr-2.5 outline-none",
-        "**:data-[slot=navigation-menu-item]:focus:ring-0 **:data-[slot=navigation-menu-item]:focus:outline-none",
-        props.class,
+        "group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-lg group-data-[viewport=false]/navigation-menu:border group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:shadow-md",
+        "**:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none",
+        local.class,
       )}
       {...rest}
     />
+  )
+
+  return (
+    <Show when={context.viewport()} fallback={content}>
+      <NavigationMenuPrimitive.Portal>{content}</NavigationMenuPrimitive.Portal>
+    </Show>
+  )
+}
+
+export type NavigationMenuViewportProps = ParentProps<
+  { class?: string } & JSX.HTMLAttributes<HTMLDivElement>
+>
+
+export const NavigationMenuViewport = (props?: NavigationMenuViewportProps) => {
+  const [local, rest] = splitProps(props ?? {}, ["class"])
+
+  return (
+    <div class="absolute top-full left-0 isolate z-50 flex justify-center">
+      <NavigationMenuPrimitive.Viewport
+        data-slot="navigation-menu-viewport"
+        class={cx(
+          "relative mt-1.5 h-(--kb-navigation-menu-viewport-height) w-(--kb-navigation-menu-viewport-width) origin-(--kb-menu-content-transform-origin) overflow-hidden rounded-lg border bg-popover text-popover-foreground shadow-md transition-[width,height] duration-300 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95 data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-90",
+          local.class,
+        )}
+        {...rest}
+      />
+    </div>
   )
 }
 
@@ -168,10 +224,13 @@ export const NavigationItemDescription = <T extends ValidComponent = "div">(
 }
 
 
+export type NavigationMenuLinkProps<T extends ValidComponent = "a"> =
+  ComponentProps<typeof NavigationMenuPrimitive.Item<T>>
+
 export const NavigationMenuLink = <T extends ValidComponent = "a">(
-  props: NavigationMenuItemProps<T>,
+  props: NavigationMenuLinkProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NavigationMenuItemProps, ["class"])
+  const [, rest] = splitProps(props as NavigationMenuLinkProps, ["class"])
 
   return (
     <NavigationMenuPrimitive.Item
