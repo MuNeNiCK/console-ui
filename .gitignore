@@ -21,6 +21,7 @@
 # production
 /build
 dist
+/public/r/
 
 # astro
 .astro

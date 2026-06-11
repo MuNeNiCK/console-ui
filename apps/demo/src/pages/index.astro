@@ -3,16 +3,42 @@ import Layout from "../layouts/Layout.astro"
 import { components } from "../lib/components"
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "")
+
+const steps = [
+  {
+    title: "Initialize shadcn",
+    description: "Start from the standard shadcn project setup.",
+    code: "pnpm dlx shadcn@latest init",
+  },
+  {
+    title: "Register Console UI",
+    description: "Add the Console UI registry alias to components.json.",
+    code: `"registries": {
+  "@console": "https://munenick.github.io/console-ui/r/{name}.json"
+}`,
+  },
+  {
+    title: "Install React components",
+    description: "Install React components with the same shadcn add workflow.",
+    code: "pnpm dlx shadcn@latest add @console/button",
+  },
+  {
+    title: "Install Solid components",
+    description: "Use the solid namespace for Solid implementations.",
+    code: "pnpm dlx shadcn@latest add @console/solid/button",
+  },
+]
 ---
 
 <Layout title="Home">
-  <main class="mx-auto flex min-h-svh max-w-5xl flex-col gap-8 px-6 py-10">
+  <main class="mx-auto flex min-h-svh max-w-5xl flex-col gap-10 px-6 py-10">
     <header class="flex flex-col gap-4">
       <div class="space-y-2">
-        <h1 class="text-4xl font-semibold tracking-tight">Components</h1>
+        <h1 class="text-4xl font-semibold tracking-tight">Console UI</h1>
       </div>
       <p class="max-w-2xl text-sm leading-6 text-muted-foreground">
-        A registry of shadcn components for React and matching Solid implementations.
+        A shadcn registry for infrastructure console interfaces, with React
+        components and matching Solid implementations.
       </p>
       <div class="flex gap-3">
         <a class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground" href={`${base}/components`}>
@@ -20,6 +46,32 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "")
         </a>
       </div>
     </header>
+
+    <section class="space-y-4">
+      <div class="space-y-1">
+        <h2 class="text-lg font-semibold tracking-tight">Registry usage</h2>
+        <p class="max-w-2xl text-sm leading-6 text-muted-foreground">
+          Configure the registry once, then install components through the
+          standard shadcn CLI.
+        </p>
+      </div>
+      <div class="grid gap-3 md:grid-cols-2">
+        {steps.map((step, index) => (
+          <article class="rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+            <div class="mb-3 flex items-center gap-2">
+              <span class="inline-flex size-6 items-center justify-center rounded-full border bg-secondary text-xs font-medium text-secondary-foreground">
+                {index + 1}
+              </span>
+              <h3 class="text-sm font-medium">{step.title}</h3>
+            </div>
+            <p class="mb-3 text-xs leading-5 text-muted-foreground">
+              {step.description}
+            </p>
+            <pre class="max-w-full overflow-x-auto rounded-md bg-secondary p-3 text-xs text-secondary-foreground"><code>{step.code}</code></pre>
+          </article>
+        ))}
+      </div>
+    </section>
 
     <section class="grid gap-3 md:grid-cols-2">
       {components.map((component) => (
