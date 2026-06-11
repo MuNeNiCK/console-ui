@@ -71,9 +71,9 @@ import {
   Combobox,
   ComboboxContent,
   ComboboxEmpty,
-  ComboboxGroup,
   ComboboxInput,
   ComboboxItem,
+  ComboboxList,
 } from "@/registry/solid/ui/combobox"
 import {
   ContextMenu,
@@ -167,6 +167,7 @@ import {
   Menubar,
   MenubarContent,
   MenubarItem,
+  MenubarMenu,
   MenubarSeparator,
   MenubarTrigger,
 } from "@/registry/solid/ui/menubar"
@@ -369,7 +370,12 @@ export default function SolidDemo(props: { name: string }) {
     case "calendar":
       return (
         <div class="rounded-lg border bg-card shadow-xs">
-          <Calendar />
+          <Calendar
+            mode="single"
+            defaultMonth={new Date(2026, 5, 9)}
+            selected={new Date(2026, 5, 9)}
+            today={new Date(2026, 5, 9)}
+          />
         </div>
       )
 
@@ -463,10 +469,9 @@ export default function SolidDemo(props: { name: string }) {
         <Command class="max-w-md rounded-lg border shadow-xs">
           <CommandInput placeholder="Search resources..." />
           <CommandList>
-            <CommandEmpty class="hidden">No results found.</CommandEmpty>
-            <CommandGroup>
-              <div class="px-2 py-1.5 text-xs font-medium text-muted-foreground">Resources</div>
-              <CommandItem data-selected="true">node-01</CommandItem>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Resources">
+              <CommandItem>node-01</CommandItem>
               <CommandItem>production-cluster</CommandItem>
               <CommandItem>datastore-primary</CommandItem>
             </CommandGroup>
@@ -476,15 +481,15 @@ export default function SolidDemo(props: { name: string }) {
 
     case "combobox":
       return (
-        <Combobox>
+        <Combobox options={["node-01", "node-02", "cluster-a"]}>
           <ComboboxInput class="w-[240px]" placeholder="Select a resource" />
-          <ComboboxContent class="hidden">
+          <ComboboxContent>
             <ComboboxEmpty>No resources found.</ComboboxEmpty>
-            <ComboboxGroup>
+            <ComboboxList>
               <ComboboxItem>node-01</ComboboxItem>
               <ComboboxItem>node-02</ComboboxItem>
               <ComboboxItem>cluster-a</ComboboxItem>
-            </ComboboxGroup>
+            </ComboboxList>
           </ComboboxContent>
         </Combobox>
       )
@@ -659,14 +664,14 @@ export default function SolidDemo(props: { name: string }) {
 
     case "input-otp":
       return (
-        <InputOTP maxLength={6}>
+        <InputOTP maxLength={6} value="123456">
           <InputOTPGroup>
-            <InputOTPSlot index={0} char="1" />
-            <InputOTPSlot index={1} char="2" />
-            <InputOTPSlot index={2} char="3" />
-            <InputOTPSlot index={3} char="4" />
-            <InputOTPSlot index={4} char="5" />
-            <InputOTPSlot index={5} char="6" />
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
           </InputOTPGroup>
         </InputOTP>
       )
@@ -710,14 +715,22 @@ export default function SolidDemo(props: { name: string }) {
     case "menubar":
       return (
         <Menubar>
-          <MenubarTrigger>Resource</MenubarTrigger>
-          <MenubarTrigger>View</MenubarTrigger>
-          <MenubarContent class="hidden">
-            <MenubarItem>Open console</MenubarItem>
-            <MenubarItem>Clone</MenubarItem>
-            <MenubarSeparator />
-            <MenubarItem>Remove</MenubarItem>
-          </MenubarContent>
+          <MenubarMenu>
+            <MenubarTrigger>Resource</MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem>Open console</MenubarItem>
+              <MenubarItem>Clone</MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>Remove</MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+          <MenubarMenu>
+            <MenubarTrigger>View</MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem>Events</MenubarItem>
+              <MenubarItem>Performance</MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
         </Menubar>
       )
 
@@ -807,13 +820,13 @@ export default function SolidDemo(props: { name: string }) {
       return (
         <div class="h-40 w-full max-w-md">
           <ResizablePanelGroup direction="horizontal" class="h-full rounded-lg border bg-card">
-            <ResizablePanel class="flex-[45_1_0]">
+            <ResizablePanel defaultSize={45}>
               <div class="flex h-full items-center justify-center text-sm text-muted-foreground">
               Inventory
               </div>
             </ResizablePanel>
             <ResizableHandle withHandle />
-            <ResizablePanel class="flex-[55_1_0]">
+            <ResizablePanel defaultSize={55}>
               <div class="flex h-full items-center justify-center text-sm text-muted-foreground">
               Details
               </div>
@@ -837,7 +850,10 @@ export default function SolidDemo(props: { name: string }) {
 
     case "select":
       return (
-        <Select defaultValue="production">
+        <Select
+          defaultValue="production"
+          options={["production", "staging", "maintenance"]}
+        >
           <SelectTrigger class="w-[240px]">
             <span>Production</span>
           </SelectTrigger>

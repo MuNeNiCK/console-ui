@@ -1,7 +1,72 @@
-import { splitProps, type JSX } from "solid-js"
-import { cn } from "@/registry/solid/lib/utils"
-function TooltipProvider(props: JSX.HTMLAttributes<HTMLDivElement>) { return <>{props.children}</> }
-function Tooltip(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <span data-slot="tooltip" class={cn("group/tooltip relative inline-flex",l.class)} {...r}/> }
-function TooltipTrigger(props: JSX.HTMLAttributes<HTMLSpanElement>) { return <span data-slot="tooltip-trigger" {...props}/> }
-function TooltipContent(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <span data-slot="tooltip-content" class={cn("invisible absolute bottom-full left-1/2 z-50 mb-2 w-fit -translate-x-1/2 rounded-md border bg-popover px-3 py-1.5 text-xs text-popover-foreground opacity-0 shadow-md group-hover/tooltip:visible group-hover/tooltip:opacity-100",l.class)} {...r}/> }
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+import type { ComponentProps, JSX, ValidComponent } from "solid-js"
+import { mergeProps, splitProps } from "solid-js"
+import { Tooltip as TooltipPrimitive } from "@kobalte/core/tooltip"
+
+import { cx } from "@/registry/solid/lib/cva"
+
+export type TooltipProviderProps = {
+  children?: JSX.Element
+  delay?: number
+}
+
+export const TooltipProvider = (props: TooltipProviderProps) => {
+  return <>{props.children}</>
+}
+
+export type TooltipProps = ComponentProps<typeof TooltipPrimitive>
+
+export const TooltipPortal = TooltipPrimitive.Portal
+
+export const Tooltip = (props: TooltipProps) => {
+  const merge = mergeProps<TooltipProps[]>(
+    {
+      closeDelay: 0,
+      openDelay: 0,
+      placement: "top",
+    },
+    props,
+  )
+
+  return <TooltipPrimitive data-slot="tooltip" {...merge} />
+}
+
+export type TooltipTriggerProps<T extends ValidComponent = "button"> =
+  ComponentProps<typeof TooltipPrimitive.Trigger<T>>
+
+export const TooltipTrigger = <T extends ValidComponent = "button">(
+  props: TooltipTriggerProps<T>,
+) => {
+  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
+}
+
+export type TooltipContentProps<T extends ValidComponent = "button"> =
+  ComponentProps<typeof TooltipPrimitive.Content<T>>
+
+export const TooltipContent = <T extends ValidComponent = "button">(
+  props: TooltipContentProps<T>,
+) => {
+  const [, rest] = splitProps(props as TooltipContentProps, [
+    "class",
+    "children",
+  ])
+
+  return (
+    <TooltipPrimitive.Content
+      data-slot="tooltip-content"
+      class={cx(
+        "z-50 w-fit origin-(--kb-tooltip-content-transform-origin) animate-in rounded-md border bg-popover px-3 py-1.5 text-xs text-balance text-popover-foreground shadow-md fade-in-0 zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
+        "[[data-popper-positioner][style*='--kb-popper-content-transform-origin:_top']>[data-slot=tooltip-content]]:slide-in-from-top-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_bottom']>[data-slot=tooltip-content]]:slide-in-from-bottom-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_left']>[data-slot=tooltip-content]]:slide-in-from-left-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_right']>[data-slot=tooltip-content]]:slide-in-from-right-2",
+        props.class,
+      )}
+      {...rest}
+    >
+      <TooltipPrimitive.Arrow
+        style={{
+          height: "calc(var(--spacing) * 4)",
+          width: "calc(var(--spacing) * 4)",
+        }}
+      />
+      {props.children}
+    </TooltipPrimitive.Content>
+  )
+}

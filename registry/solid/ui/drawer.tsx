@@ -1,19 +1,182 @@
-import { createContext, createSignal, splitProps, useContext, Show, type JSX } from "solid-js"
-import { XIcon } from "lucide-solid"
-import { cn } from "@/registry/solid/lib/utils"
-import { Button, buttonVariants } from "@/registry/solid/ui/button"
-type Ctx = { open: () => boolean; setOpen: (open: boolean) => void }
-const DialogContext = createContext<Ctx>()
-function Drawer(props: JSX.HTMLAttributes<HTMLDivElement> & { open?: boolean; defaultOpen?: boolean; onOpenChange?: (open: boolean) => void }) { const [l,r]=splitProps(props,["open","defaultOpen","onOpenChange","children"]); const [open,setOpenSignal]=createSignal(!!l.defaultOpen); const ctx={ open:()=>l.open ?? open(), setOpen:(v:boolean)=>{setOpenSignal(v); l.onOpenChange?.(v)} }; return <DialogContext.Provider value={ctx}><div data-slot="drawer" {...r}>{l.children}</div></DialogContext.Provider> }
-function DrawerTrigger(props: JSX.ButtonHTMLAttributes<HTMLButtonElement>) { const ctx=useContext(DialogContext); return <button type="button" data-slot="drawer-trigger" onClick={() => ctx?.setOpen(true)} {...props}/> }
-function DrawerPortal(props: JSX.HTMLAttributes<HTMLDivElement>) { return <>{props.children}</> }
-function DrawerOverlay(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="drawer-overlay" class={cn("fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out",l.class)} {...r}/> }
-function DrawerContent(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class","children"]); const ctx=useContext(DialogContext); return <Show when={ctx?.open()}><DrawerOverlay/><div role="dialog" data-slot="drawer-content" class={cn("fixed inset-x-0 bottom-0 z-50 grid max-h-[85vh] gap-4 rounded-t-lg border bg-background p-6 shadow-lg",l.class)} {...r}>{l.children}<DrawerClose class="absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:outline-hidden disabled:pointer-events-none"><XIcon class="size-4"/><span class="sr-only">Close</span></DrawerClose></div></Show> }
-function DrawerHeader(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="drawer-header" class={cn("flex flex-col gap-2 text-center sm:text-left",l.class)} {...r}/> }
-function DrawerFooter(props: JSX.HTMLAttributes<HTMLDivElement>) { const [l,r]=splitProps(props,["class"]); return <div data-slot="drawer-footer" class={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",l.class)} {...r}/> }
-function DrawerTitle(props: JSX.HTMLAttributes<HTMLHeadingElement>) { const [l,r]=splitProps(props,["class"]); return <h2 data-slot="drawer-title" class={cn("text-lg leading-none font-semibold",l.class)} {...r}/> }
-function DrawerDescription(props: JSX.HTMLAttributes<HTMLParagraphElement>) { const [l,r]=splitProps(props,["class"]); return <p data-slot="drawer-description" class={cn("text-sm text-muted-foreground",l.class)} {...r}/> }
-function DrawerClose(props: JSX.ButtonHTMLAttributes<HTMLButtonElement>) { const ctx=useContext(DialogContext); return <button type="button" data-slot="drawer-close" onClick={() => ctx?.setOpen(false)} {...props}/> }
-function DrawerAction(props: Parameters<typeof Button>[0]) { return <Button data-slot="drawer-action" {...props}/> }
-function DrawerCancel(props: Parameters<typeof Button>[0]) { return <Button data-slot="drawer-cancel" variant="outline" {...props}/> }
-export { Drawer, DrawerPortal, DrawerOverlay, DrawerTrigger, DrawerClose, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerAction, DrawerCancel }
+import type { ComponentProps, ValidComponent } from "solid-js"
+import { Show, mergeProps, splitProps } from "solid-js"
+import type { DynamicProps } from "@corvu/drawer"
+import DrawerPrimitive from "@corvu/drawer"
+
+import { cx } from "@/registry/solid/lib/cva"
+
+export const DrawerPortal = DrawerPrimitive.Portal
+
+export type DrawerProps = ComponentProps<typeof DrawerPrimitive>
+
+export const Drawer = (props: DrawerProps) => {
+  return <DrawerPrimitive data-slot="drawer" {...props} />
+}
+
+export type DrawerTriggerProps<T extends ValidComponent = "button"> =
+  ComponentProps<typeof DrawerPrimitive.Trigger<T>>
+
+export const DrawerTrigger = <T extends ValidComponent = "button">(
+  props: DrawerTriggerProps<T>,
+) => {
+  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
+}
+
+export type DrawerCloseProps<T extends ValidComponent = "button"> =
+  ComponentProps<typeof DrawerPrimitive.Close<T>>
+
+export const DrawerClose = <T extends ValidComponent = "button">(
+  props: DrawerCloseProps<T>,
+) => {
+  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
+}
+
+export type DrawerContentProps<T extends ValidComponent = "div"> =
+  ComponentProps<typeof DrawerPrimitive.Content<T>> & {
+    withHandle?: boolean
+  }
+
+export const DrawerContent = <T extends ValidComponent = "div">(
+  props: DrawerContentProps<T>,
+) => {
+  const context = DrawerPrimitive.useContext()
+
+  const merge = mergeProps<DrawerContentProps[]>(
+    {
+      withHandle: context.side() === "bottom",
+    },
+    props as DrawerContentProps,
+  )
+  const [, rest] = splitProps(merge, ["class", "children", "withHandle"])
+
+  return (
+    <>
+      <DrawerPrimitive.Overlay
+        data-slot="drawer-overlay"
+        class="fixed inset-0 z-50 bg-black/35 data-[transitioning]:transition-colors data-[transitioning]:duration-500 data-[transitioning]:ease-[cubic-bezier(0.32,0.72,0,1)]"
+        style={{
+          "background-color": `rgb(0 0 0 / ${0.35 * context.openPercentage()}`,
+        }}
+      />
+      <DrawerPrimitive.Content
+        data-slot="drawer-content"
+        data-side={context.side()}
+        class={cx(
+          "group/drawer-content fixed z-50 flex h-auto flex-col bg-card text-card-foreground shadow-md outline-none after:absolute after:bg-inherit data-[transitioning]:transition-transform data-[transitioning]:duration-500 data-[transitioning]:ease-[cubic-bezier(0.32,0.72,0,1)]",
+          context.side() === "bottom" && [
+            "inset-x-0 bottom-0 mt-24 max-h-[80vh] rounded-t-lg border-t",
+            "after:inset-x-0 after:top-[calc(100%-1px)] after:h-1/2",
+          ],
+          context.side() === "top" && [
+            "inset-x-0 top-0 mb-24 max-h-[80vh] rounded-b-lg border-b",
+            "after:inset-x-0 after:bottom-[calc(100%-1px)] after:h-1/2",
+          ],
+          context.side() === "left" && [
+            "inset-y-0 left-0 w-3/4 border-r sm:max-w-sm",
+            "after:inset-y-0 after:right-[calc(100%-1px)] after:w-1/2",
+          ],
+          context.side() === "right" && [
+            "inset-y-0 right-0 w-3/4 border-l sm:max-w-sm",
+            "after:inset-y-0 after:left-[calc(100%-1px)] after:w-1/2",
+          ],
+          props.class,
+        )}
+        {...rest}
+      >
+        <Show when={props.withHandle}>
+          <div
+            class={cx(
+              "shrink-0 self-center rounded-full bg-border",
+              context.side() === "bottom" && "mt-4 h-1.5 w-[88px]",
+            )}
+          />
+        </Show>
+        {props.children}
+      </DrawerPrimitive.Content>
+    </>
+  )
+}
+
+export type DrawerLabelProps<T extends ValidComponent = "h2"> = ComponentProps<
+  typeof DrawerPrimitive.Label<T>
+>
+
+export const DrawerLabel = <T extends ValidComponent = "h2">(
+  props: DynamicProps<T, DrawerLabelProps<T>>,
+) => {
+  const [, rest] = splitProps(props as DrawerLabelProps, ["class"])
+
+  return (
+    <DrawerPrimitive.Label
+      data-slot="drawer-label"
+      class={cx("font-semibold text-foreground", props.class)}
+      {...rest}
+    />
+  )
+}
+
+export type DrawerTitleProps<T extends ValidComponent = "h2"> = ComponentProps<
+  typeof DrawerPrimitive.Label<T>
+>
+
+export const DrawerTitle = <T extends ValidComponent = "h2">(
+  props: DynamicProps<T, DrawerTitleProps<T>>,
+) => {
+  const [, rest] = splitProps(props as DrawerTitleProps, ["class"])
+
+  return (
+    <DrawerPrimitive.Label
+      data-slot="drawer-title"
+      class={cx("font-semibold text-foreground", props.class)}
+      {...rest}
+    />
+  )
+}
+
+export type DrawerDescriptionProps<T extends ValidComponent = "p"> =
+  ComponentProps<typeof DrawerPrimitive.Description<T>>
+
+export const DrawerDescription = <T extends ValidComponent = "p">(
+  props: DynamicProps<T, DrawerDescriptionProps<T>>,
+) => {
+  const [, rest] = splitProps(props as DrawerDescriptionProps, ["class"])
+
+  return (
+    <DrawerPrimitive.Description
+      data-slot="drawer-description"
+      class={cx("text-muted-foreground text-sm", props.class)}
+      {...rest}
+    />
+  )
+}
+
+export type DrawerHeaderProps = ComponentProps<"div">
+
+export const DrawerHeader = (props: DrawerHeaderProps) => {
+  const [, rest] = splitProps(props, ["class"])
+
+  return (
+    <div
+      data-slot="drawer-header"
+      class={cx(
+        "flex flex-col gap-1.5 p-6 group-data-[side=bottom]/drawer-content:text-center group-data-[side=top]/drawer-content:text-center md:text-left",
+        props.class,
+      )}
+      {...rest}
+    />
+  )
+}
+
+export type DrawerFooterProps = ComponentProps<"div">
+
+export const DrawerFooter = (props: DrawerFooterProps) => {
+  const [, rest] = splitProps(props, ["class"])
+
+  return (
+    <div
+      data-slot="drawer-footer"
+      class={cx("mt-auto flex flex-col gap-2 p-6", props.class)}
+      {...rest}
+    />
+  )
+}

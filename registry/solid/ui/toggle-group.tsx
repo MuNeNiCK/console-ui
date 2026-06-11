@@ -1,9 +1,105 @@
-import { createContext, createSignal, splitProps, useContext, type JSX } from "solid-js"
-import { type VariantProps } from "class-variance-authority"
-import { cn } from "@/registry/solid/lib/utils"
-import { toggleVariants } from "@/registry/solid/ui/toggle"
-type Ctx = VariantProps<typeof toggleVariants> & { value: () => string | undefined; setValue: (value: string) => void; spacing?: number; orientation?: "horizontal" | "vertical" }
-const ToggleGroupContext = createContext<Ctx>()
-function ToggleGroup(props: JSX.HTMLAttributes<HTMLDivElement> & VariantProps<typeof toggleVariants> & { value?: string; defaultValue?: string; onValueChange?: (value: string) => void; spacing?: number; orientation?: "horizontal" | "vertical" }) { const [l,r]=splitProps(props,["class","variant","size","spacing","orientation","value","defaultValue","onValueChange","children"]); const [value,setValueSignal]=createSignal(l.defaultValue); const spacing=l.spacing ?? 2; const orientation=l.orientation || "horizontal"; const ctx:Ctx={ variant:l.variant, size:l.size, spacing, orientation, value:()=>l.value ?? value(), setValue:(v)=>{setValueSignal(v); l.onValueChange?.(v)} }; return <ToggleGroupContext.Provider value={ctx}><div data-slot="toggle-group" data-variant={l.variant} data-size={l.size} data-spacing={spacing} data-orientation={orientation} data-horizontal={orientation==="horizontal"?"":undefined} data-vertical={orientation==="vertical"?"":undefined} style={{"--gap": String(spacing)}} class={cn("group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-full data-[spacing=0]:gap-0 data-[spacing=0]:border data-[spacing=0]:border-border data-[spacing=0]:bg-card data-[spacing=0]:p-0.5 data-vertical:flex-col data-vertical:items-stretch",l.class)} {...r}>{l.children}</div></ToggleGroupContext.Provider> }
-function ToggleGroupItem(props: JSX.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof toggleVariants> & { value: string }) { const [l,r]=splitProps(props,["class","variant","size","value"]); const ctx=useContext(ToggleGroupContext); const active=()=>ctx?.value()===l.value; const variant=()=>ctx?.variant || l.variant || "default"; const size=()=>ctx?.size || l.size || "default"; return <button type="button" data-slot="toggle-group-item" data-variant={variant()} data-size={size()} data-spacing={ctx?.spacing} aria-pressed={active()} class={cn("shrink-0 group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 focus:z-10 focus-visible:z-10 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-full group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-full group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-full group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-full", toggleVariants({variant:variant(), size:size()}), l.class)} onClick={() => ctx?.setValue(l.value)} {...r}/> }
-export { ToggleGroup, ToggleGroupItem }
+import type { ComponentProps, ValidComponent } from "solid-js"
+import { createContext, splitProps, useContext } from "solid-js"
+import { ToggleGroup as ToggleGroupPrimitive } from "@kobalte/core/toggle-group"
+import type { VariantProps } from "cva"
+
+import { cx } from "@/registry/solid/lib/cva"
+
+import { toggleButtonVariants } from "./toggle"
+
+const ToggleGroupContext =
+  createContext<
+    VariantProps<typeof toggleButtonVariants> & {
+      spacing?: number
+      orientation?: "horizontal" | "vertical"
+    }
+  >()
+
+export type ToggleGroupProps<T extends ValidComponent = "div"> = ComponentProps<
+  typeof ToggleGroupPrimitive<T>
+> &
+  VariantProps<typeof toggleButtonVariants> & {
+    spacing?: number
+    orientation?: "horizontal" | "vertical"
+  }
+
+export const ToggleGroup = <T extends ValidComponent = "div">(
+  props: ToggleGroupProps<T>,
+) => {
+  const [, rest] = splitProps(props as ToggleGroupProps, [
+    "class",
+    "variant",
+    "size",
+    "children",
+    "spacing",
+    "orientation",
+  ])
+
+  return (
+    <ToggleGroupPrimitive
+      data-slot="toggle-group"
+      data-variant={props.variant}
+      data-size={props.size}
+      data-spacing={props.spacing ?? 2}
+      data-orientation={props.orientation ?? "horizontal"}
+      style={{ "--gap": `${props.spacing ?? 2}` }}
+      class={cx(
+        "group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-full data-[spacing=0]:gap-0 data-[spacing=0]:border data-[spacing=0]:border-border data-[spacing=0]:bg-card data-[spacing=0]:p-0.5 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch data-vertical:flex-col data-vertical:items-stretch",
+        props.class,
+      )}
+      {...rest}
+    >
+      <ToggleGroupContext.Provider
+        value={{
+          get size() {
+            return props.size
+          },
+          get variant() {
+            return props.variant
+          },
+          get spacing() {
+            return props.spacing ?? 2
+          },
+          get orientation() {
+            return props.orientation ?? "horizontal"
+          },
+        }}
+      >
+        {props.children}
+      </ToggleGroupContext.Provider>
+    </ToggleGroupPrimitive>
+  )
+}
+
+export type ToggleGroupItemProps<T extends ValidComponent = "button"> =
+  ComponentProps<typeof ToggleGroupPrimitive.Item<T>> &
+    VariantProps<typeof toggleButtonVariants>
+
+export const ToggleGroupItem = <T extends ValidComponent = "button">(
+  props: ToggleGroupItemProps<T>,
+) => {
+  const [, rest] = splitProps(props as ToggleGroupItemProps, [
+    "class",
+    "variant",
+    "size",
+  ])
+  const context = useContext(ToggleGroupContext)
+
+  return (
+    <ToggleGroupPrimitive.Item
+      data-slot="toggle-group-item"
+      data-variant={context?.variant ?? props.variant}
+      data-size={context?.size ?? props.size}
+      data-spacing={context?.spacing}
+      class={toggleButtonVariants({
+        variant: context?.variant ?? props.variant,
+        size: context?.size ?? props.size,
+        class: [
+          "shrink-0 group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 focus:z-10 focus-visible:z-10 group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:first:rounded-l-full group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:first:rounded-t-full group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:last:rounded-r-full group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:last:rounded-b-full group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0 group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0 group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-full group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-full group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-full group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-full",
+          props.class,
+        ],
+      })}
+      {...rest}
+    />
+  )
+}

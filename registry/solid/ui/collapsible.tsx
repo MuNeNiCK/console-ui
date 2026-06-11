@@ -1,7 +1,46 @@
-import { createContext, createSignal, splitProps, useContext, type JSX } from "solid-js"
-type Ctx = { open: () => boolean; setOpen: (open: boolean) => void }
-const CollapsibleContext = createContext<Ctx>()
-function Collapsible(props: JSX.HTMLAttributes<HTMLDivElement> & { open?: boolean; defaultOpen?: boolean; onOpenChange?: (open: boolean) => void }) { const [l,r]=splitProps(props,["open","defaultOpen","onOpenChange","children"]); const [open,setOpenSignal]=createSignal(!!l.defaultOpen); const ctx={ open:()=>l.open ?? open(), setOpen:(v:boolean)=>{setOpenSignal(v); l.onOpenChange?.(v)} }; return <CollapsibleContext.Provider value={ctx}><div data-slot="collapsible" data-open={ctx.open()?"":undefined} {...r}>{l.children}</div></CollapsibleContext.Provider> }
-function CollapsibleTrigger(props: JSX.ButtonHTMLAttributes<HTMLButtonElement>) { const ctx=useContext(CollapsibleContext); return <button type="button" data-slot="collapsible-trigger" aria-expanded={ctx?.open()} onClick={() => ctx?.setOpen(!ctx.open())} {...props}/> }
-function CollapsibleContent(props: JSX.HTMLAttributes<HTMLDivElement>) { const ctx=useContext(CollapsibleContext); return <div data-slot="collapsible-content" hidden={!ctx?.open()} {...props}/> }
-export { Collapsible, CollapsibleTrigger, CollapsibleContent }
+import type { ComponentProps, ValidComponent } from "solid-js"
+import { splitProps } from "solid-js"
+import { Collapsible as CollapsiblePrimitive } from "@kobalte/core/collapsible"
+
+import { cx } from "@/registry/solid/lib/cva"
+
+export type CollapsibleProps<T extends ValidComponent = "div"> = ComponentProps<
+  typeof CollapsiblePrimitive<T>
+>
+
+export const Collapsible = <T extends ValidComponent = "div">(
+  props: CollapsibleProps<T>,
+) => {
+  return <CollapsiblePrimitive data-slot="collapsible" {...props} />
+}
+
+export type CollapsibleTriggerProps<T extends ValidComponent = "button"> =
+  ComponentProps<typeof CollapsiblePrimitive.Trigger<T>>
+
+export const CollapsibleTrigger = <T extends ValidComponent = "button">(
+  props: CollapsibleTriggerProps<T>,
+) => {
+  return (
+    <CollapsiblePrimitive.Trigger data-slot="collapsible-trigger" {...props} />
+  )
+}
+
+export type CollapsibleContentProps<T extends ValidComponent = "button"> =
+  ComponentProps<typeof CollapsiblePrimitive.Content<T>>
+
+export const CollapsibleContent = <T extends ValidComponent = "button">(
+  props: CollapsibleContentProps<T>,
+) => {
+  const [, rest] = splitProps(props as CollapsibleContentProps, ["class"])
+
+  return (
+    <CollapsiblePrimitive.Content
+      data-slot="collapsible-content"
+      class={cx(
+        "data-[closed]:animate-collapsible-up data-[expanded]:animate-collapsible-down overflow-hidden",
+        props.class,
+      )}
+      {...rest}
+    />
+  )
+}
