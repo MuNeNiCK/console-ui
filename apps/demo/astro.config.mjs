@@ -3,10 +3,38 @@ import babel from "@babel/core"
 import typescriptPreset from "@babel/preset-typescript"
 import solidPreset from "babel-preset-solid"
 
-const solidFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-solid|solid-demo)|src\/components\/(?:component-preview-solid|solid-demo)|registry\/solid\/).*\.tsx$/
+const solidFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-solid|solid-demo|block-preview-solid|solid-block-demo)|src\/components\/(?:component-preview-solid|solid-demo|block-preview-solid|solid-block-demo)|registry\/solid\/).*\.tsx$/
 
 function jsxPlugins() {
-  return [solidTransformPlugin()]
+  return [registryBlockAliasPlugin(), solidTransformPlugin()]
+}
+
+function registryBlockAliasPlugin() {
+  return {
+    name: "console-ui:registry-block-alias",
+    enforce: "pre",
+    resolveId(source, importer) {
+      if (!importer) return null
+
+      const cleanImporter = importer.replace(/\?.*$/, "")
+      const match = cleanImporter.match(/registry\/(react|solid)\/blocks\//)
+
+      if (!match) return null
+
+      const framework = match[1]
+      const root = new URL("../../", import.meta.url).pathname
+
+      if (source.startsWith("@/components/ui/")) {
+        return `${root}registry/${framework}/ui/${source.slice("@/components/ui/".length)}.tsx`
+      }
+
+      if (source.startsWith("@/components/blocks/")) {
+        return `${root}registry/${framework}/blocks/${source.slice("@/components/blocks/".length)}.tsx`
+      }
+
+      return null
+    },
+  }
 }
 
 function solidTransformPlugin() {

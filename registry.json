@@ -148,6 +148,68 @@
       ]
     },
     {
+      "name": "dashboard-01",
+      "type": "registry:block",
+      "title": "Dashboard 01",
+      "description": "A console dashboard with sidebar, actions, filtering, and data table.",
+      "registryDependencies": [
+        "sidebar-01",
+        "data-table-01"
+      ],
+      "files": [
+        {
+          "path": "registry/react/blocks/dashboard-01.tsx",
+          "type": "registry:component",
+          "target": "@components/blocks/dashboard-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-01",
+      "type": "registry:block",
+      "title": "Sidebar 01",
+      "description": "A console sidebar shell with global search and account controls.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "registry/react/blocks/sidebar-01.tsx",
+          "type": "registry:component",
+          "target": "@components/blocks/sidebar-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table-01",
+      "type": "registry:block",
+      "title": "Data Table 01",
+      "description": "A filterable operations table with toolbar, status, and pagination.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "dropdown-menu",
+        "input-group",
+        "pagination",
+        "table"
+      ],
+      "files": [
+        {
+          "path": "registry/react/blocks/data-table-01.tsx",
+          "type": "registry:component",
+          "target": "@components/blocks/data-table-01.tsx"
+        }
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "files": [
@@ -956,6 +1018,75 @@
           "path": "registry/solid/lib/utils.ts",
           "type": "registry:lib",
           "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "solid/dashboard-01",
+      "type": "registry:block",
+      "title": "Dashboard 01 (Solid)",
+      "description": "A console dashboard with sidebar, actions, filtering, and data table.",
+      "dependencies": [
+        "solid-js"
+      ],
+      "registryDependencies": [
+        "solid/sidebar-01",
+        "solid/data-table-01"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/blocks/dashboard-01.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/dashboard-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/sidebar-01",
+      "type": "registry:block",
+      "title": "Sidebar 01 (Solid)",
+      "description": "A console sidebar shell with global search and account controls.",
+      "dependencies": [
+        "solid-js",
+        "lucide-solid"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/avatar",
+        "solid/button",
+        "solid/input-group"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/blocks/sidebar-01.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/sidebar-01.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/data-table-01",
+      "type": "registry:block",
+      "title": "Data Table 01 (Solid)",
+      "description": "A filterable operations table with toolbar, status, and pagination.",
+      "dependencies": [
+        "solid-js",
+        "lucide-solid"
+      ],
+      "registryDependencies": [
+        "solid/utils",
+        "solid/badge",
+        "solid/button",
+        "solid/dropdown-menu",
+        "solid/input-group",
+        "solid/pagination",
+        "solid/table"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/blocks/data-table-01.tsx",
+          "type": "registry:component",
+          "target": "components/blocks/data-table-01.tsx"
         }
       ]
     },

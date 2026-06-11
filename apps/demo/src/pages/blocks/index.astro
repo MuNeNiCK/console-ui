@@ -1,0 +1,31 @@
+---
+import ComponentsSidebarLayout from "../../layouts/ComponentsSidebarLayout.astro"
+import { blocks } from "../../lib/blocks"
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "")
+const currentPath = `${base}/blocks`
+---
+
+<ComponentsSidebarLayout title="Blocks" currentPath={currentPath}>
+  <header class="space-y-2">
+    <h1 class="text-3xl font-semibold tracking-tight">Blocks</h1>
+    <p class="text-sm text-muted-foreground">
+      Browse installable application blocks built from Console UI components.
+    </p>
+  </header>
+
+  <div class="grid gap-3 sm:grid-cols-2">
+    {blocks.map((block) => (
+      <a class="rounded-lg border bg-card p-6 text-card-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground" href={`${base}/blocks/${block.name}`}>
+        <div class="flex items-center justify-between gap-3">
+          <h2 class="font-medium">{block.title}</h2>
+          <span class="text-sm text-muted-foreground">
+            {block.solid ? "React + Solid" : "React"}
+          </span>
+        </div>
+        <p class="mt-2 text-sm text-muted-foreground">{block.description}</p>
+      </a>
+    ))}
+  </div>
+</ComponentsSidebarLayout>
+
