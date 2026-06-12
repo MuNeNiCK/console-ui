@@ -14,7 +14,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "utils"
+        "@console/utils"
       ],
       "files": [],
       "cssVars": {
@@ -153,8 +153,8 @@
       "title": "Dashboard 01",
       "description": "A console dashboard with sidebar, actions, filtering, and data table.",
       "registryDependencies": [
-        "sidebar-01",
-        "data-table-01"
+        "@console/sidebar-01",
+        "@console/data-table-01"
       ],
       "files": [
         {
@@ -173,9 +173,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "avatar",
-        "button",
-        "input-group"
+        "@console/avatar",
+        "@console/button",
+        "@console/input-group"
       ],
       "files": [
         {
@@ -194,12 +194,12 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "badge",
-        "button",
-        "dropdown-menu",
-        "input-group",
-        "pagination",
-        "table"
+        "@console/badge",
+        "@console/button",
+        "@console/dropdown-menu",
+        "@console/input-group",
+        "@console/pagination",
+        "@console/table"
       ],
       "files": [
         {
@@ -236,7 +236,7 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "registryDependencies": [
-        "button"
+        "@console/button"
       ],
       "files": [
         {
@@ -314,8 +314,8 @@
       "name": "button-group",
       "type": "registry:ui",
       "registryDependencies": [
-        "button",
-        "separator"
+        "@console/button",
+        "@console/separator"
       ],
       "files": [
         {
@@ -335,7 +335,7 @@
         "date-fns"
       ],
       "registryDependencies": [
-        "button"
+        "@console/button"
       ],
       "files": [
         {
@@ -361,7 +361,7 @@
         "embla-carousel-react"
       ],
       "registryDependencies": [
-        "button"
+        "@console/button"
       ],
       "files": [
         {
@@ -378,7 +378,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "card"
+        "@console/card"
       ],
       "files": [
         {
@@ -420,7 +420,7 @@
         "cmdk"
       ],
       "registryDependencies": [
-        "dialog"
+        "@console/dialog"
       ],
       "files": [
         {
@@ -437,8 +437,8 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "input-group"
+        "@console/button",
+        "@console/input-group"
       ],
       "files": [
         {
@@ -513,8 +513,8 @@
       "name": "field",
       "type": "registry:ui",
       "registryDependencies": [
-        "label",
-        "separator"
+        "@console/label",
+        "@console/separator"
       ],
       "files": [
         {
@@ -546,8 +546,8 @@
         "react-hook-form"
       ],
       "registryDependencies": [
-        "button",
-        "label"
+        "@console/button",
+        "@console/label"
       ],
       "files": [
         {
@@ -586,9 +586,9 @@
       "name": "input-group",
       "type": "registry:ui",
       "registryDependencies": [
-        "button",
-        "input",
-        "textarea"
+        "@console/button",
+        "@console/input",
+        "@console/textarea"
       ],
       "files": [
         {
@@ -624,7 +624,7 @@
       "name": "item",
       "type": "registry:ui",
       "registryDependencies": [
-        "separator"
+        "@console/separator"
       ],
       "files": [
         {
@@ -689,7 +689,7 @@
       "name": "pagination",
       "type": "registry:ui",
       "registryDependencies": [
-        "button"
+        "@console/button"
       ],
       "files": [
         {
@@ -811,13 +811,13 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "separator",
-        "sheet",
-        "tooltip",
-        "input",
-        "use-mobile",
-        "skeleton"
+        "@console/button",
+        "@console/separator",
+        "@console/sheet",
+        "@console/tooltip",
+        "@console/input",
+        "@console/use-mobile",
+        "@console/skeleton"
       ],
       "files": [
         {
@@ -912,7 +912,7 @@
         "sonner"
       ],
       "registryDependencies": [
-        "theme-provider"
+        "@console/theme-provider"
       ],
       "files": [
         {
@@ -984,7 +984,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "registryDependencies": [
-        "toggle"
+        "@console/toggle"
       ],
       "files": [
         {
@@ -1030,8 +1030,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/sidebar-01",
-        "solid/data-table-01"
+        "@console/solid/sidebar-01",
+        "@console/solid/data-table-01"
       ],
       "files": [
         {
@@ -1051,10 +1051,10 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/avatar",
-        "solid/button",
-        "solid/input-group"
+        "@console/solid/utils",
+        "@console/solid/avatar",
+        "@console/solid/button",
+        "@console/solid/input-group"
       ],
       "files": [
         {
@@ -1074,13 +1074,13 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/badge",
-        "solid/button",
-        "solid/dropdown-menu",
-        "solid/input-group",
-        "solid/pagination",
-        "solid/table"
+        "@console/solid/utils",
+        "@console/solid/badge",
+        "@console/solid/button",
+        "@console/solid/dropdown-menu",
+        "@console/solid/input-group",
+        "@console/solid/pagination",
+        "@console/solid/table"
       ],
       "files": [
         {
@@ -1100,7 +1100,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1120,7 +1120,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1140,8 +1140,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1160,7 +1160,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1179,7 +1179,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1199,7 +1199,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1219,7 +1219,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1239,7 +1239,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1259,8 +1259,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/separator"
+        "@console/solid/utils",
+        "@console/solid/separator"
       ],
       "files": [
         {
@@ -1280,8 +1280,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1300,7 +1300,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1320,8 +1320,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1340,7 +1340,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1360,7 +1360,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1379,7 +1379,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1399,7 +1399,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1419,8 +1419,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/command"
+        "@console/solid/utils",
+        "@console/solid/command"
       ],
       "files": [
         {
@@ -1440,7 +1440,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1460,8 +1460,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1480,7 +1480,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1500,8 +1500,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1521,7 +1521,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1541,9 +1541,9 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/label",
-        "solid/separator"
+        "@console/solid/utils",
+        "@console/solid/label",
+        "@console/solid/separator"
       ],
       "files": [
         {
@@ -1563,7 +1563,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1582,8 +1582,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/label"
+        "@console/solid/utils",
+        "@console/solid/label"
       ],
       "files": [
         {
@@ -1602,7 +1602,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1621,7 +1621,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1641,10 +1641,10 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button",
-        "solid/input",
-        "solid/textarea"
+        "@console/solid/utils",
+        "@console/solid/button",
+        "@console/solid/input",
+        "@console/solid/textarea"
       ],
       "files": [
         {
@@ -1663,7 +1663,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1682,7 +1682,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1702,8 +1702,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/separator"
+        "@console/solid/utils",
+        "@console/solid/separator"
       ],
       "files": [
         {
@@ -1722,7 +1722,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1742,7 +1742,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1763,7 +1763,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1783,7 +1783,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1803,8 +1803,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1823,7 +1823,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1842,7 +1842,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1861,7 +1861,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1881,7 +1881,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1900,7 +1900,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1920,7 +1920,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1939,7 +1939,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -1959,8 +1959,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1980,8 +1980,8 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/button"
+        "@console/solid/utils",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -2000,7 +2000,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2019,7 +2019,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2039,7 +2039,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2059,7 +2059,7 @@
         "solid-sonner"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2078,7 +2078,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2097,7 +2097,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2117,7 +2117,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2136,7 +2136,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2156,7 +2156,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
@@ -2176,8 +2176,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "solid/utils",
-        "solid/toggle"
+        "@console/solid/utils",
+        "@console/solid/toggle"
       ],
       "files": [
         {
@@ -2196,7 +2196,7 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "solid/utils"
+        "@console/solid/utils"
       ],
       "files": [
         {
