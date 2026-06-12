@@ -1,14 +1,16 @@
 # Console UI
 
-Console UI is a shadcn registry for infrastructure console interfaces: VM, cloud, BMC/iLO, network, storage, and operations dashboards.
+Console UI is a shadcn registry for product and operations console interfaces.
+It is designed for practical admin surfaces such as resource lists, detail pages,
+forms, dashboards, and control panels. The visual direction favors dense,
+structured, work-oriented screens without tying the system to a specific product
+category.
 
 The demo app is Astro. Registry source is split by framework:
 
-- `registry/react/ui`: React components derived from upstream shadcn/ui components and restyled for Console UI.
-- `registry/solid/ui`: Solid components with matching API and visual behavior.
+- `registry/react/ui`: React components.
+- `registry/solid/ui`: Solid components.
 - `registry/react/lib` and `registry/solid/lib`: framework-specific helpers.
-
-Headless primitives are reused. React components keep Radix where shadcn uses Radix. Solid components use Solid headless equivalents such as Kobalte or Corvu when needed.
 
 ## Development
 
