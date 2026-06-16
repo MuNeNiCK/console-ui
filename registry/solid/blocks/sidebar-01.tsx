@@ -69,12 +69,12 @@ export function Sidebar01(props: { children?: JSX.Element; class?: string }) {
   return (
     <SidebarProvider
       class={cn(
-        "h-svh min-h-0 overflow-hidden bg-background text-foreground",
+        "relative h-svh min-h-0 overflow-hidden bg-background text-foreground",
         props.class,
       )}
       style={{ "--sidebar-width": "236px" } as JSX.CSSProperties}
     >
-      <Sidebar class="border-r">
+      <Sidebar class="border-r md:absolute md:inset-y-0 md:left-0 md:h-full">
         <SidebarHeader class="h-14 justify-center border-b border-sidebar-border px-4 py-0">
           <div class="flex min-w-0 items-center gap-2.5 font-semibold">
             <span class="grid size-7 shrink-0 place-items-center rounded border border-sidebar-border text-[11px] font-extrabold text-sidebar-primary">

@@ -77,7 +77,7 @@ export function Sidebar01({
   return (
     <SidebarProvider
       className={cn(
-        "h-svh min-h-0 overflow-hidden bg-background text-foreground",
+        "relative h-svh min-h-0 overflow-hidden bg-background text-foreground",
         className
       )}
       style={
@@ -86,7 +86,7 @@ export function Sidebar01({
         } as React.CSSProperties
       }
     >
-      <Sidebar className="border-r">
+      <Sidebar className="border-r md:absolute md:inset-y-0 md:left-0 md:h-full">
         <SidebarHeader className="h-14 justify-center border-b border-sidebar-border px-4 py-0">
           <div className="flex min-w-0 items-center gap-2.5 font-semibold">
             <span className="grid size-7 shrink-0 place-items-center rounded border border-sidebar-border text-[11px] font-extrabold text-sidebar-primary">
