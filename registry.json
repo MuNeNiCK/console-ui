@@ -173,6 +173,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
+        "@console/sidebar",
         "@console/avatar",
         "@console/button",
         "@console/input-group"
@@ -1017,7 +1018,68 @@
         {
           "path": "registry/solid/lib/utils.ts",
           "type": "registry:lib",
-          "target": "lib/utils.ts"
+          "target": "registry/solid/lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "solid/cva",
+      "type": "registry:lib",
+      "title": "CVA (Solid)",
+      "dependencies": [
+        "cva",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/lib/cva.ts",
+          "type": "registry:lib",
+          "target": "registry/solid/lib/cva.ts"
+        }
+      ]
+    },
+    {
+      "name": "solid/call-handler",
+      "type": "registry:lib",
+      "title": "Call Handler (Solid)",
+      "dependencies": [
+        "solid-js"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/lib/call-handler.ts",
+          "type": "registry:lib",
+          "target": "registry/solid/lib/call-handler.ts"
+        }
+      ]
+    },
+    {
+      "name": "solid/combine-style",
+      "type": "registry:lib",
+      "title": "Combine Style (Solid)",
+      "dependencies": [
+        "solid-js"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/lib/combine-style.ts",
+          "type": "registry:lib",
+          "target": "registry/solid/lib/combine-style.ts"
+        }
+      ]
+    },
+    {
+      "name": "solid/use-mobile",
+      "type": "registry:hook",
+      "title": "useIsMobile (Solid)",
+      "dependencies": [
+        "solid-js"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/hooks/use-mobile.ts",
+          "type": "registry:hook",
+          "target": "registry/solid/hooks/use-mobile.ts"
         }
       ]
     },
@@ -1051,6 +1113,7 @@
         "lucide-solid"
       ],
       "registryDependencies": [
+        "@console/solid/sidebar",
         "@console/solid/utils",
         "@console/solid/avatar",
         "@console/solid/button",
@@ -1137,10 +1200,11 @@
       "description": "Console UI alert-dialog for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "@kobalte/core",
+        "cva"
       ],
       "registryDependencies": [
-        "@console/solid/utils",
+        "@console/solid/cva",
         "@console/solid/button"
       ],
       "files": [
@@ -1977,11 +2041,21 @@
       "description": "Console UI sidebar for Solid.",
       "dependencies": [
         "solid-js",
+        "@kobalte/core",
+        "cva",
         "lucide-solid"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/button"
+        "@console/solid/cva",
+        "@console/solid/call-handler",
+        "@console/solid/combine-style",
+        "@console/solid/use-mobile",
+        "@console/solid/button",
+        "@console/solid/drawer",
+        "@console/solid/separator",
+        "@console/solid/skeleton",
+        "@console/solid/tooltip"
       ],
       "files": [
         {
