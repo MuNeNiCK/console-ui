@@ -6,7 +6,7 @@ import type { VariantProps } from "cva"
 import { cva, cx } from "@/registry/solid/lib/cva"
 
 export const alertVariants = cva({
-  base: "relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg border px-4 py-3 text-sm shadow-xs has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+  base: "relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg border px-4 py-3 text-sm shadow-xs has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   variants: {
     variant: {
       default: "bg-card text-card-foreground",
@@ -70,6 +70,20 @@ export const AlertDescription = (props: AlertDescriptionProps) => {
         "text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
         props.class,
       )}
+      {...rest}
+    />
+  )
+}
+
+export type AlertActionProps = ComponentProps<"div">
+
+export const AlertAction = (props: AlertActionProps) => {
+  const [, rest] = splitProps(props, ["class"])
+
+  return (
+    <div
+      data-slot="alert-action"
+      class={cx("absolute top-2 right-2", props.class)}
       {...rest}
     />
   )

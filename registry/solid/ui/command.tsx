@@ -34,11 +34,14 @@ export const CommandDialog = (props: CommandDialogProps) => {
     "contentClassName",
     "overlayClassName",
     "class",
+    "title",
+    "description",
   ])
 
   return (
     <CommandPrimitive.Dialog
       data-slot="command-dialog"
+      label={props.title ?? "Command Palette"}
       contentClassName={cx(
         "fixed left-[50%] top-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 overflow-hidden rounded-lg bg-card text-card-foreground shadow-md duration-200 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95 data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-95 sm:max-w-lg",
         props.contentClassName,

@@ -70,10 +70,12 @@ export const PaginationLink = (props: PaginationLinkProps) => {
   )
 }
 
-export type PaginationPreviousProps = PaginationLinkProps
+export type PaginationPreviousProps = PaginationLinkProps & {
+  text?: string
+}
 
 export const PaginationPrevious = (props: PaginationPreviousProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const [, rest] = splitProps(props, ["class", "text"])
 
   return (
     <PaginationLink
@@ -83,15 +85,17 @@ export const PaginationPrevious = (props: PaginationPreviousProps) => {
       {...rest}
     >
       <ChevronLeftIcon />
-      <span class="hidden sm:block">Previous</span>
+      <span class="hidden sm:block">{props.text ?? "Previous"}</span>
     </PaginationLink>
   )
 }
 
-export type PaginationNextProps = PaginationLinkProps
+export type PaginationNextProps = PaginationLinkProps & {
+  text?: string
+}
 
 export const PaginationNext = (props: PaginationNextProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const [, rest] = splitProps(props, ["class", "text"])
 
   return (
     <PaginationLink
@@ -100,7 +104,7 @@ export const PaginationNext = (props: PaginationNextProps) => {
       class={cx("gap-1 px-2.5 sm:pr-2.5", props.class)}
       {...rest}
     >
-      <span class="hidden sm:block">Next</span>
+      <span class="hidden sm:block">{props.text ?? "Next"}</span>
       <ChevronRightIcon />
     </PaginationLink>
   )

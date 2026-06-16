@@ -54,7 +54,7 @@ export const TooltipContent = <T extends ValidComponent = "button">(
     <TooltipPrimitive.Content
       data-slot="tooltip-content"
       class={cx(
-        "z-50 w-fit origin-(--kb-tooltip-content-transform-origin) animate-in rounded-md border bg-popover px-3 py-1.5 text-xs text-balance text-popover-foreground shadow-md fade-in-0 zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
+        "z-50 w-fit max-w-xs origin-(--kb-tooltip-content-transform-origin) animate-in rounded-md border bg-popover px-3 py-1.5 text-xs text-balance text-popover-foreground shadow-md fade-in-0 zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
         "[[data-popper-positioner][style*='--kb-popper-content-transform-origin:_top']>[data-slot=tooltip-content]]:slide-in-from-top-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_bottom']>[data-slot=tooltip-content]]:slide-in-from-bottom-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_left']>[data-slot=tooltip-content]]:slide-in-from-left-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_right']>[data-slot=tooltip-content]]:slide-in-from-right-2",
         props.class,
       )}

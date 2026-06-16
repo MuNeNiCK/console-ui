@@ -16,7 +16,7 @@ export const RadioGroup = <T extends ValidComponent = "div">(
   return (
     <RadioGroupPrimitive
       data-slot="radio-group"
-      class={cx("grid gap-3", props.class)}
+      class={cx("grid w-full gap-3", props.class)}
       {...rest}
     />
   )

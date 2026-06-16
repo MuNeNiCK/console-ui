@@ -267,7 +267,7 @@ import { useForm } from "react-hook-form"
 export default function ReactDemo({ name }: { name: string }) {
   if (name === "accordion") {
     return (
-      <Accordion type="single" collapsible className="w-full max-w-md">
+      <Accordion defaultValue={["item-1"]} className="w-full max-w-md">
         <AccordionItem value="item-1">
           <AccordionTrigger>Resource summary</AccordionTrigger>
           <AccordionContent className="text-muted-foreground">
@@ -963,7 +963,7 @@ export default function ReactDemo({ name }: { name: string }) {
     return (
       <div className="h-40 w-full max-w-md">
         <ResizablePanelGroup
-          direction="horizontal"
+          orientation="horizontal"
           className="h-full rounded-lg border bg-card"
         >
           <ResizablePanel defaultSize={45}>
@@ -1090,7 +1090,7 @@ export default function ReactDemo({ name }: { name: string }) {
 
   if (name === "toggle-group") {
     return (
-      <ToggleGroup type="single" defaultValue="list" variant="outline">
+      <ToggleGroup defaultValue={["list"]} variant="outline">
         <ToggleGroupItem value="list">List</ToggleGroupItem>
         <ToggleGroupItem value="grid">Grid</ToggleGroupItem>
         <ToggleGroupItem value="chart">Chart</ToggleGroupItem>

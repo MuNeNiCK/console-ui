@@ -25,13 +25,13 @@ export const Tabs = <T extends ValidComponent = "div">(props: TabsProps<T>) => {
 }
 
 export const tabsListVariants = cva({
-  base: "group/tabs-list inline-flex items-center text-muted-foreground group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col group-data-[orientation=vertical]/tabs:items-stretch group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col group-data-vertical/tabs:items-stretch",
+  base: "group/tabs-list inline-flex w-fit items-center text-muted-foreground group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col group-data-[orientation=vertical]/tabs:items-stretch group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col group-data-vertical/tabs:items-stretch",
   variants: {
     variant: {
       default:
-        "gap-5 group-data-[orientation=horizontal]/tabs:h-10 group-data-[orientation=horizontal]/tabs:w-full group-data-[orientation=horizontal]/tabs:justify-start group-data-[orientation=horizontal]/tabs:border-b group-data-[orientation=vertical]/tabs:border-r group-data-horizontal/tabs:h-10 group-data-horizontal/tabs:w-full group-data-horizontal/tabs:justify-start group-data-horizontal/tabs:border-b group-data-vertical/tabs:border-r",
+        "gap-5 group-data-[orientation=horizontal]/tabs:h-10 group-data-[orientation=horizontal]/tabs:justify-start group-data-[orientation=horizontal]/tabs:border-b group-data-[orientation=vertical]/tabs:border-r group-data-horizontal/tabs:h-10 group-data-horizontal/tabs:justify-start group-data-horizontal/tabs:border-b group-data-vertical/tabs:border-r",
       line:
-        "gap-5 group-data-[orientation=horizontal]/tabs:h-10 group-data-[orientation=horizontal]/tabs:w-full group-data-[orientation=horizontal]/tabs:justify-start group-data-[orientation=horizontal]/tabs:border-b group-data-[orientation=vertical]/tabs:border-r group-data-horizontal/tabs:h-10 group-data-horizontal/tabs:w-full group-data-horizontal/tabs:justify-start group-data-horizontal/tabs:border-b group-data-vertical/tabs:border-r",
+        "gap-5 group-data-[orientation=horizontal]/tabs:h-10 group-data-[orientation=horizontal]/tabs:justify-start group-data-[orientation=horizontal]/tabs:border-b group-data-[orientation=vertical]/tabs:border-r group-data-horizontal/tabs:h-10 group-data-horizontal/tabs:justify-start group-data-horizontal/tabs:border-b group-data-vertical/tabs:border-r",
       segmented:
         "w-fit gap-0 rounded-full border border-border bg-card p-0.5 group-data-[orientation=horizontal]/tabs:h-10 group-data-horizontal/tabs:h-10",
     },

@@ -8,10 +8,12 @@ import { cx } from "@/registry/solid/lib/cva"
 import { buttonVariants } from "./button"
 
 export type CalendarProps = ComponentProps<typeof CalendarPrimitive> & {
+  class?: string
   defaultMonth?: Date
   selected?: Date
   today?: Date
   showOutsideDays?: boolean
+  locale?: Intl.LocalesArgument
 }
 
 export const Calendar = (props: CalendarProps) => {
@@ -22,6 +24,7 @@ export const Calendar = (props: CalendarProps) => {
     "selected",
     "today",
     "showOutsideDays",
+    "locale",
   ])
 
   if (local.children) {
@@ -33,10 +36,16 @@ export const Calendar = (props: CalendarProps) => {
   const showOutsideDays = () => local.showOutsideDays ?? true
   const monthStart = () => new Date(month().getFullYear(), month().getMonth(), 1)
   const label = () =>
-    monthStart().toLocaleString("default", {
+    monthStart().toLocaleString(local.locale, {
       month: "long",
       year: "numeric",
     })
+  const weekdays = () =>
+    Array.from({ length: 7 }, (_, index) =>
+      new Date(2021, 7, index + 1).toLocaleDateString(local.locale, {
+        weekday: "short",
+      }),
+    )
   const sameDay = (a?: Date, b?: Date) =>
     !!a &&
     !!b &&
@@ -106,7 +115,7 @@ export const Calendar = (props: CalendarProps) => {
         <table class="w-full border-collapse">
           <thead>
             <tr class="flex">
-              <For each={["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]}>
+              <For each={weekdays()}>
                 {(day) => (
                   <th class="flex-1 rounded-md text-[0.8rem] font-normal text-muted-foreground select-none">
                     {day}
@@ -116,7 +125,12 @@ export const Calendar = (props: CalendarProps) => {
             </tr>
           </thead>
           <tbody>
-            <For each={Array.from({ length: days().length / 7 }, (_, index) => index)}>
+            <For
+              each={Array.from(
+                { length: days().length / 7 },
+                (_, index) => index,
+              )}
+            >
               {(week) => (
                 <tr class="mt-2 flex w-full">
                   <For each={days().slice(week * 7, week * 7 + 7)}>
@@ -125,6 +139,9 @@ export const Calendar = (props: CalendarProps) => {
                         <Show when={showOutsideDays() || !day.outside}>
                           <button
                             type="button"
+                            data-day={day.date.toLocaleDateString(
+                              local.locale,
+                            )}
                             data-selected-single={day.selected}
                             data-today={day.today}
                             class={buttonVariants({
