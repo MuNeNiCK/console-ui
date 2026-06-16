@@ -16,13 +16,11 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
 
@@ -77,7 +75,7 @@ export function Sidebar01({
   return (
     <SidebarProvider
       className={cn(
-        "relative h-svh min-h-0 overflow-hidden bg-background text-foreground",
+        "grid h-svh min-h-0 grid-rows-[56px_minmax(0,1fr)] overflow-hidden bg-background text-foreground md:grid-cols-[236px_minmax(0,1fr)]",
         className
       )}
       style={
@@ -86,15 +84,44 @@ export function Sidebar01({
         } as React.CSSProperties
       }
     >
-      <Sidebar className="border-r md:absolute md:inset-y-0 md:left-0 md:h-full">
-        <SidebarHeader className="h-14 justify-center border-b border-sidebar-border px-4 py-0">
-          <div className="flex min-w-0 items-center gap-2.5 font-semibold">
-            <span className="grid size-7 shrink-0 place-items-center rounded border border-sidebar-border text-[11px] font-extrabold text-sidebar-primary">
-              CU
-            </span>
-            <span className="truncate">Console UI</span>
-          </div>
-        </SidebarHeader>
+      <header className="col-span-full flex min-w-0 items-center gap-4 border-b border-console-header-foreground/15 bg-console-header px-5 text-console-header-foreground">
+        <div className="flex min-w-0 items-center gap-2.5 font-semibold">
+          <span className="grid size-7 shrink-0 place-items-center rounded border border-current text-[11px] font-extrabold">
+            CU
+          </span>
+          <span className="truncate">Console UI</span>
+        </div>
+        <InputGroup className="ml-auto hidden w-[min(300px,28vw)] md:flex">
+          <InputGroupAddon>
+            <SearchIcon />
+          </InputGroupAddon>
+          <InputGroupInput placeholder="Search infrastructure" />
+        </InputGroup>
+        <Button
+          variant="outline"
+          size="icon-sm"
+          className="border-console-header-foreground/25 bg-transparent text-console-header-foreground hover:bg-console-header-foreground/10"
+          aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          onClick={toggleTheme}
+        >
+          {isDark ? <SunIcon /> : <MoonIcon />}
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          className="text-console-header-foreground hover:bg-console-header-foreground/10"
+          aria-label="Admin account"
+        >
+          <Avatar size="sm">
+            <AvatarFallback>AD</AvatarFallback>
+          </Avatar>
+        </Button>
+      </header>
+
+      <Sidebar
+        collapsible="none"
+        className="max-md:hidden min-h-0 border-r md:flex"
+      >
         <SidebarContent className="px-3 py-4">
           {navSections.map((section) => (
             <SidebarGroup key={section.title} className="mt-5 p-0 first:mt-0">
@@ -124,45 +151,12 @@ export function Sidebar01({
         </SidebarContent>
       </Sidebar>
 
-      <SidebarInset className="min-h-0 min-w-0 overflow-hidden">
-        <header className="flex h-14 min-w-0 items-center gap-4 border-b border-console-header-foreground/15 bg-console-header px-5 text-console-header-foreground">
-          <SidebarTrigger className="-ml-2 text-console-header-foreground hover:bg-console-header-foreground/10 md:hidden" />
-          <InputGroup className="ml-auto hidden w-[min(300px,28vw)] border-console-header-foreground/25 bg-transparent text-console-header-foreground hover:border-console-header-foreground/35 dark:bg-transparent md:flex">
-            <InputGroupAddon className="text-console-header-foreground/75">
-              <SearchIcon />
-            </InputGroupAddon>
-            <InputGroupInput
-              placeholder="Search infrastructure"
-              className="text-console-header-foreground placeholder:text-console-header-foreground/65"
-            />
-          </InputGroup>
-          <Button
-            variant="outline"
-            size="icon-sm"
-            className="border-console-header-foreground/25 bg-transparent text-console-header-foreground hover:bg-console-header-foreground/10"
-            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-            onClick={toggleTheme}
-          >
-            {isDark ? <SunIcon /> : <MoonIcon />}
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            className="text-console-header-foreground hover:bg-console-header-foreground/10"
-            aria-label="Admin account"
-          >
-            <Avatar size="sm">
-              <AvatarFallback>AD</AvatarFallback>
-            </Avatar>
-          </Button>
-        </header>
-        <main className="min-h-0 min-w-0 flex-1 overflow-hidden">
-          {children ?? (
-            <div className="grid h-full place-items-center p-8 text-sm text-muted-foreground">
-              Select an item from the sidebar.
-            </div>
-          )}
-        </main>
+      <SidebarInset className="min-h-0 min-w-0 overflow-hidden md:col-start-2 md:row-start-2">
+        {children ?? (
+          <div className="grid h-full place-items-center p-8 text-sm text-muted-foreground">
+            Select an item from the sidebar.
+          </div>
+        )}
       </SidebarInset>
     </SidebarProvider>
   )
