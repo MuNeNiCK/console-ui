@@ -8,6 +8,7 @@
     "build": "pnpm --filter demo build",
     "preview": "pnpm --filter demo preview",
     "registry:build": "mkdir -p public/r/solid && shadcn build",
+    "typecheck:solid": "tsc -p tsconfig.solid.json --noEmit",
     "test:behavior": "playwright test"
   },
   "dependencies": {

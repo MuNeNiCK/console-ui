@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": [],
+    "paths": {
+      "@/components/blocks/*": ["./registry/solid/blocks/*"],
+      "@/components/ui/*": ["./registry/solid/ui/*"],
+      "@/hooks/*": ["./registry/solid/hooks/*"],
+      "@/lib/*": ["./registry/solid/lib/*"],
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["registry/solid/**/*.ts", "registry/solid/**/*.tsx"],
+  "exclude": ["node_modules", "public/r"]
+}

@@ -23,9 +23,7 @@ export const Select = <
 ) => {
   const merged = mergeProps(
     {
-      itemComponent: (itemProps: {
-        item: { textValue: string; rawValue: Option }
-      }) => (
+      itemComponent: (itemProps) => (
         <SelectItem item={itemProps.item}>{itemProps.item.textValue}</SelectItem>
       ),
     } as Partial<SelectProps<Option, OptGroup>>,
@@ -77,8 +75,8 @@ export const SelectTrigger = <T extends ValidComponent = "button">(
   const [, rest] = splitProps(merge, ["class", "size", "children"])
 
   return (
-      <SelectPrimitive.Trigger
-        data-slot="select-trigger"
+    <SelectPrimitive.Trigger
+      data-slot="select-trigger"
       data-size={merge.size}
       class={cx(
         "flex w-fit items-center justify-between gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm whitespace-nowrap transition-[border-color,box-shadow] outline-none hover:border-input focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[placeholder]:text-muted-foreground data-[size=default]:h-10 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 dark:bg-input/30 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
@@ -98,10 +96,7 @@ export type SelectContentProps<T extends ValidComponent = "div"> =
 export const SelectContent = <T extends ValidComponent = "div">(
   props: SelectContentProps<T>,
 ) => {
-  const [local, rest] = splitProps(props as SelectContentProps, [
-    "class",
-    "children",
-  ])
+  const [, rest] = splitProps(props as SelectContentProps, ["class"])
 
   return (
     <SelectPrimitive.Portal>
@@ -110,13 +105,11 @@ export const SelectContent = <T extends ValidComponent = "div">(
         class={cx(
           "relative isolate z-50 max-h-(--available-height) w-(--kb-popper-anchor-width) min-w-[8rem] origin-(--kb-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border bg-popover text-popover-foreground shadow-md data-[expanded]:animate-in data-[expanded]:fade-in-0 data-[expanded]:zoom-in-95 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
           "[[data-popper-positioner][style*='--kb-popper-content-transform-origin:_top']>[data-slot=select-content]]:slide-in-from-top-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_bottom']>[data-slot=select-content]]:slide-in-from-bottom-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_left']>[data-slot=select-content]]:slide-in-from-left-2 [[data-popper-positioner][style*='--kb-popper-content-transform-origin:_right']>[data-slot=select-content]]:slide-in-from-right-2",
-          local.class,
+          props.class,
         )}
         {...rest}
       >
-        <SelectPrimitive.Listbox class="p-1 outline-none">
-          {local.children}
-        </SelectPrimitive.Listbox>
+        <SelectPrimitive.Listbox class="p-1 outline-none" />
       </SelectPrimitive.Content>
     </SelectPrimitive.Portal>
   )

@@ -16,22 +16,28 @@ export const Checkbox = <T extends ValidComponent = "div">(
 
   return (
     <CheckboxPrimitive data-slot="checkbox" {...rest}>
-      <CheckboxPrimitive.Input />
-      <CheckboxPrimitive.Control
-        data-slot="checkbox-control"
-        class={cx(
-          "peer size-4 shrink-0 rounded-[4px] border border-border bg-card transition-[background-color,border-color,box-shadow] outline-none hover:border-input focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[checked]:border-primary data-[checked]:bg-primary data-[checked]:text-primary-foreground dark:bg-input/30 dark:aria-invalid:ring-destructive/40 dark:data-[checked]:bg-primary",
-          props.class,
-        )}
-      >
-        <CheckboxPrimitive.Indicator
-          data-slot="checkbox-indicator"
-          class="grid place-content-center text-current transition-none [&>svg]:size-3.5"
-        >
-          <CheckIcon />
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Control>
-      {props.children}
+      {(state) => (
+        <>
+          <CheckboxPrimitive.Input />
+          <CheckboxPrimitive.Control
+            data-slot="checkbox-control"
+            class={cx(
+              "peer size-4 shrink-0 rounded-[4px] border border-border bg-card transition-[background-color,border-color,box-shadow] outline-none hover:border-input focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[checked]:border-primary data-[checked]:bg-primary data-[checked]:text-primary-foreground dark:bg-input/30 dark:aria-invalid:ring-destructive/40 dark:data-[checked]:bg-primary",
+              props.class,
+            )}
+          >
+            <CheckboxPrimitive.Indicator
+              data-slot="checkbox-indicator"
+              class="grid place-content-center text-current transition-none [&>svg]:size-3.5"
+            >
+              <CheckIcon />
+            </CheckboxPrimitive.Indicator>
+          </CheckboxPrimitive.Control>
+          {typeof props.children === "function"
+            ? props.children(state)
+            : props.children}
+        </>
+      )}
     </CheckboxPrimitive>
   )
 }

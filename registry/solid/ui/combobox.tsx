@@ -23,9 +23,7 @@ export const Combobox = <
 ) => {
   const merged = mergeProps(
     {
-      itemComponent: (itemProps: {
-        item: { textValue: string; rawValue: Option }
-      }) => (
+      itemComponent: (itemProps) => (
         <ComboboxItem item={itemProps.item}>
           {itemProps.item.textValue}
         </ComboboxItem>
@@ -148,10 +146,7 @@ export type ComboboxContentProps<T extends ValidComponent = "div"> =
 export const ComboboxContent = <T extends ValidComponent = "div">(
   props: ComboboxContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxContentProps, [
-    "class",
-    "children",
-  ])
+  const [, rest] = splitProps(props as ComboboxContentProps, ["class"])
 
   return (
     <ComboboxPrimitive.Content
@@ -166,9 +161,7 @@ export const ComboboxContent = <T extends ValidComponent = "div">(
       <ComboboxPrimitive.Listbox
         data-slot="combobox-list"
         class="max-h-80 overflow-y-auto overscroll-contain p-1 data-empty:p-0"
-      >
-        {props.children}
-      </ComboboxPrimitive.Listbox>
+      />
     </ComboboxPrimitive.Content>
   )
 }
