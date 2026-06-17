@@ -1018,8 +1018,12 @@
         {
           "path": "registry/solid/lib/utils.ts",
           "type": "registry:lib",
-          "target": "registry/solid/lib/utils.ts"
+          "target": "lib/utils.ts"
         }
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
       ]
     },
     {
@@ -1027,14 +1031,14 @@
       "type": "registry:lib",
       "title": "CVA (Solid)",
       "dependencies": [
-        "cva",
+        "cva@1.0.0-beta.4",
         "tailwind-merge"
       ],
       "files": [
         {
           "path": "registry/solid/lib/cva.ts",
           "type": "registry:lib",
-          "target": "registry/solid/lib/cva.ts"
+          "target": "lib/cva.ts"
         }
       ]
     },
@@ -1049,7 +1053,7 @@
         {
           "path": "registry/solid/lib/call-handler.ts",
           "type": "registry:lib",
-          "target": "registry/solid/lib/call-handler.ts"
+          "target": "lib/call-handler.ts"
         }
       ]
     },
@@ -1064,7 +1068,7 @@
         {
           "path": "registry/solid/lib/combine-style.ts",
           "type": "registry:lib",
-          "target": "registry/solid/lib/combine-style.ts"
+          "target": "lib/combine-style.ts"
         }
       ]
     },
@@ -1079,7 +1083,7 @@
         {
           "path": "registry/solid/hooks/use-mobile.ts",
           "type": "registry:hook",
-          "target": "registry/solid/hooks/use-mobile.ts"
+          "target": "hooks/use-mobile.ts"
         }
       ]
     },
@@ -1160,10 +1164,12 @@
       "description": "Console UI accordion for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1180,10 +1186,13 @@
       "description": "Console UI alert for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@kobalte/core",
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1201,7 +1210,7 @@
       "dependencies": [
         "solid-js",
         "@kobalte/core",
-        "cva"
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
         "@console/solid/cva",
@@ -1260,10 +1269,13 @@
       "description": "Console UI badge for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@kobalte/core",
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1280,10 +1292,12 @@
       "description": "Console UI breadcrumb for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1300,10 +1314,13 @@
       "description": "Console UI button for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@kobalte/core",
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1320,11 +1337,14 @@
       "description": "Console UI button-group for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@kobalte/core",
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/separator"
+        "@console/solid/separator",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1341,11 +1361,13 @@
       "description": "Console UI calendar for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@corvu/calendar"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/button"
+        "@console/solid/button",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1364,7 +1386,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1381,11 +1404,14 @@
       "description": "Console UI carousel for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "embla-carousel-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/button"
+        "@console/solid/button",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1401,10 +1427,12 @@
       "title": "Chart (Solid)",
       "description": "Console UI chart for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@unovis/solid"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1421,10 +1449,12 @@
       "description": "Console UI checkbox for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1440,10 +1470,12 @@
       "title": "Collapsible (Solid)",
       "description": "Console UI collapsible for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1460,10 +1492,12 @@
       "description": "Console UI command for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "cmdk-solid"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1480,11 +1514,14 @@
       "description": "Console UI combobox for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/command"
+        "@console/solid/command",
+        "@console/solid/cva",
+        "@console/solid/button"
       ],
       "files": [
         {
@@ -1501,10 +1538,12 @@
       "description": "Console UI context-menu for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1521,11 +1560,13 @@
       "description": "Console UI dialog for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/button"
+        "@console/solid/button",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1561,11 +1602,13 @@
       "description": "Console UI drawer for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@corvu/drawer"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/button"
+        "@console/solid/button",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1624,10 +1667,12 @@
       "description": "Console UI dropdown-menu for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1663,10 +1708,12 @@
       "title": "Hover Card (Solid)",
       "description": "Console UI hover-card for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1682,10 +1729,12 @@
       "title": "Input (Solid)",
       "description": "Console UI input for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1724,10 +1773,13 @@
       "title": "Input Otp (Solid)",
       "description": "Console UI input-otp for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@corvu/otp-field",
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1786,7 +1838,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1803,10 +1856,12 @@
       "description": "Console UI menubar for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1824,10 +1879,12 @@
       "dependencies": [
         "solid-js",
         "class-variance-authority",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1868,7 +1925,8 @@
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/button"
+        "@console/solid/button",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1884,10 +1942,12 @@
       "title": "Popover (Solid)",
       "description": "Console UI popover for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1903,10 +1963,12 @@
       "title": "Progress (Solid)",
       "description": "Console UI progress for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1922,10 +1984,12 @@
       "title": "Radio Group (Solid)",
       "description": "Console UI radio-group for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1942,10 +2006,12 @@
       "description": "Console UI resizable for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@corvu/resizable"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -1981,10 +2047,12 @@
       "description": "Console UI select for Solid.",
       "dependencies": [
         "solid-js",
-        "lucide-solid"
+        "lucide-solid",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2000,10 +2068,12 @@
       "title": "Separator (Solid)",
       "description": "Console UI separator for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2042,7 +2112,7 @@
       "dependencies": [
         "solid-js",
         "@kobalte/core",
-        "cva",
+        "cva@1.0.0-beta.4",
         "lucide-solid"
       ],
       "registryDependencies": [
@@ -2074,7 +2144,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2090,10 +2161,12 @@
       "title": "Slider (Solid)",
       "description": "Console UI slider for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2130,7 +2203,8 @@
       "description": "Console UI sonner for Solid.",
       "dependencies": [
         "solid-js",
-        "solid-sonner"
+        "solid-sonner",
+        "lucide-solid"
       ],
       "registryDependencies": [
         "@console/solid/utils"
@@ -2149,10 +2223,12 @@
       "title": "Switch (Solid)",
       "description": "Console UI switch for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2171,7 +2247,8 @@
         "solid-js"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2188,10 +2265,13 @@
       "description": "Console UI tabs for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@kobalte/core",
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2207,10 +2287,12 @@
       "title": "Textarea (Solid)",
       "description": "Console UI textarea for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2227,10 +2309,13 @@
       "description": "Console UI toggle for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@kobalte/core",
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2247,11 +2332,14 @@
       "description": "Console UI toggle-group for Solid.",
       "dependencies": [
         "solid-js",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@kobalte/core",
+        "cva@1.0.0-beta.4"
       ],
       "registryDependencies": [
         "@console/solid/utils",
-        "@console/solid/toggle"
+        "@console/solid/toggle",
+        "@console/solid/cva"
       ],
       "files": [
         {
@@ -2267,10 +2355,12 @@
       "title": "Tooltip (Solid)",
       "description": "Console UI tooltip for Solid.",
       "dependencies": [
-        "solid-js"
+        "solid-js",
+        "@kobalte/core"
       ],
       "registryDependencies": [
-        "@console/solid/utils"
+        "@console/solid/utils",
+        "@console/solid/cva"
       ],
       "files": [
         {
