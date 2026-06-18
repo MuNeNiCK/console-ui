@@ -1,3 +1,4 @@
+import { For, createSignal } from "solid-js"
 import { Alert, AlertDescription, AlertTitle } from "@/registry/solid/ui/alert"
 import {
   Accordion,
@@ -260,6 +261,20 @@ import {
   SearchIcon,
   ServerIcon,
 } from "lucide-solid"
+import {
+  createSolidTable,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+} from "@tanstack/solid-table"
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  Updater,
+} from "@tanstack/solid-table"
 import { toast } from "solid-sonner"
 
 const resourceOptions = ["node-01", "node-02", "cluster-a"]
@@ -269,6 +284,104 @@ const environmentOptions = [
   { value: "staging", label: "Staging" },
   { value: "maintenance", label: "Maintenance" },
 ]
+
+type Payment = {
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+}
+
+const payments: Payment[] = [
+  {
+    id: "728ed52f",
+    amount: 100,
+    status: "pending",
+    email: "m@example.com",
+  },
+  {
+    id: "489e1d42",
+    amount: 125,
+    status: "processing",
+    email: "example@gmail.com",
+  },
+  {
+    id: "6d2f4c8a",
+    amount: 90,
+    status: "success",
+    email: "dev@console.local",
+  },
+  {
+    id: "c8f91a20",
+    amount: 450,
+    status: "failed",
+    email: "ops@example.com",
+  },
+  {
+    id: "b7f8a2d1",
+    amount: 210,
+    status: "success",
+    email: "billing@example.com",
+  },
+]
+
+const paymentColumns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: (props) => (
+      <Badge variant="outline" class="capitalize">
+        {props.row.getValue("status")}
+      </Badge>
+    ),
+  },
+  {
+    accessorKey: "email",
+    header: (props) => (
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        class="-ml-3"
+        onClick={() =>
+          props.column.toggleSorting(props.column.getIsSorted() === "asc")
+        }
+      >
+        Email
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "amount",
+    header: (props) => (
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        class="-ml-3"
+        onClick={() =>
+          props.column.toggleSorting(props.column.getIsSorted() === "asc")
+        }
+      >
+        Amount
+      </Button>
+    ),
+    cell: (props) => (
+      <div class="text-right font-medium">
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(props.row.getValue("amount"))}
+      </div>
+    ),
+  },
+]
+
+function resolveUpdater<TValue>(updater: Updater<TValue>, value: TValue) {
+  return typeof updater === "function"
+    ? (updater as (old: TValue) => TValue)(value)
+    : updater
+}
 
 export default function SolidDemo(props: { name: string }) {
   switch (props.name) {
@@ -540,6 +653,9 @@ export default function SolidDemo(props: { name: string }) {
           </ButtonGroup>
         </DirectionProvider>
       )
+
+    case "data-table":
+      return <DataTableDemo />
 
     case "drawer":
       return (
@@ -1053,6 +1169,132 @@ export default function SolidDemo(props: { name: string }) {
         </div>
       )
   }
+}
+
+function DataTableDemo() {
+  const [sorting, setSorting] = createSignal<SortingState>([])
+  const [columnFilters, setColumnFilters] =
+    createSignal<ColumnFiltersState>([])
+
+  const table = createSolidTable({
+    get data() {
+      return payments
+    },
+    columns: paymentColumns,
+    state: {
+      get sorting() {
+        return sorting()
+      },
+      get columnFilters() {
+        return columnFilters()
+      },
+    },
+    initialState: {
+      pagination: {
+        pageSize: 4,
+      },
+    },
+    onSortingChange: (updater) =>
+      setSorting(resolveUpdater(updater, sorting())),
+    onColumnFiltersChange: (updater) =>
+      setColumnFilters(resolveUpdater(updater, columnFilters())),
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  })
+
+  return (
+    <div class="w-full space-y-3">
+      <Input
+        placeholder="Filter emails..."
+        value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+        onInput={(event) =>
+          table.getColumn("email")?.setFilterValue(event.currentTarget.value)
+        }
+        class="max-w-sm"
+      />
+      <div class="overflow-hidden rounded-lg border bg-card">
+        <Table>
+          <TableHeader>
+            <For each={table.getHeaderGroups()}>
+              {(headerGroup) => (
+                <TableRow>
+                  <For each={headerGroup.headers}>
+                    {(header) => (
+                      <TableHead
+                        class={
+                          header.column.id === "amount"
+                            ? "text-right"
+                            : undefined
+                        }
+                      >
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                      </TableHead>
+                    )}
+                  </For>
+                </TableRow>
+              )}
+            </For>
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.length ? (
+              <For each={table.getRowModel().rows}>
+                {(row) => (
+                  <TableRow>
+                    <For each={row.getVisibleCells()}>
+                      {(cell) => (
+                        <TableCell>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      )}
+                    </For>
+                  </TableRow>
+                )}
+              </For>
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={paymentColumns.length}
+                  class="h-24 text-center text-muted-foreground"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div class="flex items-center justify-end gap-2">
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
+  )
 }
 
 function FormDemo() {

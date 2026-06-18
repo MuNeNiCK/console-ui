@@ -18,10 +18,4 @@ export const blocks: BlockMeta[] = [
     description: "A console sidebar shell with global search and account controls.",
     solid: true,
   },
-  {
-    name: "data-table-01",
-    title: "Data Table 01",
-    description: "A filterable operations table with toolbar, status, and pagination.",
-    solid: true,
-  },
 ]

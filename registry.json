@@ -154,7 +154,8 @@
       "description": "A console dashboard with sidebar, actions, filtering, and data table.",
       "registryDependencies": [
         "@console/sidebar-01",
-        "@console/data-table-01"
+        "@console/badge",
+        "@console/table"
       ],
       "files": [
         {
@@ -183,30 +184,6 @@
           "path": "registry/react/blocks/sidebar-01.tsx",
           "type": "registry:component",
           "target": "@components/blocks/sidebar-01.tsx"
-        }
-      ]
-    },
-    {
-      "name": "data-table-01",
-      "type": "registry:block",
-      "title": "Data Table 01",
-      "description": "A filterable operations table with toolbar, status, and pagination.",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@console/badge",
-        "@console/button",
-        "@console/dropdown-menu",
-        "@console/input-group",
-        "@console/pagination",
-        "@console/table"
-      ],
-      "files": [
-        {
-          "path": "registry/react/blocks/data-table-01.tsx",
-          "type": "registry:component",
-          "target": "@components/blocks/data-table-01.tsx"
         }
       ]
     },
@@ -1097,7 +1074,8 @@
       ],
       "registryDependencies": [
         "@console/solid/sidebar-01",
-        "@console/solid/data-table-01"
+        "@console/solid/badge",
+        "@console/solid/table"
       ],
       "files": [
         {
@@ -1128,32 +1106,6 @@
           "path": "registry/solid/blocks/sidebar-01.tsx",
           "type": "registry:component",
           "target": "components/blocks/sidebar-01.tsx"
-        }
-      ]
-    },
-    {
-      "name": "solid/data-table-01",
-      "type": "registry:block",
-      "title": "Data Table 01 (Solid)",
-      "description": "A filterable operations table with toolbar, status, and pagination.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/badge",
-        "@console/solid/button",
-        "@console/solid/dropdown-menu",
-        "@console/solid/input-group",
-        "@console/solid/pagination",
-        "@console/solid/table"
-      ],
-      "files": [
-        {
-          "path": "registry/solid/blocks/data-table-01.tsx",
-          "type": "registry:component",
-          "target": "components/blocks/data-table-01.tsx"
         }
       ]
     },

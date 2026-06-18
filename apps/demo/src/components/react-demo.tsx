@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Button } from "@/registry/react/ui/button"
 import {
   ButtonGroup,
@@ -261,8 +262,109 @@ import {
   TooltipTrigger,
 } from "@/registry/react/ui/tooltip"
 import { InboxIcon, SearchIcon, ServerIcon } from "lucide-react"
+import {
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+} from "@tanstack/react-table"
 import { toast } from "sonner"
 import { useForm } from "react-hook-form"
+
+type Payment = {
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+}
+
+const payments: Payment[] = [
+  {
+    id: "728ed52f",
+    amount: 100,
+    status: "pending",
+    email: "m@example.com",
+  },
+  {
+    id: "489e1d42",
+    amount: 125,
+    status: "processing",
+    email: "example@gmail.com",
+  },
+  {
+    id: "6d2f4c8a",
+    amount: 90,
+    status: "success",
+    email: "dev@console.local",
+  },
+  {
+    id: "c8f91a20",
+    amount: 450,
+    status: "failed",
+    email: "ops@example.com",
+  },
+  {
+    id: "b7f8a2d1",
+    amount: 210,
+    status: "success",
+    email: "billing@example.com",
+  },
+]
+
+const paymentColumns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => (
+      <Badge variant="outline" className="capitalize">
+        {row.getValue("status")}
+      </Badge>
+    ),
+  },
+  {
+    accessorKey: "email",
+    header: ({ column }) => (
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="-ml-3"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Email
+      </Button>
+    ),
+  },
+  {
+    accessorKey: "amount",
+    header: ({ column }) => (
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="-ml-3"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Amount
+      </Button>
+    ),
+    cell: ({ row }) => (
+      <div className="text-right font-medium">
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(row.getValue("amount"))}
+      </div>
+    ),
+  },
+]
 
 export default function ReactDemo({ name }: { name: string }) {
   if (name === "accordion") {
@@ -560,6 +662,10 @@ export default function ReactDemo({ name }: { name: string }) {
         </div>
       </DirectionProvider>
     )
+  }
+
+  if (name === "data-table") {
+    return <DataTableDemo />
   }
 
   if (name === "form") {
@@ -1171,6 +1277,115 @@ function FormDemo() {
         <Button type="button">Save resource</Button>
       </form>
     </Form>
+  )
+}
+
+function DataTableDemo() {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] =
+    React.useState<ColumnFiltersState>([])
+
+  const table = useReactTable({
+    data: payments,
+    columns: paymentColumns,
+    state: {
+      sorting,
+      columnFilters,
+    },
+    initialState: {
+      pagination: {
+        pageSize: 4,
+      },
+    },
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  })
+
+  return (
+    <div className="w-full space-y-3">
+      <Input
+        placeholder="Filter emails..."
+        value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+        onChange={(event) =>
+          table.getColumn("email")?.setFilterValue(event.currentTarget.value)
+        }
+        className="max-w-sm"
+      />
+      <div className="overflow-hidden rounded-lg border bg-card">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    className={
+                      header.column.id === "amount" ? "text-right" : undefined
+                    }
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={paymentColumns.length}
+                  className="h-24 text-center text-muted-foreground"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex items-center justify-end gap-2">
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
   )
 }
 

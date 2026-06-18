@@ -3,6 +3,9 @@ export type ComponentMeta = {
   title: string
   description: string
   solid: boolean
+  registry?: boolean
+  reactInstall?: string
+  solidInstall?: string
 }
 
 export const components: ComponentMeta[] = [
@@ -41,6 +44,17 @@ export const components: ComponentMeta[] = [
     title: "Table",
     description: "Displays tabular data.",
     solid: true,
+  },
+  {
+    name: "data-table",
+    title: "Data Table",
+    description: "Builds a data table with the Table primitive and TanStack Table.",
+    solid: true,
+    registry: false,
+    reactInstall:
+      "pnpm dlx shadcn@latest add @console/table\npnpm add @tanstack/react-table",
+    solidInstall:
+      "pnpm dlx shadcn@latest add @console/solid/table\npnpm add @tanstack/solid-table",
   },
   {
     name: "tabs",

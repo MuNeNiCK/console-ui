@@ -22,7 +22,7 @@ export const Checkbox = <T extends ValidComponent = "div">(
           <CheckboxPrimitive.Control
             data-slot="checkbox-control"
             class={cx(
-              "peer size-4 shrink-0 rounded-[4px] border border-border bg-card transition-[background-color,border-color,box-shadow] outline-none hover:border-input focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[checked]:border-primary data-[checked]:bg-primary data-[checked]:text-primary-foreground dark:bg-input/30 dark:aria-invalid:ring-destructive/40 dark:data-[checked]:bg-primary",
+              "peer inline-flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-border bg-card transition-[background-color,border-color,box-shadow] outline-none hover:border-input focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[checked]:border-primary data-[checked]:bg-primary data-[checked]:text-primary-foreground dark:bg-input/30 dark:aria-invalid:ring-destructive/40 dark:data-[checked]:bg-primary",
               props.class,
             )}
           >
