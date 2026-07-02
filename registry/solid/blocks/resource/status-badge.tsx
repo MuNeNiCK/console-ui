@@ -98,17 +98,3 @@ export function StatusBadge(props: StatusBadgeProps) {
     </Badge>
   )
 }
-
-export function ShadowBadge(props: { class?: string }) {
-  return (
-    <Badge
-      variant="secondary"
-      class={cn(
-        "h-5 shrink-0 rounded-sm px-1.5 text-[10px] font-semibold",
-        props.class,
-      )}
-    >
-      Shadow
-    </Badge>
-  )
-}

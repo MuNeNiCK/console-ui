@@ -1,4 +1,4 @@
-import { For, Show, type JSX } from "solid-js"
+import { For, lazy, Show, Suspense, type JSX } from "solid-js"
 
 import { FormSection } from "@/components/form-fields"
 import { ManifestPreview } from "@/components/review-summary"
@@ -9,6 +9,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+
+const CodeEditor = lazy(() =>
+  import("@/components/code-editor").then((module) => ({
+    default: module.CodeEditor,
+  })),
+)
 
 export type FormStep = "configure" | "review"
 
@@ -77,16 +83,38 @@ export interface ConfigureTabsProps {
   manifest?: JSX.Element | string
   value?: string
   onValueChange?: (value: string) => void
+  onManifestChange?: (value: string) => void
   yamlError?: string
   manifestTitle?: string
   manifestMeta?: JSX.Element
 }
 
-function renderManifest(manifest: JSX.Element | string | undefined) {
-  if (typeof manifest === "string") return <ManifestPreview value={manifest} />
+function renderManifest(props: ConfigureTabsProps) {
+  if (typeof props.manifest === "string" && props.onManifestChange) {
+    return (
+      <div class="min-[980px]:col-span-3">
+        <Suspense
+          fallback={
+            <div class="h-[400px] rounded border border-border/60 bg-card" />
+          }
+        >
+          <CodeEditor
+            value={props.manifest}
+            onChange={props.onManifestChange}
+            language="yaml"
+            height="400px"
+          />
+        </Suspense>
+      </div>
+    )
+  }
+
+  if (typeof props.manifest === "string") {
+    return <ManifestPreview value={props.manifest} />
+  }
 
   return (
-    manifest ?? (
+    props.manifest ?? (
       <p class="text-sm text-muted-foreground min-[980px]:col-span-3">
         No manifest preview available.
       </p>
@@ -121,7 +149,7 @@ export function ConfigureTabs(props: ConfigureTabsProps) {
               </p>
             )}
           </Show>
-          {renderManifest(props.manifest)}
+          {renderManifest(props)}
         </FormSection>
       </TabsContent>
     </Tabs>

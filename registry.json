@@ -1065,6 +1065,23 @@
       ]
     },
     {
+      "name": "solid/code-editor",
+      "type": "registry:component",
+      "title": "Code Editor (Solid)",
+      "description": "A Solid Monaco code editor for configuration and manifest editing.",
+      "dependencies": [
+        "solid-js",
+        "monaco-editor"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/components/code-editor.tsx",
+          "type": "registry:component",
+          "target": "components/code-editor.tsx"
+        }
+      ]
+    },
+    {
       "name": "solid/dashboard",
       "type": "registry:block",
       "title": "Dashboard (Solid)",
@@ -1120,6 +1137,7 @@
         "@tanstack/solid-table"
       ],
       "registryDependencies": [
+        "@console/solid/code-editor",
         "@console/solid/utils",
         "@console/solid/button",
         "@console/solid/dropdown-menu",
