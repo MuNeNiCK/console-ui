@@ -1127,99 +1127,118 @@
       ]
     },
     {
-      "name": "solid/resource",
+      "name": "solid/data-table-view",
       "type": "registry:block",
-      "title": "Resource (Solid)",
-      "description": "Reusable Solid components for resource list, detail, and form screens.",
+      "title": "Data Table View (Solid)",
+      "description": "A complete table view with search, column controls, selection, and actions.",
       "dependencies": [
         "solid-js",
-        "lucide-solid",
-        "@tanstack/solid-table"
+        "lucide-solid"
       ],
       "registryDependencies": [
-        "@console/solid/code-editor",
-        "@console/solid/utils",
+        "@console/solid/badge",
         "@console/solid/button",
+        "@console/solid/checkbox",
         "@console/solid/dropdown-menu",
         "@console/solid/input-group",
-        "@console/solid/table",
-        "@console/solid/alert-dialog",
-        "@console/solid/badge",
-        "@console/solid/select",
-        "@console/solid/tabs",
-        "@console/solid/input",
-        "@console/solid/skeleton"
+        "@console/solid/table"
       ],
       "files": [
         {
-          "path": "registry/solid/blocks/resource/layouts/ResourcePageLayout.tsx",
+          "path": "registry/solid/blocks/data-table-view/page.tsx",
           "type": "registry:component",
-          "target": "components/layouts/ResourcePageLayout.tsx"
-        },
+          "target": "components/blocks/data-table-view/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/detail-view",
+      "type": "registry:block",
+      "title": "Detail View (Solid)",
+      "description": "A complete detail view with summary, sections, activity, and confirmation.",
+      "dependencies": [
+        "solid-js",
+        "lucide-solid"
+      ],
+      "registryDependencies": [
+        "@console/solid/alert-dialog",
+        "@console/solid/badge",
+        "@console/solid/button",
+        "@console/solid/table"
+      ],
+      "files": [
         {
-          "path": "registry/solid/blocks/resource/layouts/ResourceListLayout.tsx",
+          "path": "registry/solid/blocks/detail-view/page.tsx",
           "type": "registry:component",
-          "target": "components/layouts/ResourceListLayout.tsx"
-        },
+          "target": "components/blocks/detail-view/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/form-flow",
+      "type": "registry:block",
+      "title": "Form Flow (Solid)",
+      "description": "A complete configure and review flow for creating or editing an item.",
+      "dependencies": [
+        "solid-js",
+        "lucide-solid"
+      ],
+      "registryDependencies": [
+        "@console/solid/badge",
+        "@console/solid/button",
+        "@console/solid/checkbox",
+        "@console/solid/input",
+        "@console/solid/textarea"
+      ],
+      "files": [
         {
-          "path": "registry/solid/blocks/resource/layouts/ResourceDetailLayout.tsx",
+          "path": "registry/solid/blocks/form-flow/page.tsx",
           "type": "registry:component",
-          "target": "components/layouts/ResourceDetailLayout.tsx"
-        },
+          "target": "components/blocks/form-flow/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/double-confirmation",
+      "type": "registry:block",
+      "title": "Double Confirmation (Solid)",
+      "description": "A high-impact action pattern with explicit confirmation.",
+      "dependencies": [
+        "solid-js",
+        "lucide-solid"
+      ],
+      "registryDependencies": [
+        "@console/solid/alert-dialog",
+        "@console/solid/badge",
+        "@console/solid/button",
+        "@console/solid/input"
+      ],
+      "files": [
         {
-          "path": "registry/solid/blocks/resource/detail-content.tsx",
+          "path": "registry/solid/blocks/double-confirmation/page.tsx",
           "type": "registry:component",
-          "target": "components/detail-content.tsx"
-        },
+          "target": "components/blocks/double-confirmation/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/empty-state",
+      "type": "registry:block",
+      "title": "Empty State (Solid)",
+      "description": "A complete empty table view with guidance and primary action.",
+      "dependencies": [
+        "solid-js",
+        "lucide-solid"
+      ],
+      "registryDependencies": [
+        "@console/solid/button",
+        "@console/solid/table"
+      ],
+      "files": [
         {
-          "path": "registry/solid/blocks/resource/form-fields.tsx",
+          "path": "registry/solid/blocks/empty-state/page.tsx",
           "type": "registry:component",
-          "target": "components/form-fields.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/form-workflow.tsx",
-          "type": "registry:component",
-          "target": "components/form-workflow.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/review-summary.tsx",
-          "type": "registry:component",
-          "target": "components/review-summary.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/metadata-label-fields.tsx",
-          "type": "registry:component",
-          "target": "components/metadata-label-fields.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/delete-resource-dialog.tsx",
-          "type": "registry:component",
-          "target": "components/delete-resource-dialog.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/data-table.tsx",
-          "type": "registry:component",
-          "target": "components/data-table.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/form-select.tsx",
-          "type": "registry:component",
-          "target": "components/form-select.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/empty-state.tsx",
-          "type": "registry:component",
-          "target": "components/empty-state.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/list-skeleton.tsx",
-          "type": "registry:component",
-          "target": "components/list-skeleton.tsx"
-        },
-        {
-          "path": "registry/solid/blocks/resource/status-badge.tsx",
-          "type": "registry:component",
-          "target": "components/status-badge.tsx"
+          "target": "components/blocks/empty-state/page.tsx"
         }
       ]
     },

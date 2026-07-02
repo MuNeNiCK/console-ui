@@ -1,0 +1,334 @@
+import { createMemo, createSignal, For, Show } from "solid-js"
+import type { JSX } from "solid-js"
+import CheckIcon from "lucide-solid/icons/check"
+import ChevronLeftIcon from "lucide-solid/icons/chevron-left"
+import SaveIcon from "lucide-solid/icons/save"
+
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+
+type FormStep = "configure" | "review"
+
+type FormValues = {
+  name: string
+  displayName: string
+  owner: string
+  description: string
+  environment: "Production" | "Staging" | "Development"
+  approvalRequired: boolean
+  notifications: boolean
+}
+
+const initialValues: FormValues = {
+  name: "atlas",
+  displayName: "Atlas workspace",
+  owner: "platform@example.com",
+  description: "Operational workspace for production platform services.",
+  environment: "Production",
+  approvalRequired: true,
+  notifications: true,
+}
+
+const environments: FormValues["environment"][] = [
+  "Production",
+  "Staging",
+  "Development",
+]
+
+export default function FormFlow() {
+  const [step, setStep] = createSignal<FormStep>("configure")
+  const [values, setValues] = createSignal<FormValues>(initialValues)
+  const [submitted, setSubmitted] = createSignal(false)
+
+  const canReview = createMemo(
+    () => values().name.trim().length > 0 && values().owner.trim().length > 0,
+  )
+
+  const reviewItems = createMemo(() => [
+    { label: "Name", value: values().name },
+    { label: "Display name", value: values().displayName || "Not set" },
+    { label: "Owner", value: values().owner },
+    { label: "Environment", value: values().environment },
+    {
+      label: "Approval",
+      value: values().approvalRequired ? "Required" : "Not required",
+    },
+    {
+      label: "Notifications",
+      value: values().notifications ? "Enabled" : "Disabled",
+    },
+  ])
+
+  function update<K extends keyof FormValues>(key: K, value: FormValues[K]) {
+    setValues((current) => ({ ...current, [key]: value }))
+    setSubmitted(false)
+  }
+
+  function submit(event: SubmitEvent) {
+    event.preventDefault()
+
+    if (step() === "configure") {
+      if (canReview()) setStep("review")
+      return
+    }
+
+    setSubmitted(true)
+  }
+
+  return (
+    <div class="min-h-[680px] bg-background px-4 pt-4 pb-5 text-foreground md:px-8 md:pt-6 md:pb-7">
+      <header class="flex min-w-0 flex-col gap-4 pb-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+        <div class="min-w-0">
+          <p class="text-xs leading-[18px] text-muted-foreground">
+            Workspaces
+          </p>
+          <h1 class="mt-[3px] text-[28px] font-[750]">Create workspace</h1>
+          <p class="mt-2 text-sm leading-[21px] text-muted-foreground">
+            Define ownership, environment, and review settings.
+          </p>
+        </div>
+        <StepIndicator current={step()} />
+      </header>
+
+      <form class="grid min-w-0 gap-5" onSubmit={submit}>
+        <Show when={submitted()}>
+          <div class="rounded-md border border-success/30 bg-success/10 px-3.5 py-3 text-sm text-success">
+            Workspace configuration saved.
+          </div>
+        </Show>
+
+        <Show when={step() === "configure"} fallback={<ReviewStep items={reviewItems()} />}>
+          <section class="grid gap-5">
+            <FlowSection title="Identity" meta="Required" columns={2}>
+              <Field label="Name" htmlFor="workspace-name" required>
+                <Input
+                  id="workspace-name"
+                  value={values().name}
+                  onInput={(event) => update("name", event.currentTarget.value)}
+                  aria-invalid={!values().name.trim()}
+                />
+              </Field>
+              <Field label="Display name" htmlFor="workspace-display-name">
+                <Input
+                  id="workspace-display-name"
+                  value={values().displayName}
+                  onInput={(event) =>
+                    update("displayName", event.currentTarget.value)
+                  }
+                />
+              </Field>
+              <Field label="Owner email" htmlFor="workspace-owner" required>
+                <Input
+                  id="workspace-owner"
+                  value={values().owner}
+                  onInput={(event) => update("owner", event.currentTarget.value)}
+                  aria-invalid={!values().owner.trim()}
+                />
+              </Field>
+              <Field label="Environment" htmlFor="workspace-environment">
+                <div id="workspace-environment" class="flex flex-wrap gap-2">
+                  <For each={environments}>
+                    {(environment) => (
+                      <Button
+                        type="button"
+                        variant={
+                          values().environment === environment
+                            ? "secondary"
+                            : "outline"
+                        }
+                        size="sm"
+                        onClick={() => update("environment", environment)}
+                      >
+                        {environment}
+                      </Button>
+                    )}
+                  </For>
+                </div>
+              </Field>
+            </FlowSection>
+
+            <FlowSection title="Description" meta="Optional">
+              <Field label="Purpose" htmlFor="workspace-description">
+                <Textarea
+                  id="workspace-description"
+                  value={values().description}
+                  onInput={(event) =>
+                    update("description", event.currentTarget.value)
+                  }
+                  rows={4}
+                />
+              </Field>
+            </FlowSection>
+
+            <FlowSection title="Controls" meta="Recommended">
+              <label class="flex min-w-0 items-start gap-3 rounded-md border border-border bg-card px-3.5 py-3">
+                <Checkbox
+                  checked={values().approvalRequired}
+                  onChange={(checked) => update("approvalRequired", checked)}
+                />
+                <span class="min-w-0">
+                  <strong class="block text-sm">Require approval</strong>
+                  <span class="mt-1 block text-sm leading-5 text-muted-foreground">
+                    Changes must be reviewed by the workspace owner.
+                  </span>
+                </span>
+              </label>
+              <label class="flex min-w-0 items-start gap-3 rounded-md border border-border bg-card px-3.5 py-3">
+                <Checkbox
+                  checked={values().notifications}
+                  onChange={(checked) => update("notifications", checked)}
+                />
+                <span class="min-w-0">
+                  <strong class="block text-sm">Send activity notifications</strong>
+                  <span class="mt-1 block text-sm leading-5 text-muted-foreground">
+                    Notify owners when scheduled operations complete.
+                  </span>
+                </span>
+              </label>
+            </FlowSection>
+          </section>
+        </Show>
+
+        <div class="flex flex-col-reverse gap-2 border-t border-border pt-4 sm:flex-row sm:justify-end">
+          <Show when={step() === "review"}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setStep("configure")}
+            >
+              <ChevronLeftIcon />
+              Back
+            </Button>
+          </Show>
+          <Button type="submit" disabled={step() === "configure" && !canReview()}>
+            <Show when={step() === "review"} fallback="Review">
+              <SaveIcon />
+              Save workspace
+            </Show>
+          </Button>
+        </div>
+      </form>
+    </div>
+  )
+}
+
+function StepIndicator(props: { current: FormStep }) {
+  const steps: Array<{ id: FormStep; label: string; detail: string }> = [
+    { id: "configure", label: "Configure", detail: "Step 1 of 2" },
+    { id: "review", label: "Review", detail: "Step 2 of 2" },
+  ]
+  const currentIndex = () => steps.findIndex((step) => step.id === props.current)
+
+  return (
+    <ol class="flex shrink-0 flex-wrap items-center justify-end gap-x-4 gap-y-2">
+      <For each={steps}>
+        {(step, index) => {
+          const complete = () => index() < currentIndex()
+          const active = () => index() === currentIndex()
+
+          return (
+            <li class="flex min-w-0 items-center gap-2.5">
+              <span
+                class={`grid size-6 shrink-0 place-items-center rounded-full border text-xs font-bold ${
+                  active() || complete()
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-card text-muted-foreground"
+                }`}
+              >
+                <Show when={complete()} fallback={index() + 1}>
+                  <CheckIcon class="size-3.5" />
+                </Show>
+              </span>
+              <span class="min-w-0">
+                <strong
+                  class={`block truncate text-sm ${
+                    active() || complete()
+                      ? "text-foreground"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {step.label}
+                </strong>
+                <span class="block text-xs text-muted-foreground">
+                  {step.detail}
+                </span>
+              </span>
+            </li>
+          )
+        }}
+      </For>
+    </ol>
+  )
+}
+
+function FlowSection(props: {
+  title: string
+  meta: string
+  columns?: 1 | 2
+  children: JSX.Element
+}) {
+  return (
+    <section class="min-w-0 border-t border-border">
+      <div class="flex min-h-11 items-center justify-between gap-4">
+        <h2 class="m-0 text-[15px] font-[750]">{props.title}</h2>
+        <span class="text-xs font-semibold text-muted-foreground">
+          {props.meta}
+        </span>
+      </div>
+      <div
+        class={`grid gap-4 ${
+          props.columns === 2 ? "min-[840px]:grid-cols-2" : ""
+        }`}
+      >
+        {props.children}
+      </div>
+    </section>
+  )
+}
+
+function Field(props: {
+  label: string
+  htmlFor: string
+  required?: boolean
+  children: JSX.Element
+}) {
+  return (
+    <label class="grid min-w-0 gap-2" for={props.htmlFor}>
+      <span class="text-sm font-semibold">
+        {props.label}
+        <Show when={props.required}>
+          <span class="text-destructive"> *</span>
+        </Show>
+      </span>
+      {props.children}
+    </label>
+  )
+}
+
+function ReviewStep(props: { items: Array<{ label: string; value: string }> }) {
+  return (
+    <section class="min-w-0 border-t border-border">
+      <div class="flex min-h-11 items-center justify-between gap-4">
+        <h2 class="m-0 text-[15px] font-[750]">Review configuration</h2>
+        <Badge variant="secondary">Ready to save</Badge>
+      </div>
+      <dl class="grid grid-cols-1 overflow-hidden rounded-md border border-border bg-card min-[840px]:grid-cols-3">
+        <For each={props.items}>
+          {(item) => (
+            <div class="relative min-w-0 border-b border-border px-4 py-4 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-primary/55 last:border-b-0 min-[840px]:border-r min-[840px]:border-b-0 min-[840px]:last:border-r-0">
+              <dt class="block min-w-0 break-words text-xs leading-5 font-semibold text-muted-foreground">
+                {item.label}
+              </dt>
+              <dd class="mt-1 min-w-0 break-words text-[15px] leading-5 font-bold">
+                {item.value}
+              </dd>
+            </div>
+          )}
+        </For>
+      </dl>
+    </section>
+  )
+}

@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-type ResourceRow = {
+type MachineRow = {
   id: string
   name: string
   state: string
@@ -24,7 +24,7 @@ type ResourceRow = {
   policy: string
 }
 
-const rows: ResourceRow[] = [
+const rows: MachineRow[] = [
   {
     id: "web-app",
     name: "web-app",
@@ -122,7 +122,7 @@ export default function Dashboard({ className }: { className?: string }) {
                 <TableHead>Placement</TableHead>
                 <TableHead>Address</TableHead>
                 <TableHead>OS</TableHead>
-                <TableHead>Resources</TableHead>
+                <TableHead>Capacity</TableHead>
                 <TableHead>Policy</TableHead>
               </TableRow>
             </TableHeader>
@@ -158,7 +158,7 @@ export default function Dashboard({ className }: { className?: string }) {
   )
 }
 
-function Status({ status }: { status: ResourceRow["health"] }) {
+function Status({ status }: { status: MachineRow["health"] }) {
   const className =
     status === "Normal"
       ? "text-success"

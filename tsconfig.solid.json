@@ -14,13 +14,12 @@
     "jsxImportSource": "solid-js",
     "types": [],
     "paths": {
-      "@/components/blocks/*": ["./registry/solid/blocks/*"],
-      "@/components/layouts/*": ["./registry/solid/blocks/resource/layouts/*"],
-      "@/components/ui/*": ["./registry/solid/ui/*"],
-      "@/components/*": [
-        "./registry/solid/components/*",
-        "./registry/solid/blocks/resource/*"
+      "@/components/blocks/*": [
+        "./registry/solid/blocks/*",
+        "./registry/solid/blocks/*/page.tsx"
       ],
+      "@/components/ui/*": ["./registry/solid/ui/*"],
+      "@/components/*": ["./registry/solid/components/*"],
       "@/hooks/*": ["./registry/solid/hooks/*"],
       "@/lib/*": ["./registry/solid/lib/*"],
       "@/*": ["./*"]
