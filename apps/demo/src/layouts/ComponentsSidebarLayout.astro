@@ -12,6 +12,12 @@ const { title, currentPath } = Astro.props
 const base = import.meta.env.BASE_URL.replace(/\/$/, "")
 const componentPath = `${base}/components`
 const blocksPath = `${base}/blocks`
+
+function blockFrameworkLabel(block: { react: boolean; solid: boolean }) {
+  if (block.react && block.solid) return "R+S"
+  if (block.solid) return "S"
+  return "R"
+}
 ---
 
 <Layout title={title}>
@@ -87,7 +93,7 @@ const blocksPath = `${base}/blocks`
                 >
                   <span class="truncate">{block.title}</span>
                   <span class="shrink-0 text-xs text-sidebar-foreground/60">
-                    {block.solid ? "R+S" : "R"}
+                    {blockFrameworkLabel(block)}
                   </span>
                 </a>
               )

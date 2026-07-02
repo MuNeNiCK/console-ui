@@ -14,6 +14,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "")
 const currentPath = `${base}/blocks/${block.name}`
 const reactInstall = `pnpm dlx shadcn@latest add @console/${block.name}`
 const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${block.name}`
+const defaultFramework = block.react ? "react" : "solid"
+const hasFrameworkToggle = block.react && block.solid
 ---
 
 <ComponentsSidebarLayout title={block.title} currentPath={currentPath}>
@@ -29,26 +31,29 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${block.name}`
   <section class="overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm">
     <div class="flex items-center justify-between border-b px-6 py-4">
       <h2 class="text-lg font-semibold">Preview</h2>
-      {block.solid && (
+      {hasFrameworkToggle && (
         <div class="flex items-center gap-2" id="framework-toggle">
           <button data-framework="react" class="inline-flex h-8 items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground">React</button>
           <button data-framework="solid" class="inline-flex h-8 items-center justify-center rounded-md border bg-background px-3 text-sm font-medium text-foreground">Solid</button>
         </div>
       )}
     </div>
-    <div class="min-h-[620px] bg-background">
-      <div
-        id="demo-react"
-        class="w-full"
-        data-block-preview="react"
-        data-block-name={block.name}
-      >
-      </div>
+    <div class="min-h-[620px] bg-background" data-default-framework={defaultFramework}>
+      {block.react && (
+        <div
+          id="demo-react"
+          class="w-full"
+          data-block-preview="react"
+          data-block-name={block.name}
+          style={defaultFramework === "react" ? "" : "display: none;"}
+        >
+        </div>
+      )}
       {block.solid && (
         <div
           id="demo-solid"
           class="w-full"
-          style="display: none;"
+          style={defaultFramework === "solid" ? "" : "display: none;"}
           data-block-preview="solid"
           data-block-name={block.name}
         >
@@ -57,11 +62,13 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${block.name}`
     </div>
   </section>
 
-  <section class:list={["grid gap-3", block.solid && "md:grid-cols-2"]}>
-    <div class="min-w-0 rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
-      <h2 class="font-semibold">React</h2>
-      <pre class="mt-3 max-w-full overflow-x-auto rounded bg-secondary p-3 text-xs"><code>{reactInstall}</code></pre>
-    </div>
+  <section class:list={["grid gap-3", block.react && block.solid && "md:grid-cols-2"]}>
+    {block.react && (
+      <div class="min-w-0 rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
+        <h2 class="font-semibold">React</h2>
+        <pre class="mt-3 max-w-full overflow-x-auto rounded bg-secondary p-3 text-xs"><code>{reactInstall}</code></pre>
+      </div>
+    )}
     {block.solid && (
       <div class="min-w-0 rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
         <h2 class="font-semibold">Solid</h2>
@@ -101,11 +108,18 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${block.name}`
 
   function initFrameworkToggle() {
     const toggle = document.getElementById("framework-toggle")
+    const preview = document.querySelector("[data-default-framework]")
     const solidDemo = document.getElementById("demo-solid")
     const buttons = toggle?.querySelectorAll("button") ?? []
     const savedFramework = localStorage.getItem(FRAMEWORK_STORAGE_KEY)
+    const defaultFramework = preview?.getAttribute("data-default-framework") || "react"
 
-    setFramework(savedFramework === "solid" && solidDemo ? "solid" : "react", false)
+    if (!toggle) {
+      setFramework(defaultFramework, false)
+      return
+    }
+
+    setFramework(savedFramework === "solid" && solidDemo ? "solid" : defaultFramework, false)
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => setFramework(button.dataset.framework || "react"))
@@ -115,4 +129,3 @@ const solidInstall = `pnpm dlx shadcn@latest add @console/solid/${block.name}`
   initFrameworkToggle()
   document.addEventListener("astro:page-load", initFrameworkToggle)
 </script>
-

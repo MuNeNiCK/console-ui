@@ -148,27 +148,27 @@
       ]
     },
     {
-      "name": "dashboard-01",
+      "name": "dashboard",
       "type": "registry:block",
-      "title": "Dashboard 01",
+      "title": "Dashboard",
       "description": "A console dashboard with sidebar, actions, filtering, and data table.",
       "registryDependencies": [
-        "@console/sidebar-01",
+        "@console/console-shell",
         "@console/badge",
         "@console/table"
       ],
       "files": [
         {
-          "path": "registry/react/blocks/dashboard-01.tsx",
+          "path": "registry/react/blocks/dashboard.tsx",
           "type": "registry:component",
-          "target": "@components/blocks/dashboard-01.tsx"
+          "target": "@components/blocks/dashboard.tsx"
         }
       ]
     },
     {
-      "name": "sidebar-01",
+      "name": "console-shell",
       "type": "registry:block",
-      "title": "Sidebar 01",
+      "title": "Console Shell",
       "description": "A console sidebar shell with global search and account controls.",
       "dependencies": [
         "lucide-react"
@@ -181,9 +181,9 @@
       ],
       "files": [
         {
-          "path": "registry/react/blocks/sidebar-01.tsx",
+          "path": "registry/react/blocks/console-shell.tsx",
           "type": "registry:component",
-          "target": "@components/blocks/sidebar-01.tsx"
+          "target": "@components/blocks/console-shell.tsx"
         }
       ]
     },
@@ -1065,30 +1065,30 @@
       ]
     },
     {
-      "name": "solid/dashboard-01",
+      "name": "solid/dashboard",
       "type": "registry:block",
-      "title": "Dashboard 01 (Solid)",
+      "title": "Dashboard (Solid)",
       "description": "A console dashboard with sidebar, actions, filtering, and data table.",
       "dependencies": [
         "solid-js"
       ],
       "registryDependencies": [
-        "@console/solid/sidebar-01",
+        "@console/solid/console-shell",
         "@console/solid/badge",
         "@console/solid/table"
       ],
       "files": [
         {
-          "path": "registry/solid/blocks/dashboard-01.tsx",
+          "path": "registry/solid/blocks/dashboard.tsx",
           "type": "registry:component",
-          "target": "components/blocks/dashboard-01.tsx"
+          "target": "components/blocks/dashboard.tsx"
         }
       ]
     },
     {
-      "name": "solid/sidebar-01",
+      "name": "solid/console-shell",
       "type": "registry:block",
-      "title": "Sidebar 01 (Solid)",
+      "title": "Console Shell (Solid)",
       "description": "A console sidebar shell with global search and account controls.",
       "dependencies": [
         "solid-js",
@@ -1103,9 +1103,105 @@
       ],
       "files": [
         {
-          "path": "registry/solid/blocks/sidebar-01.tsx",
+          "path": "registry/solid/blocks/console-shell.tsx",
           "type": "registry:component",
-          "target": "components/blocks/sidebar-01.tsx"
+          "target": "components/blocks/console-shell.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/resource",
+      "type": "registry:block",
+      "title": "Resource (Solid)",
+      "description": "Reusable Solid components for resource list, detail, and form screens.",
+      "dependencies": [
+        "solid-js",
+        "lucide-solid",
+        "@tanstack/solid-table"
+      ],
+      "registryDependencies": [
+        "@console/solid/utils",
+        "@console/solid/button",
+        "@console/solid/dropdown-menu",
+        "@console/solid/input-group",
+        "@console/solid/table",
+        "@console/solid/alert-dialog",
+        "@console/solid/badge",
+        "@console/solid/select",
+        "@console/solid/tabs",
+        "@console/solid/input",
+        "@console/solid/skeleton"
+      ],
+      "files": [
+        {
+          "path": "registry/solid/blocks/resource/layouts/ResourcePageLayout.tsx",
+          "type": "registry:component",
+          "target": "components/layouts/ResourcePageLayout.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/layouts/ResourceListLayout.tsx",
+          "type": "registry:component",
+          "target": "components/layouts/ResourceListLayout.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/layouts/ResourceDetailLayout.tsx",
+          "type": "registry:component",
+          "target": "components/layouts/ResourceDetailLayout.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/detail-content.tsx",
+          "type": "registry:component",
+          "target": "components/detail-content.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/form-fields.tsx",
+          "type": "registry:component",
+          "target": "components/form-fields.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/form-workflow.tsx",
+          "type": "registry:component",
+          "target": "components/form-workflow.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/review-summary.tsx",
+          "type": "registry:component",
+          "target": "components/review-summary.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/metadata-label-fields.tsx",
+          "type": "registry:component",
+          "target": "components/metadata-label-fields.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/delete-resource-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/delete-resource-dialog.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/data-table.tsx",
+          "type": "registry:component",
+          "target": "components/data-table.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/form-select.tsx",
+          "type": "registry:component",
+          "target": "components/form-select.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/empty-state.tsx",
+          "type": "registry:component",
+          "target": "components/empty-state.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/list-skeleton.tsx",
+          "type": "registry:component",
+          "target": "components/list-skeleton.tsx"
+        },
+        {
+          "path": "registry/solid/blocks/resource/status-badge.tsx",
+          "type": "registry:component",
+          "target": "components/status-badge.tsx"
         }
       ]
     },

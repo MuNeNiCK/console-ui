@@ -15,7 +15,9 @@
     "types": [],
     "paths": {
       "@/components/blocks/*": ["./registry/solid/blocks/*"],
+      "@/components/layouts/*": ["./registry/solid/blocks/resource/layouts/*"],
       "@/components/ui/*": ["./registry/solid/ui/*"],
+      "@/components/*": ["./registry/solid/blocks/resource/*"],
       "@/hooks/*": ["./registry/solid/hooks/*"],
       "@/lib/*": ["./registry/solid/lib/*"],
       "@/*": ["./*"]

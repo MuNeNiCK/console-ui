@@ -53,7 +53,7 @@ const navSections: NavSection[] = [
   },
 ]
 
-export function Sidebar01({
+export function ConsoleShell({
   children,
   className,
 }: {

@@ -4,7 +4,26 @@ type Framework = "react" | "solid"
 type ExerciseResult = string | number | boolean | Record<string, unknown>
 
 const frameworks: Framework[] = ["react", "solid"]
-const blockNames = ["dashboard-01", "sidebar-01", "data-table-01"]
+const blockPreviews = [
+  {
+    name: "dashboard",
+    react: true,
+    solid: true,
+    expectedText: ["Console UI", "VMs", "web-app"],
+  },
+  {
+    name: "console-shell",
+    react: true,
+    solid: true,
+    expectedText: ["Console UI"],
+  },
+  {
+    name: "resource",
+    react: false,
+    solid: true,
+    expectedText: ["api-primary", "worker-pool"],
+  },
+]
 
 function preview(page: Page, framework: Framework) {
   return page.locator(framework === "react" ? "#demo-react" : "#demo-solid")
@@ -504,33 +523,29 @@ compareFrameworks("tooltip", async (page, root) => {
   return visibleText(page, "Open remote console")
 })
 
-for (const blockName of blockNames) {
-  test(`${blockName}: React and Solid block previews render`, async ({ page }) => {
+for (const block of blockPreviews) {
+  test(`${block.name}: configured block previews render`, async ({ page }) => {
+    const blockName = block.name
+    await page.addInitScript(() => {
+      localStorage.removeItem("console-ui-framework")
+    })
     await page.goto(`/console-ui/blocks/${blockName}`)
     const reactRoot = page.locator("#demo-react")
     const solidRoot = page.locator("#demo-solid")
 
-    await expect(reactRoot).toBeVisible()
-
-    if (blockName !== "data-table-01") {
-      await expect(reactRoot.getByText("Console UI", { exact: true })).toBeVisible()
+    if (block.react) {
+      await expect(reactRoot).toBeVisible()
+      for (const text of block.expectedText) {
+        await expect(reactRoot.getByText(text, { exact: true }).first()).toBeVisible()
+      }
     }
 
-    if (blockName !== "sidebar-01") {
-      await expect(reactRoot.getByText("VMs", { exact: true })).toBeVisible()
-      await expect(reactRoot.getByText("vm-app-01", { exact: true })).toBeVisible()
+    if (block.react && block.solid) {
+      await page.getByRole("button", { name: "Solid" }).click()
     }
-
-    await page.getByRole("button", { name: "Solid" }).click()
     await expect(solidRoot).toBeVisible()
-
-    if (blockName !== "data-table-01") {
-      await expect(solidRoot.getByText("Console UI", { exact: true })).toBeVisible()
-    }
-
-    if (blockName !== "sidebar-01") {
-      await expect(solidRoot.getByText("VMs", { exact: true })).toBeVisible()
-      await expect(solidRoot.getByText("vm-app-01", { exact: true })).toBeVisible()
+    for (const text of block.expectedText) {
+      await expect(solidRoot.getByText(text, { exact: true }).first()).toBeVisible()
     }
   })
 }

@@ -1,4 +1,4 @@
-import { Sidebar01 } from "@/components/blocks/sidebar-01"
+import { ConsoleShell } from "@/components/blocks/console-shell"
 import { Badge } from "@/components/ui/badge"
 import {
   Table,
@@ -26,12 +26,12 @@ type ResourceRow = {
 
 const rows: ResourceRow[] = [
   {
-    id: "vm-app-01",
-    name: "vm-app-01",
+    id: "web-app",
+    name: "web-app",
     state: "Powered on",
     health: "Normal",
     cluster: "Compute A",
-    host: "esx-a01.lab.local",
+    host: "esx-app.lab.local",
     ip: "10.30.1.24",
     os: "Ubuntu Server 24.04",
     cpu: "4 vCPU",
@@ -40,12 +40,12 @@ const rows: ResourceRow[] = [
     policy: "app-tier",
   },
   {
-    id: "vm-api-03",
-    name: "vm-api-03",
+    id: "public-api",
+    name: "public-api",
     state: "Powered on",
     health: "Warning",
     cluster: "Compute A",
-    host: "esx-a02.lab.local",
+    host: "esx-api.lab.local",
     ip: "10.30.1.42",
     os: "Ubuntu Server 24.04",
     cpu: "8 vCPU",
@@ -54,12 +54,12 @@ const rows: ResourceRow[] = [
     policy: "app-tier",
   },
   {
-    id: "vm-sql-07",
-    name: "vm-sql-07",
+    id: "orders-db",
+    name: "orders-db",
     state: "Powered on",
     health: "Normal",
     cluster: "Database",
-    host: "esx-db-02.lab.local",
+    host: "esx-db.lab.local",
     ip: "10.30.2.77",
     os: "Windows Server 2022",
     cpu: "16 vCPU",
@@ -68,12 +68,12 @@ const rows: ResourceRow[] = [
     policy: "database-tier",
   },
   {
-    id: "vm-build-02",
-    name: "vm-build-02",
+    id: "build-worker",
+    name: "build-worker",
     state: "Suspended",
     health: "Maintenance",
     cluster: "Build",
-    host: "esx-build-01.lab.local",
+    host: "esx-build.lab.local",
     ip: "10.30.8.32",
     os: "Debian 12",
     cpu: "6 vCPU",
@@ -87,7 +87,7 @@ const rows: ResourceRow[] = [
     state: "Powered off",
     health: "Normal",
     cluster: "Remote B",
-    host: "esx-b01.edge.local",
+    host: "esx-edge.lab.local",
     ip: "10.40.8.31",
     os: "AlmaLinux 9",
     cpu: "2 vCPU",
@@ -97,9 +97,9 @@ const rows: ResourceRow[] = [
   },
 ]
 
-export default function Dashboard01({ className }: { className?: string }) {
+export default function Dashboard({ className }: { className?: string }) {
   return (
-    <Sidebar01 className={className}>
+    <ConsoleShell className={className}>
       <div className="grid h-full min-h-0 w-full min-w-0 grid-rows-[auto_minmax(0,1fr)] overflow-hidden bg-background px-4 py-4 text-foreground md:px-8 md:py-6">
         <div className="flex min-w-0 flex-col gap-4 pb-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
           <div className="min-w-0">
@@ -154,7 +154,7 @@ export default function Dashboard01({ className }: { className?: string }) {
           </Table>
         </div>
       </div>
-    </Sidebar01>
+    </ConsoleShell>
   )
 }
 

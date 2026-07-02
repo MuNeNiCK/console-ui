@@ -3,7 +3,7 @@ import babel from "@babel/core"
 import typescriptPreset from "@babel/preset-typescript"
 import solidPreset from "babel-preset-solid"
 
-const solidFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-solid|solid-demo|block-preview-solid|solid-block-demo)|src\/components\/(?:component-preview-solid|solid-demo|block-preview-solid|solid-block-demo)|registry\/solid\/).*\.tsx$/
+const solidFiles = /(?:apps\/demo\/src\/components\/(?:component-preview-solid|solid-demo|block-preview-solid|solid-block-demo|resource-block-demo)|src\/components\/(?:component-preview-solid|solid-demo|block-preview-solid|solid-block-demo|resource-block-demo)|registry\/solid\/).*\.tsx$/
 
 function jsxPlugins() {
   return [registryBlockAliasPlugin(), solidTransformPlugin()]

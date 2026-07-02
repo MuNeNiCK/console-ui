@@ -20,7 +20,7 @@ const currentPath = `${base}/blocks`
         <div class="flex items-center justify-between gap-3">
           <h2 class="font-medium">{block.title}</h2>
           <span class="text-sm text-muted-foreground">
-            {block.solid ? "React + Solid" : "React"}
+            {block.react && block.solid ? "React + Solid" : block.solid ? "Solid" : "React"}
           </span>
         </div>
         <p class="mt-2 text-sm text-muted-foreground">{block.description}</p>
@@ -28,4 +28,3 @@ const currentPath = `${base}/blocks`
     ))}
   </div>
 </ComponentsSidebarLayout>
-

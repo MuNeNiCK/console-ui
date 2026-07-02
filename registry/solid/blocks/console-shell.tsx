@@ -51,7 +51,7 @@ const navSections: NavSection[] = [
   },
 ]
 
-export function Sidebar01(props: { children?: JSX.Element; class?: string }) {
+export function ConsoleShell(props: { children?: JSX.Element; class?: string }) {
   const [isDark, setIsDark] = createSignal(false)
 
   createEffect(() => {
