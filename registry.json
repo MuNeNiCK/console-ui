@@ -142,7 +142,7 @@
         {
           "path": "registry/react/components/theme-provider.tsx",
           "type": "registry:component",
-          "target": "@components/theme-provider.tsx"
+          "target": "components/theme-provider.tsx"
         }
       ]
     },
@@ -154,7 +154,7 @@
         {
           "path": "registry/react/components/code-editor.tsx",
           "type": "registry:component",
-          "target": "@components/code-editor.tsx"
+          "target": "components/code-editor.tsx"
         }
       ]
     },
@@ -172,7 +172,7 @@
         {
           "path": "registry/react/blocks/dashboard.tsx",
           "type": "registry:component",
-          "target": "@components/dashboard.tsx"
+          "target": "components/dashboard.tsx"
         }
       ]
     },
@@ -192,7 +192,7 @@
         {
           "path": "registry/react/blocks/console-shell.tsx",
           "type": "registry:component",
-          "target": "@components/console-shell.tsx"
+          "target": "components/console-shell.tsx"
         }
       ]
     },
@@ -212,7 +212,7 @@
         {
           "path": "registry/react/blocks/form-flow.tsx",
           "type": "registry:component",
-          "target": "@components/form-flow.tsx"
+          "target": "components/form-flow.tsx"
         }
       ]
     },
@@ -234,7 +234,7 @@
         {
           "path": "registry/react/blocks/data-table-view.tsx",
           "type": "registry:component",
-          "target": "@components/data-table-view.tsx"
+          "target": "components/data-table-view.tsx"
         }
       ]
     },
@@ -254,7 +254,7 @@
         {
           "path": "registry/react/blocks/detail-view.tsx",
           "type": "registry:component",
-          "target": "@components/detail-view.tsx"
+          "target": "components/detail-view.tsx"
         }
       ]
     },
@@ -274,7 +274,7 @@
         {
           "path": "registry/react/blocks/double-confirmation.tsx",
           "type": "registry:component",
-          "target": "@components/double-confirmation-dialog.tsx"
+          "target": "components/double-confirmation-dialog.tsx"
         }
       ]
     },
@@ -289,7 +289,7 @@
         {
           "path": "registry/react/blocks/empty-state.tsx",
           "type": "registry:component",
-          "target": "@components/empty-state.tsx"
+          "target": "components/empty-state.tsx"
         }
       ]
     },
@@ -1050,7 +1050,7 @@
         {
           "path": "registry/solid/components/code-editor.tsx",
           "type": "registry:component",
-          "target": "@components/code-editor.tsx"
+          "target": "components/code-editor.tsx"
         }
       ]
     },
@@ -1062,7 +1062,7 @@
         {
           "path": "registry/solid/components/theme-provider.tsx",
           "type": "registry:component",
-          "target": "@components/theme-provider.tsx"
+          "target": "components/theme-provider.tsx"
         }
       ]
     },
@@ -1081,7 +1081,7 @@
         {
           "path": "registry/solid/blocks/dashboard.tsx",
           "type": "registry:component",
-          "target": "@components/dashboard.tsx"
+          "target": "components/dashboard.tsx"
         }
       ]
     },
@@ -1102,7 +1102,7 @@
         {
           "path": "registry/solid/blocks/console-shell.tsx",
           "type": "registry:component",
-          "target": "@components/console-shell.tsx"
+          "target": "components/console-shell.tsx"
         }
       ]
     },
@@ -1124,7 +1124,7 @@
         {
           "path": "registry/solid/blocks/data-table-view/page.tsx",
           "type": "registry:component",
-          "target": "@components/data-table-view.tsx"
+          "target": "components/data-table-view.tsx"
         }
       ]
     },
@@ -1144,7 +1144,7 @@
         {
           "path": "registry/solid/blocks/detail-view/page.tsx",
           "type": "registry:component",
-          "target": "@components/detail-view.tsx"
+          "target": "components/detail-view.tsx"
         }
       ]
     },
@@ -1164,7 +1164,7 @@
         {
           "path": "registry/solid/blocks/form-flow/page.tsx",
           "type": "registry:component",
-          "target": "@components/form-flow.tsx"
+          "target": "components/form-flow.tsx"
         }
       ]
     },
@@ -1184,7 +1184,7 @@
         {
           "path": "registry/solid/blocks/double-confirmation/page.tsx",
           "type": "registry:component",
-          "target": "@components/double-confirmation-dialog.tsx"
+          "target": "components/double-confirmation-dialog.tsx"
         }
       ]
     },
@@ -1199,7 +1199,7 @@
         {
           "path": "registry/solid/blocks/empty-state/page.tsx",
           "type": "registry:component",
-          "target": "@components/empty-state.tsx"
+          "target": "components/empty-state.tsx"
         }
       ]
     },
