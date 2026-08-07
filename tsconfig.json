@@ -13,6 +13,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
+      "@/components/ui/*": ["./registry/react/ui/*"],
+      "@/components/*": ["./registry/react/components/*"],
+      "@/components/console-shell": [
+        "./registry/react/blocks/console-shell.tsx"
+      ],
+      "@/hooks/*": ["./registry/react/hooks/*"],
+      "@/lib/*": ["./registry/react/lib/*"],
       "@/*": ["./*"]
     }
   },

@@ -13,9 +13,7 @@
         "class-variance-authority",
         "lucide-react"
       ],
-      "registryDependencies": [
-        "@console/utils"
-      ],
+      "registryDependencies": ["@console/utils"],
       "files": [],
       "cssVars": {
         "theme": {
@@ -143,7 +141,20 @@
       "files": [
         {
           "path": "registry/react/components/theme-provider.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "@components/theme-provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-editor",
+      "type": "registry:component",
+      "dependencies": ["react", "monaco-editor@^0.55.1"],
+      "files": [
+        {
+          "path": "registry/react/components/code-editor.tsx",
+          "type": "registry:component",
+          "target": "@components/code-editor.tsx"
         }
       ]
     },
@@ -161,7 +172,7 @@
         {
           "path": "registry/react/blocks/dashboard.tsx",
           "type": "registry:component",
-          "target": "@components/blocks/dashboard.tsx"
+          "target": "@components/dashboard.tsx"
         }
       ]
     },
@@ -170,9 +181,7 @@
       "type": "registry:block",
       "title": "Console Shell",
       "description": "A console sidebar shell with global search and account controls.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "@console/sidebar",
         "@console/avatar",
@@ -183,7 +192,104 @@
         {
           "path": "registry/react/blocks/console-shell.tsx",
           "type": "registry:component",
-          "target": "@components/blocks/console-shell.tsx"
+          "target": "@components/console-shell.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-flow",
+      "type": "registry:block",
+      "title": "Form Flow",
+      "description": "A complete configure and review flow for creating or editing an item.",
+      "dependencies": ["react", "lucide-react"],
+      "registryDependencies": [
+        "@console/button",
+        "@console/checkbox",
+        "@console/input",
+        "@console/textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/react/blocks/form-flow.tsx",
+          "type": "registry:component",
+          "target": "@components/form-flow.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table-view",
+      "type": "registry:block",
+      "title": "Data Table View",
+      "description": "A complete table view with search, column controls, selection, and actions.",
+      "dependencies": ["react", "lucide-react"],
+      "registryDependencies": [
+        "@console/badge",
+        "@console/button",
+        "@console/checkbox",
+        "@console/dropdown-menu",
+        "@console/input-group",
+        "@console/table"
+      ],
+      "files": [
+        {
+          "path": "registry/react/blocks/data-table-view.tsx",
+          "type": "registry:component",
+          "target": "@components/data-table-view.tsx"
+        }
+      ]
+    },
+    {
+      "name": "detail-view",
+      "type": "registry:block",
+      "title": "Detail View",
+      "description": "A complete detail view with summary, sections, activity, and confirmation.",
+      "dependencies": ["react", "lucide-react"],
+      "registryDependencies": [
+        "@console/alert-dialog",
+        "@console/badge",
+        "@console/button",
+        "@console/table"
+      ],
+      "files": [
+        {
+          "path": "registry/react/blocks/detail-view.tsx",
+          "type": "registry:component",
+          "target": "@components/detail-view.tsx"
+        }
+      ]
+    },
+    {
+      "name": "double-confirmation",
+      "type": "registry:block",
+      "title": "Double Confirmation",
+      "description": "A high-impact action pattern with explicit confirmation.",
+      "dependencies": ["react", "lucide-react"],
+      "registryDependencies": [
+        "@console/alert-dialog",
+        "@console/badge",
+        "@console/button",
+        "@console/input"
+      ],
+      "files": [
+        {
+          "path": "registry/react/blocks/double-confirmation.tsx",
+          "type": "registry:component",
+          "target": "@components/double-confirmation-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:block",
+      "title": "Empty State",
+      "description": "A complete empty table view with guidance and primary action.",
+      "dependencies": ["react", "lucide-react"],
+      "registryDependencies": ["@console/button", "@console/table"],
+      "files": [
+        {
+          "path": "registry/react/blocks/empty-state.tsx",
+          "type": "registry:component",
+          "target": "@components/empty-state.tsx"
         }
       ]
     },
@@ -196,9 +302,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "alert",
@@ -213,18 +317,14 @@
     {
       "name": "alert-dialog",
       "type": "registry:ui",
-      "registryDependencies": [
-        "@console/button"
-      ],
+      "registryDependencies": ["@console/button"],
       "files": [
         {
           "path": "registry/react/ui/alert-dialog.tsx",
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "aspect-ratio",
@@ -245,9 +345,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "badge",
@@ -258,9 +356,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "breadcrumb",
@@ -271,9 +367,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "button",
@@ -284,37 +378,25 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "button-group",
       "type": "registry:ui",
-      "registryDependencies": [
-        "@console/button",
-        "@console/separator"
-      ],
+      "registryDependencies": ["@console/button", "@console/separator"],
       "files": [
         {
           "path": "registry/react/ui/button-group.tsx",
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "calendar",
       "type": "registry:ui",
-      "dependencies": [
-        "react-day-picker@latest",
-        "date-fns"
-      ],
-      "registryDependencies": [
-        "@console/button"
-      ],
+      "dependencies": ["react-day-picker@latest", "date-fns"],
+      "registryDependencies": ["@console/button"],
       "files": [
         {
           "path": "registry/react/ui/calendar.tsx",
@@ -335,12 +417,8 @@
     {
       "name": "carousel",
       "type": "registry:ui",
-      "dependencies": [
-        "embla-carousel-react"
-      ],
-      "registryDependencies": [
-        "@console/button"
-      ],
+      "dependencies": ["embla-carousel-react"],
+      "registryDependencies": ["@console/button"],
       "files": [
         {
           "path": "registry/react/ui/carousel.tsx",
@@ -351,13 +429,8 @@
     {
       "name": "chart",
       "type": "registry:ui",
-      "dependencies": [
-        "recharts@3.8.0",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@console/card"
-      ],
+      "dependencies": ["recharts@3.8.0", "lucide-react"],
+      "registryDependencies": ["@console/card"],
       "files": [
         {
           "path": "registry/react/ui/chart.tsx",
@@ -374,9 +447,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "collapsible",
@@ -387,19 +458,13 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "command",
       "type": "registry:ui",
-      "dependencies": [
-        "cmdk"
-      ],
-      "registryDependencies": [
-        "@console/dialog"
-      ],
+      "dependencies": ["cmdk"],
+      "registryDependencies": ["@console/dialog"],
       "files": [
         {
           "path": "registry/react/ui/command.tsx",
@@ -410,14 +475,8 @@
     {
       "name": "combobox",
       "type": "registry:ui",
-      "dependencies": [
-        "@base-ui/react",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@console/button",
-        "@console/input-group"
-      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@console/button", "@console/input-group"],
       "files": [
         {
           "path": "registry/react/ui/combobox.tsx",
@@ -434,9 +493,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "dialog",
@@ -447,9 +504,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "direction",
@@ -460,16 +515,12 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "drawer",
       "type": "registry:ui",
-      "dependencies": [
-        "vaul"
-      ],
+      "dependencies": ["vaul"],
       "files": [
         {
           "path": "registry/react/ui/drawer.tsx",
@@ -490,10 +541,7 @@
     {
       "name": "field",
       "type": "registry:ui",
-      "registryDependencies": [
-        "@console/label",
-        "@console/separator"
-      ],
+      "registryDependencies": ["@console/label", "@console/separator"],
       "files": [
         {
           "path": "registry/react/ui/field.tsx",
@@ -510,9 +558,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "form",
@@ -523,10 +569,7 @@
         "zod",
         "react-hook-form"
       ],
-      "registryDependencies": [
-        "@console/button",
-        "@console/label"
-      ],
+      "registryDependencies": ["@console/button", "@console/label"],
       "files": [
         {
           "path": "registry/react/ui/form.tsx",
@@ -543,9 +586,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "input",
@@ -556,9 +597,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "input-group",
@@ -578,9 +617,7 @@
     {
       "name": "input-otp",
       "type": "registry:ui",
-      "dependencies": [
-        "input-otp"
-      ],
+      "dependencies": ["input-otp"],
       "files": [
         {
           "path": "registry/react/ui/input-otp.tsx",
@@ -601,18 +638,14 @@
     {
       "name": "item",
       "type": "registry:ui",
-      "registryDependencies": [
-        "@console/separator"
-      ],
+      "registryDependencies": ["@console/separator"],
       "files": [
         {
           "path": "registry/react/ui/item.tsx",
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "kbd",
@@ -633,9 +666,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "navigation-menu",
@@ -646,16 +677,12 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "native-select",
       "type": "registry:ui",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/react/ui/native-select.tsx",
@@ -666,9 +693,7 @@
     {
       "name": "pagination",
       "type": "registry:ui",
-      "registryDependencies": [
-        "@console/button"
-      ],
+      "registryDependencies": ["@console/button"],
       "files": [
         {
           "path": "registry/react/ui/pagination.tsx",
@@ -685,9 +710,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "progress",
@@ -698,9 +721,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "radio-group",
@@ -711,16 +732,12 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "resizable",
       "type": "registry:ui",
-      "dependencies": [
-        "react-resizable-panels@^4"
-      ],
+      "dependencies": ["react-resizable-panels@^4"],
       "files": [
         {
           "path": "registry/react/ui/resizable.tsx",
@@ -737,9 +754,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "select",
@@ -750,9 +765,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "separator",
@@ -763,9 +776,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "sheet",
@@ -776,9 +787,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "sidebar",
@@ -865,16 +874,12 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "spinner",
       "type": "registry:ui",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "registry/react/ui/spinner.tsx",
@@ -885,13 +890,8 @@
     {
       "name": "sonner",
       "type": "registry:ui",
-      "dependencies": [
-        "lucide-react",
-        "sonner"
-      ],
-      "registryDependencies": [
-        "@console/theme-provider"
-      ],
+      "dependencies": ["lucide-react", "sonner"],
+      "registryDependencies": ["@console/theme-provider"],
       "files": [
         {
           "path": "registry/react/ui/sonner.tsx",
@@ -908,9 +908,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "table",
@@ -931,9 +929,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "textarea",
@@ -954,25 +950,19 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "toggle-group",
       "type": "registry:ui",
-      "registryDependencies": [
-        "@console/toggle"
-      ],
+      "registryDependencies": ["@console/toggle"],
       "files": [
         {
           "path": "registry/react/ui/toggle-group.tsx",
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "tooltip",
@@ -983,9 +973,7 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": [
-        "@base-ui/react"
-      ]
+      "dependencies": ["@base-ui/react"]
     },
     {
       "name": "solid/utils",
@@ -998,19 +986,13 @@
           "target": "lib/utils.ts"
         }
       ],
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ]
+      "dependencies": ["clsx", "tailwind-merge"]
     },
     {
       "name": "solid/cva",
       "type": "registry:lib",
       "title": "CVA (Solid)",
-      "dependencies": [
-        "cva@1.0.0-beta.4",
-        "tailwind-merge"
-      ],
+      "dependencies": ["cva@1.0.0-beta.4", "tailwind-merge"],
       "files": [
         {
           "path": "registry/solid/lib/cva.ts",
@@ -1023,9 +1005,7 @@
       "name": "solid/call-handler",
       "type": "registry:lib",
       "title": "Call Handler (Solid)",
-      "dependencies": [
-        "solid-js"
-      ],
+      "dependencies": ["solid-js"],
       "files": [
         {
           "path": "registry/solid/lib/call-handler.ts",
@@ -1038,9 +1018,7 @@
       "name": "solid/combine-style",
       "type": "registry:lib",
       "title": "Combine Style (Solid)",
-      "dependencies": [
-        "solid-js"
-      ],
+      "dependencies": ["solid-js"],
       "files": [
         {
           "path": "registry/solid/lib/combine-style.ts",
@@ -1053,9 +1031,7 @@
       "name": "solid/use-mobile",
       "type": "registry:hook",
       "title": "useIsMobile (Solid)",
-      "dependencies": [
-        "solid-js"
-      ],
+      "dependencies": ["solid-js"],
       "files": [
         {
           "path": "registry/solid/hooks/use-mobile.ts",
@@ -1069,15 +1045,24 @@
       "type": "registry:component",
       "title": "Code Editor (Solid)",
       "description": "A Solid Monaco code editor for configuration and manifest editing.",
-      "dependencies": [
-        "solid-js",
-        "monaco-editor"
-      ],
+      "dependencies": ["solid-js", "monaco-editor"],
       "files": [
         {
           "path": "registry/solid/components/code-editor.tsx",
           "type": "registry:component",
-          "target": "components/code-editor.tsx"
+          "target": "@components/code-editor.tsx"
+        }
+      ]
+    },
+    {
+      "name": "solid/theme-provider",
+      "type": "registry:component",
+      "dependencies": ["solid-js"],
+      "files": [
+        {
+          "path": "registry/solid/components/theme-provider.tsx",
+          "type": "registry:component",
+          "target": "@components/theme-provider.tsx"
         }
       ]
     },
@@ -1086,9 +1071,7 @@
       "type": "registry:block",
       "title": "Dashboard (Solid)",
       "description": "A console dashboard with sidebar, actions, filtering, and data table.",
-      "dependencies": [
-        "solid-js"
-      ],
+      "dependencies": ["solid-js"],
       "registryDependencies": [
         "@console/solid/console-shell",
         "@console/solid/badge",
@@ -1098,7 +1081,7 @@
         {
           "path": "registry/solid/blocks/dashboard.tsx",
           "type": "registry:component",
-          "target": "components/blocks/dashboard.tsx"
+          "target": "@components/dashboard.tsx"
         }
       ]
     },
@@ -1107,10 +1090,7 @@
       "type": "registry:block",
       "title": "Console Shell (Solid)",
       "description": "A console sidebar shell with global search and account controls.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
       "registryDependencies": [
         "@console/solid/sidebar",
         "@console/solid/utils",
@@ -1122,7 +1102,7 @@
         {
           "path": "registry/solid/blocks/console-shell.tsx",
           "type": "registry:component",
-          "target": "components/blocks/console-shell.tsx"
+          "target": "@components/console-shell.tsx"
         }
       ]
     },
@@ -1131,10 +1111,7 @@
       "type": "registry:block",
       "title": "Data Table View (Solid)",
       "description": "A complete table view with search, column controls, selection, and actions.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
       "registryDependencies": [
         "@console/solid/badge",
         "@console/solid/button",
@@ -1147,7 +1124,7 @@
         {
           "path": "registry/solid/blocks/data-table-view/page.tsx",
           "type": "registry:component",
-          "target": "components/blocks/data-table-view/page.tsx"
+          "target": "@components/data-table-view.tsx"
         }
       ]
     },
@@ -1156,10 +1133,7 @@
       "type": "registry:block",
       "title": "Detail View (Solid)",
       "description": "A complete detail view with summary, sections, activity, and confirmation.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
       "registryDependencies": [
         "@console/solid/alert-dialog",
         "@console/solid/badge",
@@ -1170,7 +1144,7 @@
         {
           "path": "registry/solid/blocks/detail-view/page.tsx",
           "type": "registry:component",
-          "target": "components/blocks/detail-view/page.tsx"
+          "target": "@components/detail-view.tsx"
         }
       ]
     },
@@ -1179,12 +1153,8 @@
       "type": "registry:block",
       "title": "Form Flow (Solid)",
       "description": "A complete configure and review flow for creating or editing an item.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
       "registryDependencies": [
-        "@console/solid/badge",
         "@console/solid/button",
         "@console/solid/checkbox",
         "@console/solid/input",
@@ -1194,7 +1164,7 @@
         {
           "path": "registry/solid/blocks/form-flow/page.tsx",
           "type": "registry:component",
-          "target": "components/blocks/form-flow/page.tsx"
+          "target": "@components/form-flow.tsx"
         }
       ]
     },
@@ -1203,10 +1173,7 @@
       "type": "registry:block",
       "title": "Double Confirmation (Solid)",
       "description": "A high-impact action pattern with explicit confirmation.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
       "registryDependencies": [
         "@console/solid/alert-dialog",
         "@console/solid/badge",
@@ -1217,7 +1184,7 @@
         {
           "path": "registry/solid/blocks/double-confirmation/page.tsx",
           "type": "registry:component",
-          "target": "components/blocks/double-confirmation/page.tsx"
+          "target": "@components/double-confirmation-dialog.tsx"
         }
       ]
     },
@@ -1226,19 +1193,13 @@
       "type": "registry:block",
       "title": "Empty State (Solid)",
       "description": "A complete empty table view with guidance and primary action.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/button",
-        "@console/solid/table"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
+      "registryDependencies": ["@console/solid/button", "@console/solid/table"],
       "files": [
         {
           "path": "registry/solid/blocks/empty-state/page.tsx",
           "type": "registry:component",
-          "target": "components/blocks/empty-state/page.tsx"
+          "target": "@components/empty-state.tsx"
         }
       ]
     },
@@ -1247,15 +1208,8 @@
       "type": "registry:ui",
       "title": "Accordion (Solid)",
       "description": "Console UI accordion for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/accordion.tsx",
@@ -1275,10 +1229,7 @@
         "@kobalte/core",
         "cva@1.0.0-beta.4"
       ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/alert.tsx",
@@ -1292,15 +1243,8 @@
       "type": "registry:ui",
       "title": "Alert Dialog (Solid)",
       "description": "Console UI alert-dialog for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core",
-        "cva@1.0.0-beta.4"
-      ],
-      "registryDependencies": [
-        "@console/solid/cva",
-        "@console/solid/button"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core", "cva@1.0.0-beta.4"],
+      "registryDependencies": ["@console/solid/cva", "@console/solid/button"],
       "files": [
         {
           "path": "registry/solid/ui/alert-dialog.tsx",
@@ -1314,12 +1258,8 @@
       "type": "registry:ui",
       "title": "Aspect Ratio (Solid)",
       "description": "Console UI aspect-ratio for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/aspect-ratio.tsx",
@@ -1333,12 +1273,8 @@
       "type": "registry:ui",
       "title": "Avatar (Solid)",
       "description": "Console UI avatar for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/avatar.tsx",
@@ -1358,10 +1294,7 @@
         "@kobalte/core",
         "cva@1.0.0-beta.4"
       ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/badge.tsx",
@@ -1375,15 +1308,8 @@
       "type": "registry:ui",
       "title": "Breadcrumb (Solid)",
       "description": "Console UI breadcrumb for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/breadcrumb.tsx",
@@ -1403,10 +1329,7 @@
         "@kobalte/core",
         "cva@1.0.0-beta.4"
       ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/button.tsx",
@@ -1444,11 +1367,7 @@
       "type": "registry:ui",
       "title": "Calendar (Solid)",
       "description": "Console UI calendar for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@corvu/calendar"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@corvu/calendar"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/button",
@@ -1467,13 +1386,8 @@
       "type": "registry:ui",
       "title": "Card (Solid)",
       "description": "Console UI card for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/card.tsx",
@@ -1511,14 +1425,8 @@
       "type": "registry:ui",
       "title": "Chart (Solid)",
       "description": "Console UI chart for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@unovis/solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@unovis/solid"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/chart.tsx",
@@ -1532,15 +1440,8 @@
       "type": "registry:ui",
       "title": "Checkbox (Solid)",
       "description": "Console UI checkbox for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/checkbox.tsx",
@@ -1554,14 +1455,8 @@
       "type": "registry:ui",
       "title": "Collapsible (Solid)",
       "description": "Console UI collapsible for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/collapsible.tsx",
@@ -1575,15 +1470,8 @@
       "type": "registry:ui",
       "title": "Command (Solid)",
       "description": "Console UI command for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "cmdk-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "cmdk-solid"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/command.tsx",
@@ -1597,11 +1485,7 @@
       "type": "registry:ui",
       "title": "Combobox (Solid)",
       "description": "Console UI combobox for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/command",
@@ -1621,15 +1505,8 @@
       "type": "registry:ui",
       "title": "Context Menu (Solid)",
       "description": "Console UI context-menu for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/context-menu.tsx",
@@ -1643,11 +1520,7 @@
       "type": "registry:ui",
       "title": "Dialog (Solid)",
       "description": "Console UI dialog for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/button",
@@ -1666,12 +1539,8 @@
       "type": "registry:ui",
       "title": "Direction (Solid)",
       "description": "Console UI direction for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/direction.tsx",
@@ -1685,11 +1554,7 @@
       "type": "registry:ui",
       "title": "Drawer (Solid)",
       "description": "Console UI drawer for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@corvu/drawer"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@corvu/drawer"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/button",
@@ -1708,13 +1573,8 @@
       "type": "registry:ui",
       "title": "Empty (Solid)",
       "description": "Console UI empty for Solid.",
-      "dependencies": [
-        "solid-js",
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js", "class-variance-authority"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/empty.tsx",
@@ -1728,10 +1588,7 @@
       "type": "registry:ui",
       "title": "Field (Solid)",
       "description": "Console UI field for Solid.",
-      "dependencies": [
-        "solid-js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["solid-js", "class-variance-authority"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/label",
@@ -1750,15 +1607,8 @@
       "type": "registry:ui",
       "title": "Dropdown Menu (Solid)",
       "description": "Console UI dropdown-menu for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/dropdown-menu.tsx",
@@ -1772,13 +1622,8 @@
       "type": "registry:ui",
       "title": "Form (Solid)",
       "description": "Console UI form for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/label"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/label"],
       "files": [
         {
           "path": "registry/solid/ui/form.tsx",
@@ -1792,14 +1637,8 @@
       "type": "registry:ui",
       "title": "Hover Card (Solid)",
       "description": "Console UI hover-card for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/hover-card.tsx",
@@ -1813,14 +1652,8 @@
       "type": "registry:ui",
       "title": "Input (Solid)",
       "description": "Console UI input for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/input.tsx",
@@ -1834,10 +1667,7 @@
       "type": "registry:ui",
       "title": "Input Group (Solid)",
       "description": "Console UI input-group for Solid.",
-      "dependencies": [
-        "solid-js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["solid-js", "class-variance-authority"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/button",
@@ -1857,15 +1687,8 @@
       "type": "registry:ui",
       "title": "Input Otp (Solid)",
       "description": "Console UI input-otp for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@corvu/otp-field",
-        "lucide-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@corvu/otp-field", "lucide-solid"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/input-otp.tsx",
@@ -1879,12 +1702,8 @@
       "type": "registry:ui",
       "title": "Label (Solid)",
       "description": "Console UI label for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/label.tsx",
@@ -1898,10 +1717,7 @@
       "type": "registry:ui",
       "title": "Item (Solid)",
       "description": "Console UI item for Solid.",
-      "dependencies": [
-        "solid-js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["solid-js", "class-variance-authority"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/separator"
@@ -1919,13 +1735,8 @@
       "type": "registry:ui",
       "title": "Kbd (Solid)",
       "description": "Console UI kbd for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/kbd.tsx",
@@ -1939,15 +1750,8 @@
       "type": "registry:ui",
       "title": "Menubar (Solid)",
       "description": "Console UI menubar for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/menubar.tsx",
@@ -1967,10 +1771,7 @@
         "lucide-solid",
         "@kobalte/core"
       ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/navigation-menu.tsx",
@@ -1984,13 +1785,8 @@
       "type": "registry:ui",
       "title": "Native Select (Solid)",
       "description": "Console UI native-select for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/native-select.tsx",
@@ -2004,10 +1800,7 @@
       "type": "registry:ui",
       "title": "Pagination (Solid)",
       "description": "Console UI pagination for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
       "registryDependencies": [
         "@console/solid/utils",
         "@console/solid/button",
@@ -2026,14 +1819,8 @@
       "type": "registry:ui",
       "title": "Popover (Solid)",
       "description": "Console UI popover for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/popover.tsx",
@@ -2047,14 +1834,8 @@
       "type": "registry:ui",
       "title": "Progress (Solid)",
       "description": "Console UI progress for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/progress.tsx",
@@ -2068,14 +1849,8 @@
       "type": "registry:ui",
       "title": "Radio Group (Solid)",
       "description": "Console UI radio-group for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/radio-group.tsx",
@@ -2089,15 +1864,8 @@
       "type": "registry:ui",
       "title": "Resizable (Solid)",
       "description": "Console UI resizable for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@corvu/resizable"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@corvu/resizable"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/resizable.tsx",
@@ -2111,12 +1879,8 @@
       "type": "registry:ui",
       "title": "Scroll Area (Solid)",
       "description": "Console UI scroll-area for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/scroll-area.tsx",
@@ -2130,15 +1894,8 @@
       "type": "registry:ui",
       "title": "Select (Solid)",
       "description": "Console UI select for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "lucide-solid", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/select.tsx",
@@ -2152,14 +1909,8 @@
       "type": "registry:ui",
       "title": "Separator (Solid)",
       "description": "Console UI separator for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/separator.tsx",
@@ -2173,14 +1924,8 @@
       "type": "registry:ui",
       "title": "Sheet (Solid)",
       "description": "Console UI sheet for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/button"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/button"],
       "files": [
         {
           "path": "registry/solid/ui/sheet.tsx",
@@ -2225,13 +1970,8 @@
       "type": "registry:ui",
       "title": "Skeleton (Solid)",
       "description": "Console UI skeleton for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/skeleton.tsx",
@@ -2245,14 +1985,8 @@
       "type": "registry:ui",
       "title": "Slider (Solid)",
       "description": "Console UI slider for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/slider.tsx",
@@ -2266,13 +2000,8 @@
       "type": "registry:ui",
       "title": "Spinner (Solid)",
       "description": "Console UI spinner for Solid.",
-      "dependencies": [
-        "solid-js",
-        "lucide-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js", "lucide-solid"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/spinner.tsx",
@@ -2286,14 +2015,8 @@
       "type": "registry:ui",
       "title": "Sonner (Solid)",
       "description": "Console UI sonner for Solid.",
-      "dependencies": [
-        "solid-js",
-        "solid-sonner",
-        "lucide-solid"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils"
-      ],
+      "dependencies": ["solid-js", "solid-sonner", "lucide-solid"],
+      "registryDependencies": ["@console/solid/utils"],
       "files": [
         {
           "path": "registry/solid/ui/sonner.tsx",
@@ -2307,14 +2030,8 @@
       "type": "registry:ui",
       "title": "Switch (Solid)",
       "description": "Console UI switch for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/switch.tsx",
@@ -2328,13 +2045,8 @@
       "type": "registry:ui",
       "title": "Table (Solid)",
       "description": "Console UI table for Solid.",
-      "dependencies": [
-        "solid-js"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/table.tsx",
@@ -2354,10 +2066,7 @@
         "@kobalte/core",
         "cva@1.0.0-beta.4"
       ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/tabs.tsx",
@@ -2371,14 +2080,8 @@
       "type": "registry:ui",
       "title": "Textarea (Solid)",
       "description": "Console UI textarea for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/textarea.tsx",
@@ -2398,10 +2101,7 @@
         "@kobalte/core",
         "cva@1.0.0-beta.4"
       ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/toggle.tsx",
@@ -2439,14 +2139,8 @@
       "type": "registry:ui",
       "title": "Tooltip (Solid)",
       "description": "Console UI tooltip for Solid.",
-      "dependencies": [
-        "solid-js",
-        "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "@console/solid/utils",
-        "@console/solid/cva"
-      ],
+      "dependencies": ["solid-js", "@kobalte/core"],
+      "registryDependencies": ["@console/solid/utils", "@console/solid/cva"],
       "files": [
         {
           "path": "registry/solid/ui/tooltip.tsx",

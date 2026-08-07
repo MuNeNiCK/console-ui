@@ -20,6 +20,9 @@
       ],
       "@/components/ui/*": ["./registry/solid/ui/*"],
       "@/components/*": ["./registry/solid/components/*"],
+      "@/components/console-shell": [
+        "./registry/solid/blocks/console-shell.tsx"
+      ],
       "@/hooks/*": ["./registry/solid/hooks/*"],
       "@/lib/*": ["./registry/solid/lib/*"],
       "@/*": ["./*"]

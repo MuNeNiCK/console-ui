@@ -18,16 +18,71 @@ const blockPreviews = [
     expectedText: ["Console UI"],
   },
   {
-    name: "resource",
-    react: false,
+    name: "data-table-view",
+    react: true,
     solid: true,
-    expectedText: ["api-primary", "worker-pool"],
+    expectedText: ["Workspace inventory", "Atlas"],
+  },
+  {
+    name: "detail-view",
+    react: true,
+    solid: true,
+    expectedText: ["Atlas workspace", "Recent activity"],
+  },
+  {
+    name: "form-flow",
+    react: true,
+    solid: true,
+    expectedText: ["Create workspace", "Require approval"],
+  },
+  {
+    name: "double-confirmation",
+    react: true,
+    solid: true,
+    expectedText: ["Archive workspace", "Atlas workspace"],
+  },
+  {
+    name: "empty-state",
+    react: true,
+    solid: true,
+    expectedText: ["Workspace inventory", "No workspaces yet"],
   },
 ]
 
 function preview(page: Page, framework: Framework) {
   return page.locator(framework === "react" ? "#demo-react" : "#demo-solid")
 }
+
+test("form-flow: React and Solid expose the same review flow", async ({
+  page,
+}) => {
+  const sectionTitles = [
+    "Workspace details",
+    "Ownership & environment",
+    "Controls",
+  ]
+  const results: Record<Framework, string[]> = { react: [], solid: [] }
+  for (const framework of frameworks) {
+    await page.addInitScript(() =>
+      localStorage.removeItem("console-ui-framework"),
+    )
+    await page.goto("/console-ui/blocks/form-flow")
+    if (framework === "solid")
+      await page.getByRole("button", { name: "Solid" }).click()
+    const root = page.locator(
+      framework === "react" ? "#demo-react" : "#demo-solid",
+    )
+    await root.getByRole("button", { name: "Review" }).click()
+    await expect(
+      root.getByRole("heading", { name: "Review configuration" }),
+    ).toBeVisible()
+    for (const title of sectionTitles) {
+      await expect(root.getByRole("heading", { name: title })).toBeVisible()
+    }
+    results[framework] = await root.locator("dd").allTextContents()
+  }
+  expect(results.solid).toEqual(results.react)
+})
 
 async function openComponent(page: Page, name: string, framework: Framework) {
   await page.goto(`/console-ui/components/${name}`)
@@ -48,7 +103,9 @@ function compareFrameworks(
   name: string,
   exercise: (page: Page, root: Locator) => Promise<ExerciseResult>,
 ) {
-  test(`${name}: React and Solid expose the same behavior`, async ({ page }) => {
+  test(`${name}: React and Solid expose the same behavior`, async ({
+    page,
+  }) => {
     const results: Record<Framework, ExerciseResult> = {
       react: false,
       solid: false,
@@ -84,11 +141,7 @@ async function visibleRole(
   return true
 }
 
-async function visibleElementBox(
-  page: Page,
-  selector: string,
-  text?: string,
-) {
+async function visibleElementBox(page: Page, selector: string, text?: string) {
   const readBox = () =>
     page.evaluate(
       ({ selector, text }) => {
@@ -229,7 +282,9 @@ compareFrameworks("collapsible", async (_page, root) => {
 compareFrameworks("command", async (_page, root) => {
   const input = root.getByPlaceholder("Search resources...")
   await input.fill("datastore")
-  await expect(root.getByText("datastore-primary", { exact: true })).toBeVisible()
+  await expect(
+    root.getByText("datastore-primary", { exact: true }),
+  ).toBeVisible()
   return await input.inputValue()
 })
 
@@ -275,11 +330,7 @@ compareFrameworks("field", async (_page, root) => {
   await expect(input).toHaveValue("node-01")
   await input.fill("node-02")
   await expect(input).toHaveValue("node-02")
-  return visibleTexts(root, [
-    "Resource policy",
-    "Name",
-    "Auto remediation",
-  ])
+  return visibleTexts(root, ["Resource policy", "Name", "Auto remediation"])
 })
 
 compareFrameworks("form", async (_page, root) => {
@@ -369,9 +420,7 @@ compareFrameworks("navigation-menu", async (page, root) => {
     "Hosts",
   )
 
-  expect(contentBox.y).toBeGreaterThanOrEqual(
-    triggerBox.y + triggerBox.height,
-  )
+  expect(contentBox.y).toBeGreaterThanOrEqual(triggerBox.y + triggerBox.height)
   expect(Math.abs(contentBox.x - triggerBox.x)).toBeLessThanOrEqual(16)
   return true
 })
@@ -407,7 +456,9 @@ compareFrameworks("radio-group", async (_page, root) => {
 compareFrameworks("select", async (page, root) => {
   const trigger = root.locator('[data-slot="select-trigger"]')
   await trigger.click()
-  await expect(page.getByRole("option", { name: "Staging" }).last()).toBeVisible()
+  await expect(
+    page.getByRole("option", { name: "Staging" }).last(),
+  ).toBeVisible()
   await page.getByRole("option", { name: "Staging" }).last().click()
   return await trigger.innerText()
 })
@@ -488,9 +539,11 @@ compareFrameworks("table", async (_page, root) => {
 compareFrameworks("tabs", async (_page, root) => {
   await root.getByRole("tab", { name: "Events" }).click()
   await expect(root.getByText("Recent events and changes.")).toBeVisible()
-  return (await root
-    .getByRole("tab", { name: "Events" })
-    .getAttribute("aria-selected")) ?? ""
+  return (
+    (await root
+      .getByRole("tab", { name: "Events" })
+      .getAttribute("aria-selected")) ?? ""
+  )
 })
 
 compareFrameworks("textarea", async (_page, root) => {
@@ -536,7 +589,9 @@ for (const block of blockPreviews) {
     if (block.react) {
       await expect(reactRoot).toBeVisible()
       for (const text of block.expectedText) {
-        await expect(reactRoot.getByText(text, { exact: true }).first()).toBeVisible()
+        await expect(
+          reactRoot.getByText(text, { exact: true }).first(),
+        ).toBeVisible()
       }
     }
 
@@ -545,7 +600,9 @@ for (const block of blockPreviews) {
     }
     await expect(solidRoot).toBeVisible()
     for (const text of block.expectedText) {
-      await expect(solidRoot.getByText(text, { exact: true }).first()).toBeVisible()
+      await expect(
+        solidRoot.getByText(text, { exact: true }).first(),
+      ).toBeVisible()
     }
   })
 }

@@ -1,6 +1,6 @@
 import { For } from "solid-js"
 
-import { ConsoleShell } from "@/components/blocks/console-shell"
+import { ConsoleShell } from "@/components/console-shell"
 import { Badge } from "@/components/ui/badge"
 import {
   Table,
