@@ -1,10 +1,8 @@
-import {
-  CircleCheckIcon,
-  InfoIcon,
-  Loader2Icon,
-  OctagonXIcon,
-  TriangleAlertIcon,
-} from "lucide-solid"
+import CircleCheckIcon from "lucide-solid/icons/circle-check"
+import InfoIcon from "lucide-solid/icons/info"
+import Loader2Icon from "lucide-solid/icons/loader-circle"
+import OctagonXIcon from "lucide-solid/icons/octagon-x"
+import TriangleAlertIcon from "lucide-solid/icons/triangle-alert"
 import { Toaster as Sonner, type ToasterProps } from "solid-sonner"
 
 export const Toaster = (props: ToasterProps) => {

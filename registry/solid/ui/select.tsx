@@ -1,7 +1,8 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { mergeProps, splitProps } from "solid-js"
 import { Select as SelectPrimitive } from "@kobalte/core/select"
-import { CheckIcon, ChevronDownIcon } from "lucide-solid"
+import CheckIcon from "lucide-solid/icons/check"
+import ChevronDownIcon from "lucide-solid/icons/chevron-down"
 
 import { cx } from "@/registry/solid/lib/cva"
 

@@ -1,7 +1,7 @@
 import type { ComponentProps } from "solid-js"
 import { splitProps } from "solid-js"
 import { Command as CommandPrimitive } from "cmdk-solid"
-import { SearchIcon } from "lucide-solid"
+import SearchIcon from "lucide-solid/icons/search"
 
 import { cx } from "@/registry/solid/lib/cva"
 
