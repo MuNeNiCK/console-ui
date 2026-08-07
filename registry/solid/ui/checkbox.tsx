@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
 import { Checkbox as CheckboxPrimitive } from "@kobalte/core/checkbox"
-import { CheckIcon } from "lucide-solid"
+import CheckIcon from "lucide-solid/icons/check"
 
 import { cx } from "@/registry/solid/lib/cva"
 
