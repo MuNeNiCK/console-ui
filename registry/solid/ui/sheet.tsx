@@ -6,7 +6,7 @@ import {
   useContext,
   type JSX,
 } from "solid-js"
-import { XIcon } from "lucide-solid"
+import XIcon from "lucide-solid/icons/x"
 
 import { cn } from "@/registry/solid/lib/utils"
 import { Button, buttonVariants } from "@/registry/solid/ui/button"

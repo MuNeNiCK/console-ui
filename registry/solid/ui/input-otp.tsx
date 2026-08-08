@@ -6,7 +6,7 @@ import {
   type ValidComponent,
 } from "solid-js"
 import OTPFieldPrimitive from "@corvu/otp-field"
-import { MinusIcon } from "lucide-solid"
+import MinusIcon from "lucide-solid/icons/minus"
 
 import { cx } from "@/registry/solid/lib/cva"
 

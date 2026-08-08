@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { Show, mergeProps, splitProps } from "solid-js"
 import { Dialog as DialogPrimitive } from "@kobalte/core/dialog"
-import { XIcon } from "lucide-solid"
+import XIcon from "lucide-solid/icons/x"
 
 import { cx } from "@/registry/solid/lib/cva"
 import { buttonVariants } from "@/registry/solid/ui/button"

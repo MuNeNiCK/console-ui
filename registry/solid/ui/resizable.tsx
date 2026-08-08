@@ -6,7 +6,7 @@ import {
   type ValidComponent,
 } from "solid-js"
 import ResizablePrimitive from "@corvu/resizable"
-import { GripVerticalIcon } from "lucide-solid"
+import GripVerticalIcon from "lucide-solid/icons/grip-vertical"
 
 import { cx } from "@/registry/solid/lib/cva"
 

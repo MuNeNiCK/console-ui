@@ -1,7 +1,8 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { For, Match, Show, Switch, splitProps } from "solid-js"
 import CalendarPrimitive from "@corvu/calendar"
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-solid"
+import ChevronLeftIcon from "lucide-solid/icons/chevron-left"
+import ChevronRightIcon from "lucide-solid/icons/chevron-right"
 
 import { cx } from "@/registry/solid/lib/cva"
 

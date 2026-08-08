@@ -1,10 +1,8 @@
 import type { ComponentProps } from "solid-js"
 import { splitProps } from "solid-js"
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from "lucide-solid"
+import ChevronLeftIcon from "lucide-solid/icons/chevron-left"
+import ChevronRightIcon from "lucide-solid/icons/chevron-right"
+import MoreHorizontalIcon from "lucide-solid/icons/ellipsis"
 
 import { cx } from "@/registry/solid/lib/cva"
 import { buttonVariants, type ButtonProps } from "@/registry/solid/ui/button"

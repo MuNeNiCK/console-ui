@@ -1,5 +1,7 @@
 import { createEffect, createSignal, type JSX } from "solid-js"
-import { MoonIcon, SearchIcon, SunIcon } from "lucide-solid"
+import MoonIcon from "lucide-solid/icons/moon"
+import SearchIcon from "lucide-solid/icons/search"
+import SunIcon from "lucide-solid/icons/sun"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
