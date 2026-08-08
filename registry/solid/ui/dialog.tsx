@@ -49,7 +49,7 @@ export const DialogContent = <T extends ValidComponent = "div">(
   const [, rest] = splitProps(merge, ["class", "children", "showCloseButton"])
 
   return (
-    <>
+    <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay
         data-slot="dialog-overlay"
         class="fixed inset-0 z-50 bg-black/35 data-[closed]:animate-out data-[closed]:fade-out-0 data-[expanded]:animate-in data-[expanded]:fade-in-0"
@@ -77,7 +77,7 @@ export const DialogContent = <T extends ValidComponent = "div">(
           </DialogPrimitive.CloseButton>
         </Show>
       </DialogPrimitive.Content>
-    </>
+    </DialogPrimitive.Portal>
   )
 }
 
