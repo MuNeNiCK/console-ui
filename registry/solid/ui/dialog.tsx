@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { Show, mergeProps, splitProps } from "solid-js"
 import { Dialog as DialogPrimitive } from "@kobalte/core/dialog"
-import { XIcon } from "lucide-solid"
+import XIcon from "lucide-solid/icons/x"
 
 import { cx } from "@/registry/solid/lib/cva"
 import { buttonVariants } from "@/registry/solid/ui/button"
@@ -49,7 +49,7 @@ export const DialogContent = <T extends ValidComponent = "div">(
   const [, rest] = splitProps(merge, ["class", "children", "showCloseButton"])
 
   return (
-    <>
+    <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay
         data-slot="dialog-overlay"
         class="fixed inset-0 z-50 bg-black/35 data-[closed]:animate-out data-[closed]:fade-out-0 data-[expanded]:animate-in data-[expanded]:fade-in-0"
@@ -77,7 +77,7 @@ export const DialogContent = <T extends ValidComponent = "div">(
           </DialogPrimitive.CloseButton>
         </Show>
       </DialogPrimitive.Content>
-    </>
+    </DialogPrimitive.Portal>
   )
 }
 

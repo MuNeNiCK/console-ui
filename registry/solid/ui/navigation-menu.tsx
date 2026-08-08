@@ -9,7 +9,7 @@ import {
   type ValidComponent,
 } from "solid-js"
 import * as NavigationMenuPrimitive from "@kobalte/core/navigation-menu"
-import { ChevronDownIcon } from "lucide-solid"
+import ChevronDownIcon from "lucide-solid/icons/chevron-down"
 
 import { cva, cx } from "@/registry/solid/lib/cva"
 

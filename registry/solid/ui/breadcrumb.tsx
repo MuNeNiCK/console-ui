@@ -1,7 +1,8 @@
 import type { VoidProps } from "solid-js"
 import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
 import { Breadcrumbs as BreadcrumbsPrimitive } from "@kobalte/core/breadcrumbs"
-import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-solid"
+import ChevronRightIcon from "lucide-solid/icons/chevron-right"
+import MoreHorizontalIcon from "lucide-solid/icons/ellipsis"
 
 import { cx } from "@/registry/solid/lib/cva"
 

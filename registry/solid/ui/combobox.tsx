@@ -1,7 +1,9 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { mergeProps, splitProps } from "solid-js"
 import { Combobox as ComboboxPrimitive } from "@kobalte/core/combobox"
-import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-solid"
+import CheckIcon from "lucide-solid/icons/check"
+import ChevronDownIcon from "lucide-solid/icons/chevron-down"
+import XIcon from "lucide-solid/icons/x"
 
 import { cx } from "@/registry/solid/lib/cva"
 import { Button } from "@/registry/solid/ui/button"
