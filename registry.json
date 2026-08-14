@@ -149,7 +149,7 @@
     {
       "name": "code-editor",
       "type": "registry:component",
-      "dependencies": ["react", "monaco-editor@^0.55.1"],
+      "dependencies": ["react", "monaco-editor@^0.56.0"],
       "files": [
         {
           "path": "registry/react/components/code-editor.tsx",
@@ -1045,7 +1045,7 @@
       "type": "registry:component",
       "title": "Code Editor (Solid)",
       "description": "A Solid Monaco code editor for configuration and manifest editing.",
-      "dependencies": ["solid-js", "monaco-editor"],
+      "dependencies": ["solid-js", "monaco-editor@^0.56.0"],
       "files": [
         {
           "path": "registry/solid/components/code-editor.tsx",
