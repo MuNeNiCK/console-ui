@@ -95,6 +95,7 @@ import {
 import { DirectionProvider } from "@/registry/react/ui/direction"
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -674,22 +675,44 @@ export default function ReactDemo({ name }: { name: string }) {
 
   if (name === "drawer") {
     return (
-      <Drawer>
-        <DrawerTrigger asChild>
-          <Button variant="outline">Open drawer</Button>
-        </DrawerTrigger>
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Task details</DrawerTitle>
-            <DrawerDescription>
-              Review recent task activity for this resource.
-            </DrawerDescription>
-          </DrawerHeader>
-          <DrawerFooter>
-            <Button>Close</Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+      <div className="flex gap-2">
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button variant="outline">Open drawer</Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Task details</DrawerTitle>
+              <DrawerDescription>
+                Review recent task activity for this resource.
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter>
+              <DrawerClose asChild>
+                <Button>Close</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+        <Drawer modal={false}>
+          <DrawerTrigger asChild>
+            <Button variant="outline">Open non-modal drawer</Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>Non-modal task details</DrawerTitle>
+              <DrawerDescription>
+                Continue working with the page while this drawer is open.
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter>
+              <DrawerClose asChild>
+                <Button>Close</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </div>
     )
   }
 

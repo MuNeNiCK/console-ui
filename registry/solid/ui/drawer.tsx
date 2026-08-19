@@ -40,6 +40,7 @@ export const DrawerContent = <T extends ValidComponent = "div">(
   props: DrawerContentProps<T>,
 ) => {
   const context = DrawerPrimitive.useContext()
+  const dialogContext = DrawerPrimitive.useDialogContext()
 
   const merge = mergeProps<DrawerContentProps[]>(
     {
@@ -51,13 +52,15 @@ export const DrawerContent = <T extends ValidComponent = "div">(
 
   return (
     <>
-      <DrawerPrimitive.Overlay
-        data-slot="drawer-overlay"
-        class="fixed inset-0 z-50 bg-black/35 data-[transitioning]:transition-colors data-[transitioning]:duration-500 data-[transitioning]:ease-[cubic-bezier(0.32,0.72,0,1)]"
-        style={{
-          "background-color": `rgb(0 0 0 / ${0.35 * context.openPercentage()}`,
-        }}
-      />
+      <Show when={dialogContext.modal()}>
+        <DrawerPrimitive.Overlay
+          data-slot="drawer-overlay"
+          class="fixed inset-0 z-50 bg-black/35 data-[transitioning]:transition-colors data-[transitioning]:duration-500 data-[transitioning]:ease-[cubic-bezier(0.32,0.72,0,1)]"
+          style={{
+            "background-color": `rgb(0 0 0 / ${0.35 * context.openPercentage()}`,
+          }}
+        />
+      </Show>
       <DrawerPrimitive.Content
         data-slot="drawer-content"
         data-side={context.side()}

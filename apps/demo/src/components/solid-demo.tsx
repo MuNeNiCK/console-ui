@@ -93,6 +93,7 @@ import {
 import { DirectionProvider } from "@/registry/solid/ui/direction"
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -659,22 +660,40 @@ export default function SolidDemo(props: { name: string }) {
 
     case "drawer":
       return (
-        <Drawer>
-          <DrawerTrigger class={buttonVariants({ variant: "outline" })}>
-            Open drawer
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader>
-              <DrawerTitle>Task details</DrawerTitle>
-              <DrawerDescription>
-                Review recent task activity for this resource.
-              </DrawerDescription>
-            </DrawerHeader>
-            <DrawerFooter>
-              <Button>Close</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
+        <div class="flex gap-2">
+          <Drawer>
+            <DrawerTrigger class={buttonVariants({ variant: "outline" })}>
+              Open drawer
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Task details</DrawerTitle>
+                <DrawerDescription>
+                  Review recent task activity for this resource.
+                </DrawerDescription>
+              </DrawerHeader>
+              <DrawerFooter>
+                <DrawerClose class={buttonVariants()}>Close</DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+          <Drawer modal={false}>
+            <DrawerTrigger class={buttonVariants({ variant: "outline" })}>
+              Open non-modal drawer
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Non-modal task details</DrawerTitle>
+                <DrawerDescription>
+                  Continue working with the page while this drawer is open.
+                </DrawerDescription>
+              </DrawerHeader>
+              <DrawerFooter>
+                <DrawerClose class={buttonVariants()}>Close</DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        </div>
       )
 
     case "dropdown-menu":
