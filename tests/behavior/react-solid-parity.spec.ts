@@ -314,7 +314,16 @@ compareFrameworks("direction", async (_page, root) => {
 
 compareFrameworks("drawer", async (page, root) => {
   await root.getByRole("button", { name: "Open drawer" }).click()
-  return visibleRole(page, "heading", "Task details")
+  await visibleRole(page, "heading", "Task details")
+  await expect(page.locator('[data-slot="drawer-overlay"]')).toHaveCount(1)
+  await page.getByRole("button", { name: "Close" }).last().click()
+  await expect(page.locator('[data-slot="drawer-overlay"]')).toHaveCount(0)
+
+  await root.getByRole("button", { name: "Open non-modal drawer" }).click()
+  await visibleRole(page, "heading", "Non-modal task details")
+  await expect(page.locator('[data-slot="drawer-overlay"]')).toHaveCount(0)
+
+  return true
 })
 
 compareFrameworks("empty", async (_page, root) => {
